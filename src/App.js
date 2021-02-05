@@ -1,8 +1,14 @@
 import React from "react";
-import ScrollableTabsButtonAuto from "./components/ScrollableTabsButtonAuto";
+import CardNews from "./components/CardNews";
+import Header from "./components/Header";
 
 const App = () => {
-  return <ScrollableTabsButtonAuto />;
+  return (
+    <React.Fragment>
+      <Header />
+      <CardNews />
+    </React.Fragment>
+  );
 };
 
 export default App;
