@@ -81,7 +81,8 @@ const DrawerMenu = () => {
     <div>
       <React.Fragment>
         <Button onClick={toggleDrawer("left", true)}>
-          <MenuIcon color="inherit" />
+          <MenuIcon color="inherit" fontSize="large" />
+          <div />
         </Button>
         <Drawer
           anchor={"left"}

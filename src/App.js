@@ -1,11 +1,13 @@
 import React from "react";
-import CardNews from "./components/CardNews";
 import Header from "./components/Header";
+import StockBord from "./components/StockBord";
+import CardNews from "./components/CardNews";
 
 const App = () => {
   return (
     <React.Fragment>
       <Header />
+      <StockBord />
       <CardNews />
     </React.Fragment>
   );

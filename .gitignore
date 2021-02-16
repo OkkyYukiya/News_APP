@@ -24,3 +24,5 @@ yarn-error.log*
 
 keys.js
 exckeys.js
+fmpkey.js
+.env

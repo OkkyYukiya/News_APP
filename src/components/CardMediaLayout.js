@@ -6,6 +6,7 @@ import CardActionArea from "@material-ui/core/CardActionArea";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
+import noImage from "../assets/no-image.png";
 
 const useStyles = makeStyles({
   root: {
@@ -30,7 +31,8 @@ const MediaCard = (props) => {
         <CardMedia
           component="img"
           className={classes.media}
-          image={props.image}
+          image={props.image ? props.image : noImage}
+          //CardNews compでurlToImageがnullでとき、noimageを返す
           title="Contemplative Reptile"
         />
         <CardContent>
