@@ -2,6 +2,8 @@
 
 ## ◆ 概要
 
+![Alt text](src/assets/logo-news.png)
+
 ### ● アプリ名:News Quu
 
 ビジネス情報や株価等を閲覧することができるニュースサイトです。\
