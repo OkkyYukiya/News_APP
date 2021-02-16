@@ -22,9 +22,9 @@
 
 API
 
-- News API
-- bing news search
-- FMP Cloud
+- [News API](https://newsapi.org/)
+- [bing news search](https://docs.microsoft.com/ja-jp/azure/cognitive-services/bing-news-search/search-the-web)
+- [FMP Cloud](https://fmpcloud.io/)
 
 ## 【開発方法】
 
