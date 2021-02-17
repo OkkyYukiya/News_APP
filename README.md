@@ -23,10 +23,10 @@
 API
 
 - [News API](https://newsapi.org/)
-- [bing news search](https://docs.microsoft.com/ja-jp/azure/cognitive-services/bing-news-search/search-the-web)
+- [bing news search](https://api.rakuten.net/microsoft-azure-org-microsoft-cognitive-services/api/bing-news-search1/details)
 - [FMP Cloud](https://fmpcloud.io/)
 
-## 【開発方法】
+## 【SetUp(開発方法)】
 
 Go to the project folder and install required dependencies.
 
