@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
@@ -48,13 +49,15 @@ const DrawerMenu = () => {
     setState({ ...state, [anchor]: open });
   };
 
-  const MenuListItems = ({ symbol, title, subtitle }) => {
+  const MenuListItems = ({ symbol, title, subtitle, path }) => {
     return (
       <List style={{ marginTop: 10 }}>
-        <ListItem button>
-          <ListItemIcon>{symbol}</ListItemIcon>
-          <ListItemText primary={title} secondary={subtitle} />
-        </ListItem>
+        <Link to={path} style={{ textDecoration: "none", color: "black" }}>
+          <ListItem button>
+            <ListItemIcon>{symbol}</ListItemIcon>
+            <ListItemText primary={title} secondary={subtitle} />
+          </ListItem>
+        </Link>
       </List>
     );
   };
@@ -69,9 +72,13 @@ const DrawerMenu = () => {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <h3 className={classes.title}>MENU LIST</h3>
-      <MenuListItems symbol={<AssignmentIcon />} title="News Top" />
+      <MenuListItems symbol={<AssignmentIcon />} title="News Top" path={"/"} />
       <MenuListItems symbol={<ForumIcon />} title="Open Chat" />
-      <MenuListItems symbol={<ShowChartIcon />} title="Stocks" />
+      <MenuListItems
+        symbol={<ShowChartIcon />}
+        title="Stocks"
+        path={"/stocks"}
+      />
       <MenuListItems symbol={<ContactSupportIcon />} title="Support" />
       <MenuListItems symbol={<ExitToAppIcon />} title="Signin" />
     </div>
