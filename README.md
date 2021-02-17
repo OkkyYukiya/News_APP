@@ -20,13 +20,13 @@
 - Firebase\
   (Authentication, CloudFirestore, Hosting)
 
-API
+Used API
 
-- [News API](https://newsapi.org/)
-- [bing news search](https://api.rakuten.net/microsoft-azure-org-microsoft-cognitive-services/api/bing-news-search1/details)
-- [FMP Cloud](https://fmpcloud.io/)
+- News API
+- bing news search
+- FMP Cloud
 
-## 【SetUp(開発方法)】
+## 【SetUp (開発方法)】
 
 Go to the project folder and install required dependencies.
 
@@ -40,6 +40,13 @@ Project will be automatically open at http://localhost:3000
 For production build:
 
 ### `npm run build`
+
+If you need API keys, get it from this link.
+
+- [News API](https://newsapi.org/)
+- [bing news search](https://api.rakuten.net/microsoft-azure-org-microsoft-cognitive-services/api/bing-news-search1/details)
+- [FMP Cloud](https://fmpcloud.io/)\
+  ※All can be registered for free.
 
 ## 【機能一覧】
 
