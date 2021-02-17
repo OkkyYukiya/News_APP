@@ -35,6 +35,7 @@ const CardNews = () => {
       <div className="news-container">
         {articles.map((news, index) => (
           <CardMediaLayout
+            url={news.url}
             key={index.toString()}
             image={news.urlToImage}
             description={news.description}

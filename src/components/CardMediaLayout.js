@@ -6,12 +6,12 @@ import CardActionArea from "@material-ui/core/CardActionArea";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
-import noImage from "../assets/no-image.png";
+import noImage from "../assets/no-image.jpg";
 
 const useStyles = makeStyles({
   root: {
     maxWidth: 340,
-    marginBottom: 12,
+    marginBottom: 3,
     margin: "0 auto",
   },
   media: {
@@ -27,7 +27,7 @@ const MediaCard = (props) => {
 
   return (
     <Card className={classes.root}>
-      <CardActionArea>
+      <CardActionArea href={props.url}>
         <CardMedia
           component="img"
           className={classes.media}
