@@ -10,7 +10,7 @@ const App = () => {
       <Header />
       <Switch>
         <Route exact path="/" component={Home} />
-        <Route path="/stockmarket" component={StockLists} />
+        <Route path="/stocklists" component={StockLists} />
       </Switch>
     </React.Fragment>
   );

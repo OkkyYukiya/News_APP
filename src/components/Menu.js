@@ -77,7 +77,7 @@ const DrawerMenu = () => {
       <MenuListItems
         symbol={<ShowChartIcon />}
         title="Stocks"
-        path={"/stocks"}
+        path={"/stocklists"}
       />
       <MenuListItems symbol={<ContactSupportIcon />} title="Support" />
       <MenuListItems symbol={<ExitToAppIcon />} title="Signin" />
