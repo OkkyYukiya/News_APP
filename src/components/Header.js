@@ -4,7 +4,7 @@ import { AppBar, Toolbar, Typography } from "@material-ui/core";
 import Menu from "./Menu";
 import logo from "../assets/logo-news.png";
 import SearchIcon from "@material-ui/icons/Search";
-
+import { Link } from "react-router-dom";
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -25,7 +25,9 @@ const Header = () => {
       <AppBar color="inherit" position="static">
         <Toolbar>
           <Typography variant="h6" className={classes.title}>
-            <img src={logo} alt="" style={{ height: 30, paddingTop: 10 }} />
+            <Link to="/">
+              <img src={logo} alt="" style={{ height: 30, paddingTop: 10 }} />
+            </Link>
           </Typography>
           <div
             style={{
@@ -35,8 +37,16 @@ const Header = () => {
               cursor: "pointer",
             }}
           >
-            <SearchIcon />
-            <label style={{ fontSize: 8 }}>SEARCH</label>
+            <Link to="/search">
+              <SearchIcon
+                fontSize="large"
+                style={{
+                  textDecoration: "none",
+                  color: "black",
+                  paddingTop: 9,
+                }}
+              />
+            </Link>
           </div>
           <Menu />
         </Toolbar>
