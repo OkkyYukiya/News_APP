@@ -13,7 +13,7 @@
 
 - React.js v17.0.1\
    (Hooks: useState, useEffect, useContext)
-- React-router-dom v0.21.1
+- react-router-dom v0.21.1
 - AXIOS v0.21.1
 - Material-UI v4.11.3
 
