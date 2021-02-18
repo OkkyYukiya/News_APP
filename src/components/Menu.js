@@ -13,7 +13,7 @@ import AssignmentIcon from "@material-ui/icons/Assignment";
 import ForumIcon from "@material-ui/icons/Forum";
 import ShowChartIcon from "@material-ui/icons/ShowChart";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
-import ContactSupportIcon from "@material-ui/icons/ContactSupport";
+import SearchIcon from "@material-ui/icons/Search";
 import MenuIcon from "@material-ui/icons/Menu";
 
 const useStyles = makeStyles({
@@ -29,6 +29,10 @@ const useStyles = makeStyles({
     borderBottom: "2px solid #7c7c7c",
     width: 110,
     margin: "17px auto",
+  },
+  link: {
+    textDecoration: "none",
+    color: "black",
   },
 });
 
@@ -52,12 +56,10 @@ const DrawerMenu = () => {
   const MenuListItems = ({ symbol, title, subtitle, path }) => {
     return (
       <List style={{ marginTop: 10 }}>
-        <Link to={path} style={{ textDecoration: "none", color: "black" }}>
-          <ListItem button>
-            <ListItemIcon>{symbol}</ListItemIcon>
-            <ListItemText primary={title} secondary={subtitle} />
-          </ListItem>
-        </Link>
+        <ListItem button>
+          <ListItemIcon>{symbol}</ListItemIcon>
+          <ListItemText primary={title} secondary={subtitle} />
+        </ListItem>
       </List>
     );
   };
@@ -72,14 +74,16 @@ const DrawerMenu = () => {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <h3 className={classes.title}>MENU LIST</h3>
-      <MenuListItems symbol={<AssignmentIcon />} title="News Top" path={"/"} />
+      <Link to="/" className={classes.link}>
+        <MenuListItems symbol={<AssignmentIcon />} title="News Top" />
+      </Link>
       <MenuListItems symbol={<ForumIcon />} title="Open Chat" />
-      <MenuListItems
-        symbol={<ShowChartIcon />}
-        title="Stocks"
-        path={"/stocklists"}
-      />
-      <MenuListItems symbol={<ContactSupportIcon />} title="Support" />
+      <Link to="/stock" className={classes.link}>
+        <MenuListItems symbol={<ShowChartIcon />} title="Stocks" />
+      </Link>
+      <Link to="/search" className={classes.link}>
+        <MenuListItems symbol={<SearchIcon />} title="Search" />
+      </Link>
       <MenuListItems symbol={<ExitToAppIcon />} title="Signin" />
     </div>
   );
