@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styles from "./StockBord.module.css";
 import axios from "axios";
-import FMP_KEY from "../fmpkey";
+import { FMP_KEY } from "../keys/fmpkey";
 
 const List = (props) => {
   return (
@@ -15,14 +15,14 @@ const List = (props) => {
   );
 };
 
-const percentPrice = (price, previousClosePrice) => {
+const changesPercentage = (price, previousClosePrice) => {
   const differencePrice = price - previousClosePrice;
   const priceAction = differencePrice / price;
   const adjustPrice = priceAction * 100;
   return Math.round(adjustPrice * 100) / 100;
 };
 
-const StockBord = (props) => {
+const StockBord = () => {
   const [stocks, setStocks] = useState([]);
   const url = `https://fmpcloud.io/api/v3/quote/AAPL,GOOG,FB,AMZN,TSLA,PYPL,NFLX,ADBE,XOM,T,IBF?apikey=${FMP_KEY}`;
   const fetchStocks = async () => {
@@ -45,7 +45,7 @@ const StockBord = (props) => {
             key={index}
             symbol={stock.symbol}
             price={stock.price}
-            vsy={percentPrice(stock.price, stock.previousClose)}
+            vsy={changesPercentage(stock.price, stock.previousClose)}
           />
         ))}
       </ul>
@@ -55,7 +55,7 @@ const StockBord = (props) => {
             key={index}
             symbol={stock.symbol}
             price={stock.price}
-            vsy={percentPrice(stock.price, stock.previousClose)}
+            vsy={changesPercentage(stock.price, stock.previousClose)}
           />
         ))}
       </ul>

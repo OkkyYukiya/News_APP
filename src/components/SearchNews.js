@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { BING_KEY } from "../keys";
+import { BING_KEY } from "../keys/keys";
+import Text from "./Text";
 import "./SearchNews.css";
 
 const url =
-  "https://bing-news-search1.p.rapidapi.com/news/search?freshness=Day&textFormat=Raw&count=20&safeSearch=Strict&q=";
+  "https://bing-news-search1.p.rapidapi.com/news/search?freshness=Day&textFormat=Raw&cc=us&count=20&safeSearch=Strict&q=";
 
 async function searchNews(q) {
   q = encodeURIComponent(q);
@@ -30,6 +31,7 @@ const SearchNews = () => {
 
   return (
     <div className="app">
+      <Text title="Search Free Word" />
       <form onSubmit={search}>
         <input
           autoFocus

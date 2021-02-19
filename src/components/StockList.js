@@ -1,11 +1,11 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./StockList.module.css";
 import dummuy from "../dummy.json";
-// import { symbols } from "./symbolList";
-// import API_KEY from "../fmpkey";
-// import axios from "axios";
+import { symbols } from "./symbolList";
+import { FMP_KEY } from "../keys/fmpkey";
+import axios from "axios";
 
-// const url = `https://fmpcloud.io/api/v3/quote/${symbols},?apikey=${API_KEY}`;
+const url = `https://fmpcloud.io/api/v3/quote/${symbols},?apikey=${FMP_KEY}`;
 
 const data = dummuy;
 // console.log(data);
@@ -38,19 +38,19 @@ const Layout = ({ symbol, name, price, changesPercentage, high, low }) => {
 };
 
 const StockLists = () => {
-  // const [stocks, setStocks] = useState([]);
-  // const fetchStocks = async () => {
-  //   try {
-  //     const response = await axios.get(url);
-  //     console.log(response.data);
-  //     setStocks(response.data);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
-  // useEffect(() => {
-  //   fetchStocks();
-  // }, []);
+  const [stocks, setStocks] = useState([]);
+  const fetchStocks = async () => {
+    try {
+      const response = await axios.get(url);
+      console.log(response.data);
+      setStocks(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    fetchStocks();
+  }, []);
 
   return (
     <div className={styles.container}>
@@ -62,7 +62,7 @@ const StockLists = () => {
         <div className={styles.dayLow}>Low/Day</div>
         <div className={styles.ather_list}>Change(%)</div>
       </div>
-      {data.map((stock, index) => (
+      {stocks.map((stock, index) => (
         <Layout
           key={index.toString()}
           symbol={stock.symbol}

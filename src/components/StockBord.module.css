@@ -13,7 +13,7 @@ li {
 
 .slideshow {
   display: flex;
-  animation: loop-slide 50s infinite linear 1s both;
+  animation: loop-slide 60s infinite linear 1s both;
 }
 @keyframes loop-slide {
   from {

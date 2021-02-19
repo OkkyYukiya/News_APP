@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import API_KEY from "../keys";
+import { API_KEY } from "../keys/keys";
 import CardMediaLayout from "./CardMediaLayout";
 import axios from "axios";
 import Buttons from "./Buttons";
