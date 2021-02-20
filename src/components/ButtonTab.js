@@ -2,7 +2,7 @@ import React from "react";
 import Button from "@material-ui/core/Button";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
 import { makeStyles } from "@material-ui/core/styles";
-import "./Buttons.css";
+import "./ButtonTab.css";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -17,8 +17,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Buttons = (props) => {
+const ButtonTab = (props) => {
   const classes = useStyles();
+
   return (
     <div className={classes.root}>
       <ButtonGroup
@@ -27,13 +28,13 @@ const Buttons = (props) => {
         fullWidth={true}
         // aria-label="outlined primary button group"
       >
-        <Button onClick={props.business}>business</Button>
-        <Button onClick={props.technology}>tech</Button>
-        <Button onClick={props.science}>science</Button>
-        <Button onClick={props.general}>general</Button>
+        <Button onClick={props.clickBusiness}>business</Button>
+        <Button onClick={props.clickTechnology}>tech</Button>
+        <Button onClick={props.clickScience}>science</Button>
+        <Button onClick={props.clickGeneral}>general</Button>
       </ButtonGroup>
     </div>
   );
 };
 
-export default Buttons;
+export default ButtonTab;
