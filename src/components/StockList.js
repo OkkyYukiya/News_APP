@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import styles from "./StockList.module.css";
-import dummuy from "../dummy.json";
+// import dummuy from "../dummy.json";
 import { symbols } from "./symbolList";
 import { FMP_KEY } from "../keys/fmpkey";
 import axios from "axios";
 
 const url = `https://fmpcloud.io/api/v3/quote/${symbols},?apikey=${FMP_KEY}`;
 
-const data = dummuy;
+// const data = dummuy;
 // console.log(data);
 
 const roundNum = (price) => {
