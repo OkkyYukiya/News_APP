@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { BING_KEY } from "../keys/keys";
-import Text from "./Text";
+import Text from "../components/Text";
 import "./SearchNews.css";
 
 const url =

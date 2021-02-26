@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
 import "./News.css";
 import { makeStyles } from "@material-ui/core/styles";
-import { Paper, Grid } from "@material-ui/core";
 import { BING_KEY } from "../keys/keys";
-import NewsLayout from "./NewsLayout";
+import NewsLayout from "../components/NewsLayout";
 import PropagateLoader from "react-spinners/PropagateLoader";
-import no_image from "../assets/no-image.png";
+import NewsContents from "../components/NewsContents";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -68,45 +67,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-//news Contents
-const NewsContents = (props) => {
-  const classes = useStyles();
-
-  const formatDate = (s) =>
-    new Date(s).toLocaleDateString(undefined, { dateStyle: "long" });
-
-  return (
-    <Grid item xs={12} sm={12}>
-      <Paper className={classes.paper}>
-        <div className={classes.image_container}>
-          <img
-            className={classes.image}
-            src={props.image ? props.image : no_image}
-            alt=""
-          />
-        </div>
-        <div className={classes.newsInfo}>
-          <p style={{ color: "black" }} className="headline">
-            {props.headline}
-          </p>
-          <p style={{ fontSize: 12, color: "#3d3d3d" }} className="description">
-            {props.description}
-          </p>
-          <div className={classes.newsInfoUnder}>
-            <a className={classes.url} href={props.url}>
-              MORE
-            </a>
-            <span className={classes.provider}>{props.provider}</span>
-            <span className={classes.datePublished}>
-              {formatDate(props.datePublished)}
-            </span>
-          </div>
-        </div>
-      </Paper>
-    </Grid>
-  );
-};
-
 //main news component
 const News = ({ category }) => {
   const classes = useStyles();
@@ -148,19 +108,17 @@ const News = ({ category }) => {
         </div>
       ) : (
         articles.map((news, index) => (
-          <NewsLayout
-            key={index}
-            NewsContents={
-              <NewsContents
-                headline={news.name}
-                url={news.url}
-                image={news.image?.thumbnail?.contentUrl}
-                description={news.description}
-                provider={news.provider[0]?.name}
-                datePublished={news.datePublished}
-              />
-            }
-          />
+          // コンポーネントをラップするときは、コンポーネントにマージンを付けたり、ボーダーを引くとき
+          <NewsLayout key={index}>
+            <NewsContents
+              headline={news.name}
+              url={news.url}
+              image={news.image?.thumbnail?.contentUrl}
+              description={news.description}
+              provider={news.provider[0]?.name}
+              datePublished={news.datePublished}
+            />
+          </NewsLayout>
         ))
       )}
     </div>

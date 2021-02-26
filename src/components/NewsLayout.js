@@ -9,13 +9,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+// Gridが良いかも、Layoutは全体をラップするものがイメージされる
 const NewsLayout = (props) => {
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
       <Grid container spacing={1} direction="column" alignItems="center">
-        {props.NewsContents}
+        {props.children}
       </Grid>
     </div>
   );
