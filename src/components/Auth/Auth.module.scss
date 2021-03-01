@@ -1,0 +1,67 @@
+.root {
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  align-items: center;
+
+  .wrapper {
+    height: 70vh;
+    display: flex;
+    justify-content: center;
+
+    .contents_box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      .avatar {
+        background-color: white;
+        border: 2.8px solid rgb(89, 99, 114);
+
+        .icon {
+          color: rgb(89, 99, 114);
+        }
+      }
+
+      .title {
+        color: rgb(89, 99, 114);
+      }
+
+      form {
+        width: 300px;
+
+        .signin_button {
+          background: rgb(147, 159, 177);
+          color: white;
+          font-size: 14px;
+          font-weight: 500;
+        }
+      }
+    }
+
+    .google_signin {
+      background-color: white;
+      width: 300px;
+      border: 1px solid rgb(170, 170, 170);
+
+      .google_logo {
+        height: 18px;
+        padding-right: 10px;
+      }
+    }
+
+    .subarea {
+      width: 290px;
+      font-size: 15px;
+      font-weight: 500;
+
+      .sign_up,
+      .reset_password {
+        color: rgb(52, 82, 83);
+        cursor: pointer;
+        border-bottom: 1px solid rgb(52, 82, 83);
+      }
+    }
+  }
+}

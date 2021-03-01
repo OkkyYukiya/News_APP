@@ -1,0 +1,20 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+
+  h1 {
+    margin-bottom: 20px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 20px;
+  }
+
+  a {
+    text-decoration: none;
+    color: blue;
+    border-bottom: 1px solid blue;
+  }
+}
