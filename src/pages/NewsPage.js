@@ -1,11 +1,9 @@
 import React from "react";
-import News from "../../components/News";
-import ButtonTab from "../../components/ButtonTab";
+import News from "../containers/News/News";
 
 const NewsPage = ({ category }) => {
   return (
     <React.Fragment>
-      <ButtonTab />
       <News category={category} />
     </React.Fragment>
   );

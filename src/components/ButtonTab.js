@@ -9,16 +9,17 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    maxWidth: 530,
     padding: "0px 3px",
-    margin: "0 auto",
+    width: 350,
+
     "& > *": {
-      margin: theme.spacing(1),
+      marginTop: theme.spacing(1),
     },
   },
   link: {
     textDecoration: "none",
     color: "#002531",
+    fontWeight: 600,
   },
 }));
 
@@ -27,13 +28,15 @@ const ButtonTab = () => {
   return (
     <div className={classes.root}>
       <ButtonGroup
-        style={{ backgroundColor: "white" }}
-        color="inherit"
+        // style={{ backgroundColor: "white" }}
         fullWidth
+        color="default"
+        variant="text"
+        size="large"
       >
         <Button>
           <Link to="/" className={classes.link}>
-            BUSINESS
+            BIZ
           </Link>
         </Button>
         <Button>
@@ -49,6 +52,11 @@ const ButtonTab = () => {
         <Button>
           <Link to="/news-world" className={classes.link}>
             WORLD
+          </Link>
+        </Button>
+        <Button>
+          <Link to="/news-product" className={classes.link}>
+            PROD
           </Link>
         </Button>
       </ButtonGroup>

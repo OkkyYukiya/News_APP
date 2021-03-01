@@ -1,0 +1,83 @@
+.root {
+  max-width: 700px;
+
+  .wrapper {
+    .container {
+      display: flex;
+      flex-direction: column;
+
+      // title&description&area
+      .title_desc_image_area {
+        display: flex;
+
+        .title_desc_area {
+          .title_name {
+            h2 {
+              font-size: 100%;
+              display: -webkit-box;
+              -webkit-box-orient: vertical;
+              -webkit-line-clamp: 2;
+              overflow: hidden;
+
+              a {
+                text-decoration: none;
+                color: rgb(57, 72, 92);
+
+                &:hover {
+                  color: rgb(0, 0, 116);
+                }
+              }
+            }
+          }
+          .description_box {
+            p {
+              display: -webkit-box;
+              -webkit-box-orient: vertical;
+              -webkit-line-clamp: 3;
+              overflow: hidden;
+              font-size: 80%;
+              font-size: 14px;
+            }
+          }
+        }
+
+        .image_box {
+          width: 100px;
+          height: 90px;
+          border: 1px solid rgba($color: #a0a0a0, $alpha: 0.5);
+          border-radius: 10%;
+          img {
+            border-radius: 10%;
+            width: 100px;
+            height: 90px;
+          }
+        }
+      }
+      // provider area
+      .provider {
+        font-size: 11px;
+        font-weight: 600;
+        min-width: 300px;
+        color: rgb(112, 112, 112);
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-end;
+        .provider_name_and_image {
+          .provider_image {
+            height: 12px;
+            width: 12px;
+          }
+          .provider_name {
+            padding-left: 3px;
+          }
+        }
+        .date {
+          padding-left: 12px;
+        }
+        .category {
+          padding-left: 12px;
+        }
+      }
+    }
+  }
+}

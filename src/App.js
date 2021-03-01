@@ -1,10 +1,8 @@
 import React from "react";
-import { Route, Switch } from "react-router-dom";
+import styles from "./App.module.scss";
+import NewsPage from "./containers/News/News";
 import Header from "./components/Header";
-import NewsPage from "./pages/NewsPage";
-// import NewsPolitics from "./pages/News/NewsPolitics";
-// import NewsTechnology from "./pages/News/NewsTechnology";
-// import NewsWorld from "./pages/News/NewsWorld";
+import { Route, Switch } from "react-router-dom";
 import SearchNewsPage from "./pages/SearchNewsPage";
 import StockListPage from "./pages/StockListPage";
 
@@ -12,14 +10,29 @@ const App = () => {
   return (
     <React.Fragment>
       <Header />
-      <Switch>
-        <Route exact path="/" component={<NewsPage category="Business" />} />
-        <Route path="/news-technology" component={<NewsPage category="Politics" />} />
-        <Route path="/news-politics" component={<NewsPage category="ScienceAndTechnology" />} />
-        <Route path="/news-world" component={<NewsPage category="World" />} />
-        <Route path="/stock" component={StockListPage} />
-        <Route path="/search" component={SearchNewsPage} />
-      </Switch>
+      <div className={styles.root}>
+        <div className={styles.wrapper}>
+          <Switch>
+            <Route exact path="/">
+              <NewsPage category="Business" />
+            </Route>
+            <Route path="/news-technology">
+              <NewsPage category="ScienceAndTechnology" />
+            </Route>
+            <Route path="/news-politics">
+              <NewsPage category="Politics" />
+            </Route>
+            <Route path="/news-world">
+              <NewsPage category="World" />
+            </Route>
+            <Route path="/news-product">
+              <NewsPage category="Products" />
+            </Route>
+            <Route path="/stock" component={StockListPage} />
+            <Route path="/search" component={SearchNewsPage} />
+          </Switch>
+        </div>
+      </div>
     </React.Fragment>
   );
 };

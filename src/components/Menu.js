@@ -10,9 +10,7 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import AssignmentIcon from "@material-ui/icons/Assignment";
-// import ForumIcon from "@material-ui/icons/Forum";
 import ShowChartIcon from "@material-ui/icons/ShowChart";
-// import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import SearchIcon from "@material-ui/icons/Search";
 import MenuIcon from "@material-ui/icons/Menu";
 
@@ -53,7 +51,7 @@ const DrawerMenu = () => {
     setState({ ...state, [anchor]: open });
   };
 
-  const MenuListItems = ({ symbol, title, subtitle, path }) => {
+  const MenuListItems = ({ symbol, title, subtitle }) => {
     return (
       <List style={{ marginTop: 10 }}>
         <ListItem button>
@@ -77,14 +75,12 @@ const DrawerMenu = () => {
       <Link to="/" className={classes.link}>
         <MenuListItems symbol={<AssignmentIcon />} title="News Top" />
       </Link>
-      {/* <MenuListItems symbol={<ForumIcon />} title="Open Chat" /> */}
       <Link to="/stock" className={classes.link}>
         <MenuListItems symbol={<ShowChartIcon />} title="Stocks" />
       </Link>
       <Link to="/search" className={classes.link}>
         <MenuListItems symbol={<SearchIcon />} title="Search" />
       </Link>
-      {/* <MenuListItems symbol={<ExitToAppIcon />} title="Signin" /> */}
     </div>
   );
 
