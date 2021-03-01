@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styles from "./News.module.css";
-import ButtonTab from "../../components/ButtonTab";
+import ButtonTab from "../../components/News/ButtonTab";
 import NewsItemLayout from "../../components/News/NewsItemLayout";
 import { RAPID_BING_API_KEY } from "../../keys/keys";
 import PropagateLoader from "react-spinners/PropagateLoader";

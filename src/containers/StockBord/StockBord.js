@@ -1,19 +1,8 @@
 import React, { useState, useEffect } from "react";
 import styles from "./StockBord.module.css";
+import StockBordItem from "../../components/stock/StockBordItem";
 import axios from "axios";
 import { FMP_KEY } from "../keys/fmpkey";
-
-const List = (props) => {
-  return (
-    <li className={styles.content}>
-      {props.symbol} {props.price} <br />
-      <span className={props.vsy < 0 ? styles.red : styles.green}>
-        {props.vsy > 0 ? "+" : ""}
-        {props.vsy}%
-      </span>
-    </li>
-  );
-};
 
 const changesPercentage = (price, previousClosePrice) => {
   const differencePrice = price - previousClosePrice;
@@ -41,7 +30,7 @@ const StockBord = () => {
     <div className={styles.wrap}>
       <ul className={styles.slideshow}>
         {stocks.map((stock, index) => (
-          <List
+          <StockBordItem
             key={index}
             symbol={stock.symbol}
             price={stock.price}
@@ -51,7 +40,7 @@ const StockBord = () => {
       </ul>
       <ul className={styles.slideshow}>
         {stocks.map((stock, index) => (
-          <List
+          <StockBordItem
             key={index}
             symbol={stock.symbol}
             price={stock.price}
