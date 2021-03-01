@@ -1,10 +1,12 @@
 import React from "react";
 import styles from "./App.module.scss";
-import NewsPage from "./containers/News/News";
 import Header from "./components/Header";
 import { Route, Switch } from "react-router-dom";
+import NewsPage from "./containers/News/News";
 import SearchNewsPage from "./pages/SearchNewsPage";
 import StockListPage from "./pages/StockListPage";
+import AuthPage from "./pages/AuthPage";
+import FeedPage from "./pages/FeedPage";
 
 const App = () => {
   return (
@@ -28,6 +30,8 @@ const App = () => {
             <Route path="/news-product">
               <NewsPage category="Products" />
             </Route>
+            <Route path="/auth" component={AuthPage} />
+            <Route path="/feed" component={FeedPage} />
             <Route path="/stock" component={StockListPage} />
             <Route path="/search" component={SearchNewsPage} />
           </Switch>

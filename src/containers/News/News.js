@@ -31,7 +31,7 @@ const News = ({ category }) => {
     getNewsData();
     setTimeout(() => {
       setLoading(false);
-    }, 1000);
+    }, 1250);
   }, [category]);
 
   return (

@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./StockList.module.css";
+import styles from "./StockListLayout.module.css";
 
 const roundNum = (price) => {
   return Math.round(price * 100) / 100;

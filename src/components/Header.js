@@ -16,7 +16,6 @@ const useStyles = makeStyles((theme) => ({
   title: {
     flexGrow: 1,
   },
-  toolbar: {},
   icon: {
     textDecoration: "none",
     color: "black",

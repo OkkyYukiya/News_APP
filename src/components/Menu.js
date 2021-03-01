@@ -13,6 +13,9 @@ import AssignmentIcon from "@material-ui/icons/Assignment";
 import ShowChartIcon from "@material-ui/icons/ShowChart";
 import SearchIcon from "@material-ui/icons/Search";
 import MenuIcon from "@material-ui/icons/Menu";
+import LockOpenTwoToneIcon from "@material-ui/icons/LockOpenTwoTone";
+import ForumTwoToneIcon from "@material-ui/icons/ForumTwoTone";
+import BookmarkIcon from "@material-ui/icons/Bookmark";
 
 const useStyles = makeStyles({
   list: {
@@ -80,6 +83,15 @@ const DrawerMenu = () => {
       </Link>
       <Link to="/search" className={classes.link}>
         <MenuListItems symbol={<SearchIcon />} title="Search" />
+      </Link>
+      <Link to="/auth" className={classes.link}>
+        <MenuListItems symbol={<LockOpenTwoToneIcon />} title="Sing In" />
+      </Link>
+      <Link to="/feed" className={classes.link}>
+        <MenuListItems symbol={<ForumTwoToneIcon />} title="Feed" />
+      </Link>
+      <Link to="/" className={classes.link}>
+        <MenuListItems symbol={<BookmarkIcon />} title="BookMark List " />
       </Link>
     </div>
   );
