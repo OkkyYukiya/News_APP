@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styles from "./SearchNews.module.scss";
 import NewsItemLayout from "../../components/News/NewsItemLayout";
 import { Box } from "@material-ui/core";
-import { BING_KEY } from "../../keys/keys";
+import { RAPID_BING_API_KEY } from "../apis/index";
 
 const url =
   "https://bing-news-search1.p.rapidapi.com/news/search?freshness=Day&textFormat=Raw&cc=us&count=20&safeSearch=Strict&q=";
@@ -13,7 +13,7 @@ const searchNews = async (query) => {
     method: "GET",
     headers: {
       "x-rapidapi-host": "bing-news-search1.p.rapidapi.com",
-      "x-rapidapi-key": BING_KEY,
+      "x-rapidapi-key": RAPID_BING_API_KEY,
       "x-bingapis-sdk": "true",
     },
   });
@@ -46,9 +46,9 @@ const SearchNews = () => {
         {!articles ? null : articles.length === 0 ? (
           <h2 className={styles.no_result}>No results</h2>
         ) : (
-          articles.map((news, index) => (
+          articles.map((news) => (
             <NewsItemLayout
-              key={index}
+              key={news.url}
               description={news.description}
               name={news.name}
               url={news.url}

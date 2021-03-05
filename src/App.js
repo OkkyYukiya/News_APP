@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./App.module.scss";
-import Header from "./components/Header";
+import Header from "./components/Header/Header";
 import { Route, Switch } from "react-router-dom";
 import NewsPage from "./containers/News/News";
 import SearchNewsPage from "./pages/SearchNewsPage";

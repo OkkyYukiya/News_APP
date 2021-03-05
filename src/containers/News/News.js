@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import styles from "./News.module.css";
 import ButtonTab from "../../components/News/ButtonTab";
 import NewsItemLayout from "../../components/News/NewsItemLayout";
-import { RAPID_BING_API_KEY } from "../../keys/keys";
+import { RAPID_BING_API_KEY } from "../apis/index";
 import PropagateLoader from "react-spinners/PropagateLoader";
 import { Box } from "@material-ui/core";
 
@@ -32,6 +32,7 @@ const News = ({ category }) => {
     setTimeout(() => {
       setLoading(false);
     }, 1250);
+    // eslint-disable-next-line
   }, [category]);
 
   return (
@@ -50,9 +51,9 @@ const News = ({ category }) => {
         </Box>
       ) : (
         <div className={styles.root}>
-          {articles.map((news, index) => (
+          {articles.map((news) => (
             <NewsItemLayout
-              key={index}
+              key={news.url}
               description={news.description}
               name={news.name}
               url={news.url}
