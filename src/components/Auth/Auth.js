@@ -57,7 +57,7 @@ const Auth = () => {
           />
           <div className={styles.spacer} />
           <Button variant="contained" fullWidth className={styles.button}>
-            SIGN IN
+            {isLogin ? "SIGN IN" : "Sing UP"}
           </Button>
           <div className={styles.spacer} />
           <Button
