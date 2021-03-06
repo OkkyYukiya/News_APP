@@ -2,7 +2,7 @@
   max-width: 700px;
   display: grid;
   gap: 0.2em;
-  margin: 0 auto;
+  margin: 0 auto 12px auto;
 }
 
 .box {

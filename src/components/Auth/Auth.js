@@ -1,139 +1,85 @@
 import React, { useState } from "react";
+import styles from "./Auth.module.scss";
 import {
-  Box,
-  Grid,
   Paper,
   TextField,
-  Typography,
   Avatar,
+  Box,
+  Typography,
   Button,
 } from "@material-ui/core";
-import styles from "./Auth.module.scss";
 import LockOpenIcon from "@material-ui/icons/LockOpen";
-import google_logo from "../../assets/google-logo.png";
 import PersonAddIcon from "@material-ui/icons/PersonAdd";
+import { googleLogoUrl } from "../../assets/imageUrls";
 
 const Auth = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [username, setUsername] = useState("");
   const [isLogin, setIsLogin] = useState(true);
-
   return (
-    <Grid className={styles.root} component="main" container>
-      <Grid
-        className={styles.wrapper}
-        item
-        xs={12}
-        sm={8}
-        md={5}
-        component={Paper}
-        elevation={6}
-        square
-      >
-        <Box className={styles.contents_box} mt={4}>
-          <Avatar className={styles.avatar}>
+    <div className={styles.root}>
+      <Paper className={styles.container} elevation={4}>
+        <div className={styles.wrapper}>
+          <Avatar className={styles.icon_wrapper}>
             {isLogin ? (
               <LockOpenIcon className={styles.icon} fontSize="large" />
             ) : (
               <PersonAddIcon className={styles.icon} fontSize="large" />
             )}
           </Avatar>
-          <Typography className={styles.title} component="h1" variant="h6">
-            {isLogin ? "SIGN IN" : "SIGN UP"}
-          </Typography>
-          <form>
-            {!isLogin && ( //when create user,then display username textfield
-              <>
-                <TextField
-                  variant="outlined"
-                  margin="normal"
-                  required
-                  fullWidth
-                  id="username"
-                  label="Username"
-                  name="username"
-                  autoComplete="username"
-                  autoFocus
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
-                />
-              </>
-            )}
-            <TextField
-              className={styles.input}
-              variant="outlined"
-              fullWidth
-              margin="normal"
-              required
-              id="email"
-              label="Email Address"
-              name="email"
-              autoComplete="email"
-              autoFocus
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-
-            <TextField
-              className={styles.input}
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              name="password"
-              label="Password"
-              type="password"
-              id="password"
-              autoComplete="current-password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-            <Box mt={3}>
-              <Button
-                className={styles.signin_button}
-                variant="contained"
-                fullWidth
-              >
-                {isLogin ? "SING IN" : "Create New Account"}
-              </Button>
+          <Typography variant="h5">
+            <Box fontWeight="fontWeightBold" pt={1}>
+              {isLogin ? "Sing In" : "Sing Up"}
             </Box>
-          </form>
-
-          <Box mt={3}>
-            <Button
-              className={styles.google_signin}
-              variant="contained"
-              fullWidth
+          </Typography>
+          <div className={styles.spacer} />
+          {!isLogin && (
+            <>
+              <TextField
+                className={styles.input_field}
+                label="Username"
+                variant="outlined"
+                fullWidth
+              />
+              <div className={styles.spacer} />
+            </>
+          )}
+          <TextField
+            className={styles.input_field}
+            label="E-mail"
+            variant="outlined"
+            fullWidth
+          />
+          <div className={styles.spacer} />
+          <TextField
+            className={styles.input_field}
+            label="Password"
+            variant="outlined"
+            fullWidth
+          />
+          <div className={styles.spacer} />
+          <Button variant="contained" fullWidth className={styles.button}>
+            SIGN IN
+          </Button>
+          <div className={styles.spacer} />
+          <Button
+            variant="contained"
+            fullWidth
+            className={styles.google_signIn_button}
+          >
+            <img src={googleLogoUrl} alt="" />
+            SIGN IN WITH GOOGLE
+          </Button>
+          <Box className={styles.sub_menu} mt={8}>
+            <span>Forgot Password?</span>
+            <span
+              onClick={() => setIsLogin(!isLogin)}
+              className={styles.create}
             >
-              <img className={styles.google_logo} src={google_logo} alt="" />
-              <span>Sign In With Google</span>
-            </Button>
+              {isLogin ? "Create New Account" : "Sign In"}
+            </span>
           </Box>
-
-          <Box mt={5}>
-            <Grid className={styles.subarea} container justify="space-between">
-              <Grid item>
-                <span className={styles.reset_password}>Forgot password?</span>
-              </Grid>
-              <Grid item>
-                <span
-                  onClick={() => setIsLogin(!isLogin)}
-                  className={styles.sign_up}
-                >
-                  {isLogin ? "Create new account" : "Back to SingIn"}
-                </span>
-              </Grid>
-            </Grid>
-          </Box>
-          {/* あとで消す */}
-          <Box mt={2}>
-            <h2 style={{ fontSize: 22 }}>※Authentication is Coming Soon</h2>
-          </Box>
-          {/* あとで消す */}
-        </Box>
-      </Grid>
-    </Grid>
+        </div>
+      </Paper>
+    </div>
   );
 };
 

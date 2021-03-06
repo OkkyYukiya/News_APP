@@ -1,7 +1,11 @@
 import React, { createContext, useReducer } from "react";
 
 const initialState = {
-  user: {},
+  user: {
+    uid: "",
+    displayName: "",
+    photoUrl: "",
+  },
   articles: [],
   language: "ja",
 };
