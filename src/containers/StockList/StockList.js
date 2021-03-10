@@ -1,18 +1,16 @@
 import React, { useState, useEffect } from "react";
 import styles from "../../components/stock/StockListLayout.module.css";
-import { symbols } from "../../components/stock/symbolList";
-import { FMP_CLOUD_API_KEY } from "../apis/index";
 import StockListLayout from "../../components/stock/StockListLayout";
 import PropagateLoader from "react-spinners/PropagateLoader";
 import { Box } from "@material-ui/core";
-
-const url = `https://fmpcloud.io/api/v3/quote/${symbols},?apikey=${FMP_CLOUD_API_KEY}`;
+import { symbols } from "../../components/stock/symbolList";
+import { FMP_CLOUD_ENDPOINT } from "../../apis/fmpcloud";
 
 const StockLists = () => {
   const [stocks, setStocks] = useState([]);
   const [loading, setLoading] = useState(false);
   const getStockData = async () => {
-    const response = await fetch(url);
+    const response = await fetch(FMP_CLOUD_ENDPOINT(symbols));
     const body = await response.json();
     setStocks(body);
   };

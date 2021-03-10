@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import styles from "./StockBord.module.css";
 import StockBordItem from "../../components/stock/StockBordItem";
 import axios from "axios";
-import { FMP_CLOUD_API_KEY } from "../apis/index";
+import { FMP_CLOUD_ENDPOINT } from "../../apis/fmpcloud";
+import { STOCKBORD_SYMBOL_LIST } from "../../components/stock/symbolList";
 
 const changesPercentage = (price, previousClosePrice) => {
   const differencePrice = price - previousClosePrice;
@@ -13,10 +14,11 @@ const changesPercentage = (price, previousClosePrice) => {
 
 const StockBord = () => {
   const [stocks, setStocks] = useState([]);
-  const url = `https://fmpcloud.io/api/v3/quote/AAPL,GOOG,FB,AMZN,TSLA,PYPL,NFLX,ADBE,XOM,T,IBF?apikey=${FMP_CLOUD_API_KEY}`;
   const fetchStocks = async () => {
     try {
-      const response = await axios.get(url);
+      const response = await axios.get(
+        FMP_CLOUD_ENDPOINT(STOCKBORD_SYMBOL_LIST)
+      );
       setStocks(response.data);
     } catch (error) {
       console.log(error);

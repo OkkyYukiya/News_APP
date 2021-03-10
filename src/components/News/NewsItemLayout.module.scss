@@ -9,6 +9,7 @@
       // title&description&area
       .title_desc_image_area {
         display: flex;
+        justify-content: space-between;
 
         .title_desc_area {
           .title_name {
