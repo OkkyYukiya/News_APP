@@ -7,6 +7,7 @@ import SearchNewsPage from "./pages/SearchNewsPage";
 import StockListPage from "./pages/StockListPage";
 import AuthPage from "./pages/AuthPage";
 import FeedPage from "./pages/FeedPage";
+import Watch from "./pages/Watch";
 
 const App = () => {
   return (
@@ -30,6 +31,7 @@ const App = () => {
             <Route path="/news-product">
               <NewsPage category="Products" />
             </Route>
+            <Route path="/watch" component={Watch} />
             <Route path="/auth" component={AuthPage} />
             <Route path="/feed" component={FeedPage} />
             <Route path="/stock" component={StockListPage} />

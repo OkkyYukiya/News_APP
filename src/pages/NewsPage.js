@@ -1,5 +1,6 @@
 import React from "react";
 import News from "../containers/News/News";
+import { OandaAd } from "../apis/Adsense/adsense";
 
 const NewsPage = ({ category }) => {
   return (

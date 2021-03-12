@@ -32,3 +32,6 @@ export const getSearchNewsData = async (query) => {
   const body = await response.json();
   return body.value;
 };
+
+export const formatDate = (s) =>
+  new Date(s).toLocaleDateString(undefined, { dateStyle: "long" });
