@@ -29,3 +29,17 @@ const symbolList = [
 ];
 
 export const symbols = symbolList.join(",");
+
+export const STOCKBORD_SYMBOL_LIST = [
+  "AAPL",
+  "GOOG",
+  "FB",
+  "AMZN",
+  "TSLA",
+  "PYPL",
+  "NFLX",
+  "ADBE",
+  "XOM",
+  "T",
+  "IBF",
+];

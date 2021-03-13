@@ -4,7 +4,7 @@ import ButtonTab from "../../components/News/ButtonTab";
 import NewsItemLayout from "../../components/News/NewsItemLayout";
 import { Box } from "@material-ui/core";
 import PropagateLoader from "react-spinners/PropagateLoader";
-import { getNewsData } from "../../apis/bingNews";
+import { getNewsData } from "../../apis/rapidApi";
 
 const News = ({ category }) => {
   const [articles, setArticles] = useState([]);

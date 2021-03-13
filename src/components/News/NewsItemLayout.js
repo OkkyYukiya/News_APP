@@ -4,7 +4,7 @@ import styles from "./NewsItemLayout.module.scss";
 import { Box } from "@material-ui/core";
 import no_image from "../../assets/no-image.png";
 import { Link } from "react-router-dom";
-import { formatDate } from "../../apis/bingNews";
+import { formatDate } from "../../apis/rapidApi";
 
 const NewsItemLayout = ({
   url,

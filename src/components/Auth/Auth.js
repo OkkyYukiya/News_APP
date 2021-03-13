@@ -10,10 +10,23 @@ import {
 } from "@material-ui/core";
 import LockOpenIcon from "@material-ui/icons/LockOpen";
 import PersonAddIcon from "@material-ui/icons/PersonAdd";
-import { googleLogoUrl } from "../../assets/imageUrls";
+import Google_logo from "../../assets/google-logo.png";
+import { auth, provider } from "../../firebase";
 
 const Auth = () => {
   const [isLogin, setIsLogin] = useState(true);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  // const [username, setUsername] = useState("");
+
+  const signInGoogle = async () => {
+    await auth.signInWithPopup(provider).catch((err) => alert(err.message));
+  };
+
+  const signUp = async () => {
+    await auth.createUserWithEmailAndPassword(email, password);
+  };
+
   return (
     <div className={styles.root}>
       <Paper className={styles.container} elevation={4}>
@@ -30,42 +43,63 @@ const Auth = () => {
               {isLogin ? "Sing In" : "Sing Up"}
             </Box>
           </Typography>
-          <div className={styles.spacer} />
-          {!isLogin && (
-            <>
-              <TextField
-                className={styles.input_field}
-                label="Username"
-                variant="outlined"
-                fullWidth
-              />
-              <div className={styles.spacer} />
-            </>
-          )}
-          <TextField
-            className={styles.input_field}
-            label="E-mail"
-            variant="outlined"
-            fullWidth
-          />
-          <div className={styles.spacer} />
-          <TextField
-            className={styles.input_field}
-            label="Password"
-            variant="outlined"
-            fullWidth
-          />
-          <div className={styles.spacer} />
-          <Button variant="contained" fullWidth className={styles.button}>
-            {isLogin ? "SIGN IN" : "Sing UP"}
-          </Button>
-          <div className={styles.spacer} />
+          <Box my={1} />
+          <form>
+            {/* {!isLogin && (
+              <>
+                <TextField
+                  className={styles.input_field}
+                  label="Username"
+                  variant="outlined"
+                  autoFocus
+                  fullWidth
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                />
+                <div className={styles.spacer} />
+              </>
+            )} */}
+            <TextField
+              className={styles.input_field}
+              variant="outlined"
+              value={email}
+              type="text"
+              label="E-mail"
+              fullWidth
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              autoFocus
+            />
+            <Box my={1} />
+            <TextField
+              className={styles.input_field}
+              variant="outlined"
+              value={password}
+              type="password"
+              label="Password"
+              fullWidth
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+
+            <Box my={1} />
+            <Button
+              variant="contained"
+              fullWidth
+              className={styles.button}
+              onClick={signUp}
+            >
+              {isLogin ? "SIGN IN" : "Sing UP"}
+            </Button>
+          </form>
+          <Box my={1} />
           <Button
             variant="contained"
             fullWidth
             className={styles.google_signIn_button}
+            onClick={signInGoogle}
           >
-            <img src={googleLogoUrl} alt="" />
+            <img src={Google_logo} alt="" />
             SIGN IN WITH GOOGLE
           </Button>
           <Box className={styles.sub_menu} mt={8}>

@@ -6,7 +6,6 @@ const initialState = {
     displayName: "",
     photoUrl: "",
   },
-  articles: [],
   language: "ja",
 };
 
@@ -16,8 +15,6 @@ const reducer = (state, action) => {
       return { ...state, user: action.payload.user };
     case "SET_LANGUAGE":
       return { ...state, language: action.payload.language };
-    case "SET_ARTICLES":
-      return { ...state, articles: action.payload.articles };
     default:
       return state;
   }

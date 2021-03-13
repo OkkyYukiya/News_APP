@@ -4,10 +4,9 @@ import Header from "./components/Header/Header";
 import { Route, Switch } from "react-router-dom";
 import NewsPage from "./containers/News/News";
 import SearchNewsPage from "./pages/SearchNewsPage";
-import StockListPage from "./pages/StockListPage";
-import AuthPage from "./pages/AuthPage";
-import FeedPage from "./pages/FeedPage";
-import Watch from "./pages/Watch";
+import StockPage from "./pages/StockPage";
+import Watch from "./pages/WatchPage";
+import CovidPage from "./pages/CovidPage";
 
 const App = () => {
   return (
@@ -32,9 +31,8 @@ const App = () => {
               <NewsPage category="Products" />
             </Route>
             <Route path="/watch" component={Watch} />
-            <Route path="/auth" component={AuthPage} />
-            <Route path="/feed" component={FeedPage} />
-            <Route path="/stock" component={StockListPage} />
+            <Route path="/stock" component={StockPage} />
+            <Route path="/covid" component={CovidPage} />
             <Route path="/search" component={SearchNewsPage} />
           </Switch>
         </div>

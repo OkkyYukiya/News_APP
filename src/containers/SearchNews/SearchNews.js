@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styles from "./SearchNews.module.scss";
 import NewsItemLayout from "../../components/News/NewsItemLayout";
 import { Box } from "@material-ui/core";
-import { getSearchNewsData } from "../../apis/bingNews";
+import { getSearchNewsData } from "../../apis/rapidApi";
 
 const SearchNews = () => {
   const [query, setQuery] = useState("");
