@@ -11,6 +11,7 @@ const useStyles = makeStyles((theme) => ({
     width: 670,
   },
 }));
+console.log(useStyles);
 
 const StockGridItem = ({ symbol, close, open, high, low }) => {
   const classes = useStyles();
