@@ -1,5 +1,5 @@
 import React from "react";
-import SearchNews from "../components/SearchNews";
+import SearchNews from "../containers/SearchNews/SearchNews";
 
 const SearchNewsPage = () => {
   return (

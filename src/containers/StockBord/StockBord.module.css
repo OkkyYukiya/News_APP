@@ -1,0 +1,29 @@
+li {
+  list-style: none;
+}
+
+.wrap {
+  display: flex;
+  align-items: center;
+  height: 50px;
+  overflow: hidden;
+  text-align: center;
+  margin-top: 2px;
+}
+
+.slideshow {
+  display: flex;
+  animation: loop-slide 60s infinite linear 1s both;
+}
+@keyframes loop-slide {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+.slide-paused:hover .slideshow {
+  animation-play-state: paused;
+}

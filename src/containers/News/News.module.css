@@ -1,0 +1,16 @@
+.root {
+  max-width: 700px;
+  display: grid;
+  gap: 0.2em;
+  margin: 0 auto 12px auto;
+}
+
+.box {
+  margin: 0 auto;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  margin-top: 160px;
+}

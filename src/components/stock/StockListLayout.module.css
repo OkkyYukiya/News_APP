@@ -1,0 +1,86 @@
+.container {
+  max-width: 900px;
+  display: flex;
+  flex-direction: column;
+  margin: 8px auto;
+  padding: 12px;
+  font-size: 18px;
+  background-color: white;
+  box-shadow: 2px 2px 4px rgb(97, 97, 97);
+  border-radius: 12px;
+}
+.list_title {
+  display: flex;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.4);
+  padding-bottom: 2px;
+}
+
+.list_box {
+  display: flex;
+  padding: 3px 6px;
+}
+
+.symbol_list {
+  width: 100%;
+}
+
+.name_list {
+  width: 100%;
+  text-align: left;
+}
+
+.name {
+  font-size: 10px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+.ather_list {
+  width: 100%;
+  text-align: right;
+}
+
+.dayHigh {
+  width: 100%;
+  text-align: right;
+}
+
+.dayLow {
+  width: 100%;
+  text-align: right;
+}
+
+.price_up {
+  color: rgb(2, 180, 2);
+}
+
+.price_down {
+  color: rgb(255, 44, 44);
+}
+
+.box {
+  margin: 0 auto;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  margin: 100px 0px;
+}
+
+@media screen and (max-width: 500px) {
+  /* 480px以下に適用されるCSS（スマホ用） */
+  .dayHigh {
+    display: none;
+  }
+  .dayLow {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .name_list {
+    display: none;
+  }
+}

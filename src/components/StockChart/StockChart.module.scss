@@ -1,0 +1,19 @@
+.root {
+  width: 100%;
+  .wrapper {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 1rem;
+    @media screen and (max-width: 700) {
+      width: 98vw;
+      height: 600px;
+      width: 350px;
+    }
+    .text_header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      border-bottom: 2px solid rgb(66, 66, 66);
+    }
+  }
+}

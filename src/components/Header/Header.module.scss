@@ -1,0 +1,28 @@
+.root {
+  flex-grow: 1;
+  .toolbar {
+    .title {
+      flex-grow: 1;
+      img {
+        height: 30px;
+        padding-top: 10px;
+      }
+    }
+    .search {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      cursor: pointer;
+
+      .icon {
+        text-decoration: none;
+        color: black;
+        padding-top: 9px;
+        font-size: 35px;
+        @media screen and (max-width: 400px) {
+          font-size: 30px;
+        }
+      }
+    }
+  }
+}

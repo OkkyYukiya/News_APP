@@ -1,25 +1,42 @@
 import React from "react";
+import styles from "./App.module.scss";
+import Header from "./components/Header/Header";
 import { Route, Switch } from "react-router-dom";
-import Header from "./components/Header";
-import Home from "./pages/News/Home";
-import NewsPolitics from "./pages/News/NewsPolitics";
-import NewsTechnology from "./pages/News/NewsTechnology";
-import NewsWorld from "./pages/News/NewsWorld";
+import NewsPage from "./containers/News/News";
 import SearchNewsPage from "./pages/SearchNewsPage";
-import StockListPage from "./pages/StockListPage";
+import StockPage from "./pages/StockPage";
+import Watch from "./pages/WatchPage";
+import CovidPage from "./pages/CovidPage";
 
 const App = () => {
   return (
     <React.Fragment>
       <Header />
-      <Switch>
-        <Route exact path="/" component={Home} />
-        <Route path="/news-technology" component={NewsTechnology} />
-        <Route path="/news-politics" component={NewsPolitics} />
-        <Route path="/news-world" component={NewsWorld} />
-        <Route path="/stock" component={StockListPage} />
-        <Route path="/search" component={SearchNewsPage} />
-      </Switch>
+      <div className={styles.root}>
+        <div className={styles.wrapper}>
+          <Switch>
+            <Route exact path="/">
+              <NewsPage category="Business" />
+            </Route>
+            <Route path="/news-technology">
+              <NewsPage category="ScienceAndTechnology" />
+            </Route>
+            <Route path="/news-politics">
+              <NewsPage category="Politics" />
+            </Route>
+            <Route path="/news-world">
+              <NewsPage category="World" />
+            </Route>
+            <Route path="/news-product">
+              <NewsPage category="Products" />
+            </Route>
+            <Route path="/watch" component={Watch} />
+            <Route path="/stock" component={StockPage} />
+            <Route path="/covid" component={CovidPage} />
+            <Route path="/search" component={SearchNewsPage} />
+          </Switch>
+        </div>
+      </div>
     </React.Fragment>
   );
 };
