@@ -1,13 +1,16 @@
 import React, { useState } from "react";
 import { Box, Button } from "@material-ui/core";
-import StockGrid from "../components/StockGrid/StockGrid";
-import StockList from "../containers/StockList/StockList";
+import StockChart from "../components/StockChart/StockChart";
+// import StockGrid from "../components/StockGrid/StockGrid";
+// import StockList from "../containers/StockList/StockList";
+// import StockChart from "../components/StockChart/StockChart"
 
 const StockPage = () => {
-  const [toggle, setToggle] = useState(true);
+  // const [toggle, setToggle] = useState(true);
   return (
     <Box>
-      <Box mt={1} textAlign="center">
+      <StockChart symbol="AAPL" />
+      {/* <Box mt={1} textAlign="center">
         <Button
           onClick={() => setToggle(!toggle)}
           variant="outlined"
@@ -18,7 +21,7 @@ const StockPage = () => {
       </Box>
 
       {toggle && <StockGrid />}
-      {!toggle && <StockList />}
+      {!toggle && <StockList />} */}
     </Box>
   );
 };

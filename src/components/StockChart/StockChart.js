@@ -16,16 +16,25 @@ const StockChart = ({ symbol }) => {
   const [stockName, setStockName] = useState({});
   const [stockPrice, setStockPrice] = useState({});
 
-  const getStockPriceAndName = (symbol) => {
-    axios.get(NAME_URL(symbol)).then((response) => {
-      setStockName(response.data);
-    });
-    axios.get(PRICE_URL(symbol)).then((response) => {
-      setStockPrice(response.data);
-    });
-  };
-
   useEffect(() => {
+    const getStockPriceAndName = async (symbol) => {
+      const response = await fetch(NAME_URL(symbol));
+      const body = await response.json();
+      if (body) {
+        setStockName(body);
+      }
+
+      console.log(body);
+      console.log(symbol);
+
+      const response2 = await fetch(PRICE_URL(symbol));
+      const body2 = await response2.json();
+      if (body2) {
+        setStockPrice(body2);
+      }
+      // setStockPrice(body2.data);
+    };
+
     const getStockData = async (symbol) => {
       let data = [];
       let labels = [];

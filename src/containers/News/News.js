@@ -11,15 +11,14 @@ const News = ({ category }) => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    setLoading(true);
     const getNews = async () => {
+      setLoading(true);
       const res = await getNewsData(category);
       setArticles(res);
+      setLoading(false);
     };
     getNews();
-    setTimeout(() => {
-      setLoading(false);
-    }, 1250);
+
     // eslint-disable-next-line
   }, [category]);
 
