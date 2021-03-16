@@ -8,9 +8,10 @@ const SearchNews = () => {
   const [query, setQuery] = useState("");
   const [articles, setArticles] = useState(null);
 
-  const search = (e) => {
+  const search = async (e) => {
     e.preventDefault();
-    getSearchNewsData(query).then(setArticles);
+    const response = await getSearchNewsData(query);
+    setArticles(response);
   };
 
   return (
@@ -25,7 +26,6 @@ const SearchNews = () => {
           />
           <button>Search</button>
         </form>
-
         {!articles ? null : articles.length === 0 ? (
           <h2 className={styles.no_result}>No results</h2>
         ) : (
@@ -36,8 +36,8 @@ const SearchNews = () => {
               name={news.name}
               url={news.url}
               image={news.image?.thumbnail?.contentUrl}
-              provider_image={news.provider[0].image?.thumbnail?.contentUrl}
-              provider_name={news.provider[0].name}
+              providerImage={news.provider[0].image?.thumbnail?.contentUrl}
+              providerName={news.provider[0].name}
               datePublished={news.datePublished}
               category={news.category}
             />

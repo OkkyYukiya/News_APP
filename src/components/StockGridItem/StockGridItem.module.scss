@@ -1,6 +1,50 @@
 .root {
-  .button {
-    width: 90px;
-    color: #144b5e;
+  .wrapper {
+    .paper {
+      width: 730px;
+      @media screen and (max-width: 730px) {
+        max-width: 600px;
+      }
+      @media screen and (max-width: 600px) {
+        max-width: 500px;
+        .high {
+          display: none;
+        }
+        .low {
+          display: none;
+        }
+        @media screen and (max-width: 500px) {
+          width: 375px;
+        }
+      }
+      .button {
+        width: 90px;
+        color: #144b5e;
+      }
+      .open {
+        width: 120px;
+        .type {
+          font-size: 12px;
+        }
+      }
+      .close {
+        width: 120px;
+        .type {
+          font-size: 12px;
+        }
+      }
+      .high {
+        width: 120px;
+        .type {
+          font-size: 12px;
+        }
+      }
+      .low {
+        width: 120px;
+        .type {
+          font-size: 12px;
+        }
+      }
+    }
   }
 }

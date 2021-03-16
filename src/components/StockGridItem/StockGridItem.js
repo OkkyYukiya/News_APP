@@ -1,42 +1,46 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
 import { Box, Button, Grid, Paper } from "@material-ui/core";
-import { adjPrice } from "../../apis/stockchart";
 import styles from "./StockGridItem.module.scss";
 
-const useStyles = makeStyles((theme) => ({
-  paper: {
-    textAlign: "center",
-    color: "black",
-    width: 670,
-  },
-}));
-console.log(useStyles);
-
-const StockGridItem = ({ symbol, close, open, high, low }) => {
-  const classes = useStyles();
+const StockGridItem = ({ symbol, close, open, high, low, action }) => {
   return (
     <Grid className={styles.root}>
-      <Box>
-        <Paper className={classes.paper} variant="outlined">
+      <Box className={styles.wrapper}>
+        <Paper className={styles.paper} variant="outlined">
           <Box
             display="flex"
             alignItems="center"
             justifyContent="space-between"
             textAlign="center"
-            p={1}
+            p={0.5}
             my={0.3}
           >
             <Box>
-              <Button className={styles.button} variant="outlined">
+              <Button
+                onClick={action}
+                className={styles.button}
+                variant="outlined"
+              >
                 {symbol}
               </Button>
             </Box>
-            <Box display="flex">
-              <p>{adjPrice(close)}</p>
-              <p>{adjPrice(open)}</p>
-              <p>{adjPrice(high)}</p>
-              <p>{adjPrice(low)}</p>
+            <Box display="flex" textAlign="right">
+              <Box className={styles.open} mr={1}>
+                {open}
+                <span className={styles.type}>(O)</span>
+              </Box>
+              <Box className={styles.high} mr={0.2}>
+                {high}
+                <span className={styles.type}>(H)</span>
+              </Box>
+              <Box className={styles.low} mr={0.2}>
+                {low}
+                <span className={styles.type}>(L)</span>
+              </Box>
+              <Box className={styles.close} mr={0.2}>
+                {close}
+                <span className={styles.type}>(C)</span>
+              </Box>
             </Box>
           </Box>
         </Paper>

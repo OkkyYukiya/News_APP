@@ -28,12 +28,12 @@ const Watch = () => {
               <Avatar className={styles.avatar}>
                 <img
                   src={
-                    details.provider_image ? details.provider_image : sm_no_logo
+                    details.providerImage ? details.providerImage : sm_no_logo
                   }
                   alt=""
                 />
               </Avatar>
-              <p>-{details.provider_name}</p>
+              <p>-{details.providerName}</p>
             </Box>
             <Box className={styles.date_and_category}>
               <i>{details.category}</i>

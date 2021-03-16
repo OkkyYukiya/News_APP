@@ -3,8 +3,8 @@ import styles from "./News.module.css";
 import ButtonTab from "../../components/News/ButtonTab";
 import NewsItemLayout from "../../components/News/NewsItemLayout";
 import { Box } from "@material-ui/core";
-import PropagateLoader from "react-spinners/PropagateLoader";
 import { getNewsData } from "../../apis/rapidApi";
+import PropagateLoader from "react-spinners/PropagateLoader";
 
 const News = ({ category }) => {
   const [articles, setArticles] = useState([]);
@@ -45,8 +45,8 @@ const News = ({ category }) => {
               name={news.name}
               url={news.url}
               image={news.image?.thumbnail?.contentUrl}
-              provider_image={news.provider[0].image?.thumbnail?.contentUrl}
-              provider_name={news.provider[0].name}
+              providerImage={news.provider[0].image?.thumbnail?.contentUrl}
+              providerName={news.provider[0].name}
               datePublished={news.datePublished}
               category={category}
             />

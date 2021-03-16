@@ -22,7 +22,7 @@ const TrendNewsItem = ({ title, date, link, sourceTitle }) => {
               <Box ml={1} />
               <Typography variant="body2">-{sourceTitle}</Typography>
             </Box>
-            <Button variant="contained" className={styles.btn}>
+            <Button className={styles.btn}>
               <a className={styles.link} href={link}>
                 MORE
               </a>
