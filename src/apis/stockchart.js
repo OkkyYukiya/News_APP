@@ -23,7 +23,6 @@ const getDay = date.getDate().toString();
 const getMonth = date.getMonth() + 1;
 const toStringMonth = getMonth.toString();
 const getLastMonth = date.getMonth().toString();
-console.log(date);
 
 const adjustmentDate = (d) => {
   if (d.length === 1) {
