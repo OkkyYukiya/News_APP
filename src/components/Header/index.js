@@ -1,6 +1,6 @@
 import React from "react";
 import { AppBar, Box, Toolbar } from "@material-ui/core";
-import Menu from "../HeaderMenu/HeaderMenu";
+import Menu from "../HeaderMenu";
 import logo from "../../assets/logo-news.png";
 import SearchIcon from "@material-ui/icons/Search";
 import { Link } from "react-router-dom";

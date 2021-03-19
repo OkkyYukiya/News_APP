@@ -32,8 +32,9 @@ const Auth = () => {
       history.push("/clip");
     } catch {
       setError("Faild to Login");
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   };
 
   const handleSubmit = async (e) => {

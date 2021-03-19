@@ -1,5 +1,12 @@
 import React from "react";
-import { Box, ButtonBase, Button, Paper, Typography } from "@material-ui/core";
+import {
+  Box,
+  ButtonBase,
+  Button,
+  Paper,
+  Typography,
+  Avatar,
+} from "@material-ui/core";
 import { useAuth } from "../Store/AuthProvider";
 import AddAPhotoIcon from "@material-ui/icons/AddAPhoto";
 import { makeStyles } from "@material-ui/core/styles";
@@ -10,11 +17,12 @@ const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 500,
     margin: "auto auto",
-    padding: "0 6px",
+    padding: "0 2px",
   },
   paper: {
     display: "flex",
-    justifyContent: "space-between",
+    justifyContent: "space-around",
+    width: 370,
   },
   image: {
     borderRadius: "999px",
@@ -55,7 +63,15 @@ const ProfilePage = () => {
       <Paper elevation={2} className={classes.paper}>
         <Box p={1} display="flex" justifyContent="center">
           <ButtonBase>
-            <img className={classes.image} src={currentUser.photoURL} alt="" />
+            {currentUser.photoURL ? (
+              <img
+                className={classes.image}
+                src={currentUser.photoURL}
+                alt=""
+              />
+            ) : (
+              <Avatar style={{ height: 100, width: 100 }} />
+            )}
             <AddAPhotoIcon className={classes.icon} fontSize="small" />
           </ButtonBase>
         </Box>

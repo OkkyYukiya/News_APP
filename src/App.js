@@ -1,8 +1,8 @@
 import React from "react";
 import styles from "./App.module.scss";
 import { Route, Switch } from "react-router-dom";
-import Header from "./components/Header/Header";
-import NewsPage from "./containers/News/News";
+import Header from "./components/Header";
+import NewsPage from "./containers/News";
 import SearchNewsPage from "./pages/SearchNewsPage";
 import StockPage from "./pages/StockPage";
 import Watch from "./pages/WatchPage";
@@ -10,7 +10,7 @@ import CovidPage from "./pages/CovidPage";
 import ClipNewsPage from "./pages/ClipNewsPage";
 import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignUpPage";
-import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
+import PrivateRoute from "./components/PrivateRoute";
 import ProfilePage from "./pages/ProfilePage";
 
 const App = () => {

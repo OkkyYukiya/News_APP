@@ -1,6 +1,6 @@
 import React from "react";
-import NewsDetail from "../components/NewsDetail/NewsDetail";
-import TrendNews from "../containers/TrendNews/TrendNews";
+import NewsDetail from "../components/NewsDetail";
+import TrendNews from "../containers/TrendNews";
 import { Box } from "@material-ui/core";
 
 const WatchPage = () => {

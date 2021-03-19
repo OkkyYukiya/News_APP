@@ -20,21 +20,16 @@ const StockChart = () => {
 
   useEffect(() => {
     const getStockPriceAndName = async (symbol) => {
-      const fetchStockName = async (symbol) => {
-        const response = await fetch(NAME_URL(symbol));
-        const body = await response.json();
-        if (body) {
-          setStockName(body);
-        }
-      };
-      const fetchPrice = async () => {
-        const response2 = await fetch(PRICE_URL(symbol));
-        const body2 = await response2.json();
-        if (body2) {
-          setStockPrice(body2);
-        }
-      };
-      await Promise.all([fetchStockName(symbol), fetchPrice(symbol)]);
+      const response = await Promise.all([
+        fetch(NAME_URL(symbol)),
+        fetch(PRICE_URL(symbol)),
+      ]);
+      const bodies = await Promise.all(response.map((res) => res.json()));
+
+      if (bodies[0] && bodies[1]) {
+        setStockName(bodies[0]);
+        setStockPrice(bodies[1]);
+      }
     };
 
     const getStockData = async (symbol) => {

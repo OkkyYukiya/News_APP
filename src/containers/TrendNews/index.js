@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Grid, Box } from "@material-ui/core";
-import TrendNewsItem from "../../components/TrendNewsItem/TrendNewsItem";
+import TrendNewsItem from "../../components/TrendNewsItem";
 import { getTrendNews } from "../../apis/rapidApi";
 import BounceLoader from "react-spinners/BounceLoader";
 

@@ -44,8 +44,9 @@ const Signup = () => {
       history.push("/clip");
     } catch {
       setError("Failed to create an account");
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   };
 
   return (

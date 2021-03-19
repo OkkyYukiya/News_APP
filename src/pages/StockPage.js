@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { Box } from "@material-ui/core";
-import StockGrid from "../containers/StockGrid/StockGrid";
-import StockChart from "../containers/StockChart/StockChart";
+import StockGrid from "../containers/StockGrid";
+import StockChart from "../containers/StockChart";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
 import Button from "@material-ui/core/Button";
-import StockList from "../containers/StockList/StockList";
+import StockList from "../containers/StockList";
 
 const styles = {
   buttonTabBox: {
