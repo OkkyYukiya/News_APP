@@ -4,11 +4,14 @@ import { BrowserRouter as Router } from "react-router-dom";
 import "./index.css";
 import App from "./App";
 import { StoreProvider } from "./Store/Store";
+import { AuthProvider } from "./Store/AuthProvider";
 
 ReactDOM.render(
   <Router>
     <StoreProvider>
-      <App />
+      <AuthProvider>
+        <App />
+      </AuthProvider>
     </StoreProvider>
   </Router>,
   document.getElementById("root")

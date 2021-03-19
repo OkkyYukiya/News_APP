@@ -1,12 +1,17 @@
 import React from "react";
 import styles from "./App.module.scss";
-import Header from "./components/Header/Header";
 import { Route, Switch } from "react-router-dom";
+import Header from "./components/Header/Header";
 import NewsPage from "./containers/News/News";
 import SearchNewsPage from "./pages/SearchNewsPage";
 import StockPage from "./pages/StockPage";
 import Watch from "./pages/WatchPage";
 import CovidPage from "./pages/CovidPage";
+import ClipNewsPage from "./pages/ClipNewsPage";
+import LoginPage from "./pages/LoginPage";
+import SignupPage from "./pages/SignUpPage";
+import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
+import ProfilePage from "./pages/ProfilePage";
 
 const App = () => {
   return (
@@ -34,6 +39,10 @@ const App = () => {
             <Route path="/stock" component={StockPage} />
             <Route path="/covid" component={CovidPage} />
             <Route path="/search" component={SearchNewsPage} />
+            <PrivateRoute path="/clip" component={ClipNewsPage} />
+            <PrivateRoute path="/profile" component={ProfilePage} />
+            <Route path="/login" component={LoginPage} />
+            <Route path="/signup" component={SignupPage} />
           </Switch>
         </div>
       </div>
