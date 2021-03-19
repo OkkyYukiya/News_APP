@@ -16,7 +16,6 @@ const StockChart = () => {
   const [stockData, setStockData] = useState({});
   const [stockName, setStockName] = useState({});
   const [stockPrice, setStockPrice] = useState({});
-
   const { globalState } = useContext(Store);
 
   useEffect(() => {
@@ -59,8 +58,10 @@ const StockChart = () => {
         ],
       });
     };
+
     getStockData(globalState.symbol);
     getStockPriceAndName(globalState.symbol);
+
     // eslint-disable-next-line
   }, [globalState.symbol]);
   return (

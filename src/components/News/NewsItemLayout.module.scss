@@ -16,7 +16,7 @@
           .title_desc_area {
             .title_name {
               h2 {
-                font-size: 20px;
+                font-size: 18px;
                 display: -webkit-box;
                 -webkit-box-orient: vertical;
                 -webkit-line-clamp: 2;
@@ -24,7 +24,7 @@
                 color: #002531;
 
                 @media screen and (max-width: 600px) {
-                  font-size: 18px;
+                  font-size: 17px;
                   display: -webkit-box;
                   -webkit-box-orient: vertical;
                   -webkit-line-clamp: 2;
@@ -39,7 +39,7 @@
                 -webkit-box-orient: vertical;
                 -webkit-line-clamp: 2;
                 overflow: hidden;
-                font-size: 18px;
+                font-size: 17px;
                 @media screen and (max-width: 600px) {
                   display: -webkit-box;
                   -webkit-box-orient: vertical;

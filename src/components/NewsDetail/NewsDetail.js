@@ -49,7 +49,11 @@ const Watch = () => {
             display="flex"
             alignItems="flex-start"
           >
-            <img src={details.image} alt="" />
+            <img
+              style={{ height: 100, width: 120 }}
+              src={details.image}
+              alt=""
+            />
             <Box ml={1}>
               <Typography variant="h6">{details.description}...</Typography>
             </Box>

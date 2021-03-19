@@ -14,15 +14,14 @@ import ShowChartIcon from "@material-ui/icons/ShowChart";
 import SearchIcon from "@material-ui/icons/Search";
 import MenuIcon from "@material-ui/icons/Menu";
 import LocalHospitalOutlinedIcon from "@material-ui/icons/LocalHospitalOutlined";
-// import LockOpenTwoToneIcon from "@material-ui/icons/LockOpenTwoTone";
-// import ForumTwoToneIcon from "@material-ui/icons/ForumTwoTone";
-// import BookmarkIcon from "@material-ui/icons/Bookmark";
+import AttachFileIcon from "@material-ui/icons/AttachFile";
+import styles from "./HeaderMenu.module.css";
+import { useAuth } from "../../Store/AuthProvider";
+import LockOpenIcon from "@material-ui/icons/LockOpen";
+import { Box } from "@material-ui/core";
+import AcitveAvatar from "../Atoms/ActiveAvatar";
 
 const useStyles = makeStyles({
-  list: {
-    width: 230,
-    textAlign: "center",
-  },
   fullList: {
     width: "auto",
   },
@@ -35,6 +34,9 @@ const useStyles = makeStyles({
   link: {
     textDecoration: "none",
     color: "black",
+  },
+  icon: {
+    color: "#144b5e",
   },
 });
 
@@ -57,48 +59,65 @@ const DrawerMenu = () => {
 
   const MenuListItems = ({ symbol, title, subtitle }) => {
     return (
-      <List style={{ marginTop: 10 }}>
-        <ListItem button>
-          <ListItemIcon>{symbol}</ListItemIcon>
-          <ListItemText primary={title} secondary={subtitle} />
-        </ListItem>
-      </List>
+      <Box mt={0.5}>
+        <List>
+          <ListItem button>
+            <ListItemIcon className={classes.ListItemIcon}>
+              {symbol}
+            </ListItemIcon>
+            <ListItemText primary={title} secondary={subtitle} />
+          </ListItem>
+        </List>
+      </Box>
     );
   };
 
-  const list = (anchor) => (
-    <div
-      className={clsx(classes.list, {
-        [classes.fullList]: anchor === "top" || anchor === "bottom",
-      })}
-      role="presentation"
-      onClick={toggleDrawer(anchor, false)}
-      onKeyDown={toggleDrawer(anchor, false)}
-    >
-      <h3 className={classes.title}>MENU LIST</h3>
-      <Link to="/" className={classes.link}>
-        <MenuListItems symbol={<AssignmentIcon />} title="News Top" />
-      </Link>
-      <Link to="/stock" className={classes.link}>
-        <MenuListItems symbol={<ShowChartIcon />} title="Stocks" />
-      </Link>
-      <Link to="/search" className={classes.link}>
-        <MenuListItems symbol={<SearchIcon />} title="Search" />
-      </Link>
-      <Link to="/covid" className={classes.link}>
-        <MenuListItems symbol={<LocalHospitalOutlinedIcon />} title="Covid" />
-      </Link>
-      {/* <Link to="/auth" className={classes.link}> */}
-      {/* <MenuListItems symbol={<LockOpenTwoToneIcon />} title="Sing In" />
-      </Link>
-      <Link to="/feed" className={classes.link}>
-        <MenuListItems symbol={<ForumTwoToneIcon />} title="Feed" />
-      </Link>
-      <Link to="/" className={classes.link}>
-        <MenuListItems symbol={<BookmarkIcon />} title="BookMark List " /> */}
-      {/* </Link> */}
-    </div>
-  );
+  const OpenListItem = ({ anchor }) => {
+    const { currentUser } = useAuth();
+    return (
+      <div
+        className={clsx(styles.list, {
+          [classes.fullList]: anchor === "top" || anchor === "bottom",
+        })}
+        role="presentation"
+        onClick={toggleDrawer(anchor, false)}
+        onKeyDown={toggleDrawer(anchor, false)}
+      >
+        <h3 className={classes.title}>MENU LIST</h3>
+        <Link to="/" className={classes.link}>
+          <MenuListItems symbol={<AssignmentIcon />} title="News Top" />
+        </Link>
+        <Link to="/stock" className={classes.link}>
+          <MenuListItems symbol={<ShowChartIcon />} title="Stocks" />
+        </Link>
+        <Link to="/search" className={classes.link}>
+          <MenuListItems symbol={<SearchIcon />} title="Search" />
+        </Link>
+        <Link to="/covid" className={classes.link}>
+          <MenuListItems symbol={<LocalHospitalOutlinedIcon />} title="Covid" />
+        </Link>
+        <Divider />
+
+        {!currentUser && (
+          <Link to="/signup" className={classes.link}>
+            <MenuListItems symbol={<LockOpenIcon />} title="Sign Up" />
+          </Link>
+        )}
+        {currentUser && (
+          <Link to="/profile" className={classes.link}>
+            <MenuListItems
+              symbol={<AcitveAvatar photoURL={currentUser.photoURL} />}
+              title={currentUser.displayName}
+            />
+          </Link>
+        )}
+
+        <Link to="/clip" className={classes.link}>
+          <MenuListItems symbol={<AttachFileIcon />} title="Clip News" />
+        </Link>
+      </div>
+    );
+  };
 
   return (
     <div>
@@ -112,8 +131,7 @@ const DrawerMenu = () => {
           open={state["left"]}
           onClose={toggleDrawer("left", false)}
         >
-          {list("left")}
-          <Divider />
+          <OpenListItem anchor={"left"} />
         </Drawer>
       </React.Fragment>
     </div>
