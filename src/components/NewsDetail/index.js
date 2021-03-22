@@ -1,17 +1,38 @@
-import React from "react";
+import React, { useState } from "react";
 import { useLocation, useHistory } from "react-router-dom";
 import { Card, Button, Box, Avatar, Typography } from "@material-ui/core";
 import { formatDate } from "../../apis/rapidApi";
 import styles from "./NewsDetail.module.scss";
 import sm_no_logo from "../../assets/smollno-image.png";
 import { OandaAd } from "../../apis/Adsense/adsense";
+import BookmarkIcon from "@material-ui/icons/Bookmark";
+import { useAuth } from "../../Store/AuthProvider";
+import { db } from "../../firebase";
+import firebase from "firebase/app";
 
 const Watch = () => {
+  const { currentUser } = useAuth();
   const location = useLocation();
   const history = useHistory();
   const details = location.state;
   const back = () => {
     history.goBack();
+  };
+  const [toggle, setToggle] = useState(false);
+
+  const addNewsData = async () => {
+    setToggle(!toggle);
+    await db.collection("users").doc(currentUser.uid).collection("clips").add({
+      name: details.name,
+      url: details.url,
+      description: details.description,
+      image: details.image,
+      providerImage: details.providerImage,
+      providerName: details.providerName,
+      datePublished: details.datePublished,
+      category: details.category,
+      timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+    });
   };
 
   return (
@@ -38,6 +59,11 @@ const Watch = () => {
             <Box className={styles.date_and_category}>
               <i>{details.category}</i>
               <i>{formatDate(details.datePublished)}</i>
+              <BookmarkIcon
+                className={!toggle ? styles.bmicon : styles.active_bmicon}
+                fontSize="large"
+                onClick={addNewsData}
+              />
             </Box>
           </Box>
           <Box className={styles.title} my={1} py={0.8}>
