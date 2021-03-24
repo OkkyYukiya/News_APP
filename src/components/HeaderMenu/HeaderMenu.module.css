@@ -1,0 +1,10 @@
+.list {
+  text-align: center;
+  width: 260px;
+}
+
+@media screen and (max-width: 450px) {
+  .list {
+    width: 200px;
+  }
+}

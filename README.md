@@ -31,16 +31,16 @@ Used API
 
 Go to the project folder and install required dependencies.
 
-### `npm install`
+### `yarn install`
 
 And run Webpack watch for code changes and bundle js and css
 
-### `npm start`
+### `yarn start`
 
 Project will be automatically open at http://localhost:3000
 For production build:
 
-### `npm run build`
+### `yarn build`
 
 If you need API keys, get it from this link.
 
@@ -57,4 +57,6 @@ If you need API keys, get it from this link.
 | 記事個別表示     | API から取得したニュース記事を個別に表示                   |
 | カテゴリ切り替え | "Business", "Technology"などのカテゴリを切り替え記事を取得 |
 | 株価表示         | 主要株の価格、前日終値に対しての現在価格の変動比(%)を表示  |
-| 記事検索         | "covid"など探したいニュースの word を入力し記事を検索      |
+| 記事検索         | free word で探したいニュース記事を検索                     |
+| 新規登録         | User の新規登録                                            |
+| ログイン         | Email and Password, Google 認証を利用したログイン機能      |

@@ -10,17 +10,17 @@
       }
       .sub {
         .btn {
-          background-color: #326779;
           width: 150px;
           height: 30;
+          border: 1px solid #326779;
+
           a {
             text-decoration: none;
-            color: white;
+            color: #326779;
           }
         }
         @media screen and (max-width: 420px) {
           .btn {
-            background-color: #326779;
             width: 100px;
             height: 30;
           }

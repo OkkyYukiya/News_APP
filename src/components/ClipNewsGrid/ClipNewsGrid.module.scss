@@ -1,0 +1,115 @@
+.root {
+  max-width: 700px;
+
+  .wrapper {
+    position: relative;
+    .container {
+      display: flex;
+      flex-direction: column;
+
+      // title&description&area
+      .title_desc_image_area {
+        display: flex;
+        justify-content: space-between;
+
+        .title_desc_area {
+          .title_name {
+            a {
+              text-decoration: none;
+              :hover {
+                color: rgb(114, 143, 150);
+                transition: 0.5s;
+              }
+              h2 {
+                font-size: 18px;
+                display: -webkit-box;
+                -webkit-box-orient: vertical;
+                -webkit-line-clamp: 2;
+                overflow: hidden;
+                color: #002531;
+
+                @media screen and (max-width: 600px) {
+                  font-size: 17px;
+                  display: -webkit-box;
+                  -webkit-box-orient: vertical;
+                  -webkit-line-clamp: 2;
+                  overflow: hidden;
+                  color: #002531;
+                }
+              }
+            }
+          }
+          .description_box {
+            p {
+              display: -webkit-box;
+              -webkit-box-orient: vertical;
+              -webkit-line-clamp: 2;
+              overflow: hidden;
+              font-size: 17px;
+              @media screen and (max-width: 600px) {
+                display: -webkit-box;
+                -webkit-box-orient: vertical;
+                -webkit-line-clamp: 2;
+                overflow: hidden;
+                font-size: 16px;
+              }
+            }
+          }
+        }
+
+        .image_box {
+          width: 100px;
+          height: 90px;
+          border: 1px solid rgba($color: #a0a0a0, $alpha: 0.5);
+          border-radius: 10%;
+          img {
+            border-radius: 10%;
+            width: 100px;
+            height: 90px;
+          }
+        }
+      }
+      // provider area
+      .provider {
+        font-size: 11px;
+        font-weight: 600;
+        min-width: 300px;
+        color: rgb(112, 112, 112);
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+
+        .deleteButton {
+          color: #054155;
+        }
+        .provider_name_and_image {
+          .provider_image {
+            height: 12px;
+            width: 12px;
+          }
+          .provider_name {
+            padding-left: 3px;
+          }
+        }
+        .date {
+          padding-left: 12px;
+        }
+        .category {
+          padding-left: 12px;
+        }
+      }
+    }
+    .deleteButton {
+      position: absolute;
+      bottom: 0;
+      right: 4px;
+      color: #054155;
+      width: 30px;
+      cursor: pointer;
+      :hover {
+        color: red;
+        transition: 0.4s;
+      }
+    }
+  }
+}

@@ -11,8 +11,8 @@ const NewsItemLayout = ({
   description,
   name,
   image,
-  provider_image,
-  provider_name,
+  providerImage,
+  providerName,
   datePublished,
   category,
 }) => {
@@ -27,8 +27,8 @@ const NewsItemLayout = ({
             url: url,
             description: description,
             image: image,
-            provider_image: provider_image,
-            provider_name: provider_name,
+            providerImage: providerImage,
+            providerName: providerName,
             datePublished: datePublished,
             category: category,
           },
@@ -58,10 +58,10 @@ const NewsItemLayout = ({
               <span className={styles.provider_name_and_image}>
                 <img
                   className={styles.provider_image}
-                  src={provider_image}
+                  src={providerImage}
                   alt=""
                 />
-                <span className={styles.provider_name}>{provider_name}</span>
+                <span className={styles.provider_name}>{providerName}</span>
               </span>
               <span className={styles.date}>{formatDate(datePublished)}</span>
               <span className={styles.category}>{category}</span>

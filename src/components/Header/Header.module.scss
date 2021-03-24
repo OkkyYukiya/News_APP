@@ -3,9 +3,13 @@
   .toolbar {
     .title {
       flex-grow: 1;
-      img {
-        height: 30px;
-        padding-top: 10px;
+      a {
+        img {
+          height: 30px;
+          @media screen and (max-width: 400px) {
+            height: 25px;
+          }
+        }
       }
     }
     .search {

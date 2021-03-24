@@ -1,27 +1,54 @@
 import React, { useState } from "react";
-import { Box, Button } from "@material-ui/core";
-import StockChart from "../components/StockChart/StockChart";
-// import StockGrid from "../components/StockGrid/StockGrid";
-// import StockList from "../containers/StockList/StockList";
-// import StockChart from "../components/StockChart/StockChart"
+import { Box } from "@material-ui/core";
+import StockGrid from "../containers/StockGrid";
+import StockChart from "../containers/StockChart";
+import ButtonGroup from "@material-ui/core/ButtonGroup";
+import Button from "@material-ui/core/Button";
+import StockList from "../containers/StockList";
+
+const styles = {
+  buttonTabBox: {
+    display: "flex",
+    justifyContent: "center",
+  },
+  button: {
+    width: 150,
+    height: 30,
+    backgroundColor: "#326779",
+    color: "white",
+  },
+};
 
 const StockPage = () => {
-  // const [toggle, setToggle] = useState(true);
+  const [toggle, setToggle] = useState(true);
   return (
     <Box>
-      <StockChart symbol="AAPL" />
-      {/* <Box mt={1} textAlign="center">
-        <Button
-          onClick={() => setToggle(!toggle)}
-          variant="outlined"
-          color="primary"
-        >
-          {toggle ? "StockList" : "StockChart"}
-        </Button>
+      <Box mt={1} style={styles.buttonTabBox}>
+        <ButtonGroup disableElevation>
+          <Button
+            onClick={() => setToggle(true)}
+            style={styles.button}
+            fullWidth
+          >
+            Chart
+          </Button>
+          <Button
+            onClick={() => setToggle(false)}
+            style={styles.button}
+            fullWidth
+          >
+            StockList
+          </Button>
+        </ButtonGroup>
       </Box>
 
-      {toggle && <StockGrid />}
-      {!toggle && <StockList />} */}
+      {toggle && (
+        <>
+          <StockGrid />
+          <StockChart />
+        </>
+      )}
+      {!toggle && <StockList />}
     </Box>
   );
 };
