@@ -1,5 +1,5 @@
 import React from "react";
-import ClipNews from "../components/ClipNews/ClipNews";
+import ClipNews from "../containers/ClipNews/ClipNews";
 
 const ClipNewsPage = () => {
   return <ClipNews />;

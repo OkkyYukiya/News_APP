@@ -10,8 +10,9 @@ import {
 import { useAuth } from "../Store/AuthProvider";
 import AddAPhotoIcon from "@material-ui/icons/AddAPhoto";
 import { makeStyles } from "@material-ui/core/styles";
-import ModalSelector from "../components/Atoms/ModalSelector";
+import LocationModal from "../components/Modals/LocationModal";
 import { useHistory } from "react-router-dom";
+import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -43,6 +44,10 @@ const useStyles = makeStyles((theme) => ({
     border: "1px solid #5a7881",
     color: "#5a7881",
     backgroundColor: "white",
+  },
+  accountIcon: {
+    fontSize: 26,
+    marginRight: 4,
   },
 }));
 
@@ -81,7 +86,13 @@ const ProfilePage = () => {
           justifyContent="center"
           p={2}
         >
-          <Typography variant="h6">{currentUser.displayName}</Typography>
+          <Typography variant="h6">
+            <Box display="flex">
+              <AccountCircleIcon className={classes.accountIcon} />
+              {currentUser.displayName}
+            </Box>
+          </Typography>
+
           <Typography variant="body2">{currentUser.email}</Typography>
         </Box>
       </Paper>
@@ -91,7 +102,7 @@ const ProfilePage = () => {
         </Button>
       </Box>
       <Box my={4}>
-        <ModalSelector />
+        <LocationModal />
       </Box>
       <Box display="flex" justifyContent="center">
         <Button

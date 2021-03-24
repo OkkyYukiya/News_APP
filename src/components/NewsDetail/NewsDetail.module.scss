@@ -24,9 +24,17 @@
       }
       .date_and_category {
         i {
-          margin-right: 10px;
+          margin-right: 2px;
           font-size: 16px;
         }
+        .bmicon {
+          color: grey;
+          cursor: pointer;
+        }
+        .active_bmicon {
+          color: rgb(231, 231, 38);
+        }
+
         @media screen and (max-width: 500px) {
           i {
             font-size: 12px;
