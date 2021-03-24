@@ -6,7 +6,7 @@
 
 ### アプリ名:News Quu
 
-[Demo Page](https://news-app-8efb7.web.app/)
+[Go to News Quu App](https://news-app-8efb7.web.app/)
 
 ビジネス情報や株価等を閲覧することができるニュースサイトです。\
  カテゴリ別に記事表示を変更することや、調べたい word で記事を検索することが出来ます。
