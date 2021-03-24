@@ -20,6 +20,7 @@ import { useAuth } from "../../Store/AuthProvider";
 import LockOpenIcon from "@material-ui/icons/LockOpen";
 import { Box } from "@material-ui/core";
 import AcitveAvatar from "../Atoms/ActiveAvatar";
+import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 
 const useStyles = makeStyles({
   fullList: {
@@ -104,11 +105,14 @@ const DrawerMenu = () => {
           </Link>
         )}
         {currentUser && (
+          <MenuListItems
+            symbol={<AcitveAvatar photoURL={currentUser.photoURL} />}
+            title={currentUser.displayName}
+          />
+        )}
+        {currentUser && (
           <Link to="/profile" className={classes.link}>
-            <MenuListItems
-              symbol={<AcitveAvatar photoURL={currentUser.photoURL} />}
-              title={currentUser.displayName}
-            />
+            <MenuListItems symbol={<AccountCircleIcon />} title="Profile" />
           </Link>
         )}
 

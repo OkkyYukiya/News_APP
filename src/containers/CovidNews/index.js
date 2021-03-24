@@ -14,7 +14,6 @@ const CovidNews = () => {
       setLoading(true);
       const res = await fetchCovid();
       setArticles(res);
-      console.log(res);
       setLoading(false);
     };
     getNews();
