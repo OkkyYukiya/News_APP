@@ -6,7 +6,7 @@
 
 ### アプリ名:News Quu
 
-[Demo Page](https://news-app-8efb7.web.app/)
+[Go to News Quu App](https://news-app-8efb7.web.app/)
 
 ビジネス情報や株価等を閲覧することができるニュースサイトです。\
  カテゴリ別に記事表示を変更することや、調べたい word で記事を検索することが出来ます。
@@ -17,15 +17,19 @@
    (Hooks: useState, useEffect, useContext)
 - react-router-dom v0.21.1
 - Material-UI v4.11.3
+- node-sass v5.0.0
+- react-chartjs-2 v2.11.1
 - react-spinners v0.10.6
+- axios v0.21.1
 - Firebase v8.2.9\
   (Authentication, CloudFirestore, Hosting)
 
 Used API
 
-- News API
 - bing news search
 - FMP Cloud
+- Marketstack
+- Google News
 
 ## 【SetUp (開発方法)】
 
@@ -51,12 +55,14 @@ If you need API keys, get it from this link.
 
 ## 【機能一覧】
 
-| 機能             | 概要                                                       |
-| ---------------- | ---------------------------------------------------------- |
-| 記事一覧表示     | API から取得したニュース記事を表示                         |
-| 記事個別表示     | API から取得したニュース記事を個別に表示                   |
-| カテゴリ切り替え | "Business", "Technology"などのカテゴリを切り替え記事を取得 |
-| 株価表示         | 主要株の価格、前日終値に対しての現在価格の変動比(%)を表示  |
-| 記事検索         | free word で探したいニュース記事を検索                     |
-| 新規登録         | User の新規登録                                            |
-| ログイン         | Email and Password, Google 認証を利用したログイン機能      |
+| 機能                           | 概要                                                       |
+| ------------------------------ | ---------------------------------------------------------- |
+| 記事一覧表示                   | API から取得したニュース記事を表示                         |
+| 記事個別表示                   | API から取得したニュース記事を個別に表示                   |
+| カテゴリ切り替え               | "Business", "Technology"などのカテゴリを切り替え記事を取得 |
+| 株価表示                       | 主要株の価格、前日終値に対しての現在価格の変動比(%)を表示  |
+| Chart 表示                     | 株価を月間ベースで chart 描画                              |
+| 記事検索                       | free word で探したいニュース記事を検索                     |
+| 新規登録(Auth)                 | User の新規登録                                            |
+| ログイン(Auth)                 | Email and Password, Google 認証を利用したログイン機能      |
+| 記事 Clip/削除(CloudFireStore) | 気に入った記事の clip, 削除機能                            |
