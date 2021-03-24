@@ -15,6 +15,7 @@ import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import { useAuth } from "../../Store/AuthProvider";
 import LoadingCircle from "../../components/Atoms/CircularProgress";
+import ForgotPassword from "../../components/ForgotPassword";
 
 const Auth = () => {
   const [email, setEmail] = useState("");
@@ -29,7 +30,7 @@ const Auth = () => {
       setLoading(true);
       await auth.signInWithPopup(provider).catch((err) => alert(err.message));
 
-      history.push("/clip");
+      history.push("/");
     } catch {
       setError("Faild to Login");
     } finally {
@@ -120,7 +121,7 @@ const Auth = () => {
             SIGN IN WITH GOOGLE
           </Button>
           <Box className={styles.sub_menu} mt={8}>
-            <span>Forgot Password?</span>
+            <ForgotPassword />
             <span>
               <Link to="/signup">Create New Account</Link>
             </span>

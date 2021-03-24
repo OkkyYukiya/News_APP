@@ -26,7 +26,13 @@ const Signup = () => {
   const history = useHistory();
 
   const signInGoogle = async () => {
-    await auth.signInWithPopup(provider).catch((err) => alert(err.message));
+    try {
+      await auth.signInWithPopup(provider);
+    } catch {
+      setError("Failed to create an account");
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -41,7 +47,7 @@ const Signup = () => {
       setError("");
       setLoading(true);
       await signup(email, password, username);
-      history.push("/clip");
+      history.push("/");
     } catch {
       setError("Failed to create an account");
     } finally {
