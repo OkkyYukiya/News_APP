@@ -15,7 +15,7 @@
 
           .title_desc_area {
             .title_name {
-              h2 {
+              .us {
                 font-size: 18px;
                 display: -webkit-box;
                 -webkit-box-orient: vertical;
@@ -32,9 +32,27 @@
                   color: #002531;
                 }
               }
+
+              .ja {
+                font-size: 16px;
+                display: -webkit-box;
+                -webkit-box-orient: vertical;
+                -webkit-line-clamp: 2;
+                overflow: hidden;
+                color: #002531;
+
+                @media screen and (max-width: 600px) {
+                  font-size: 15px;
+                  display: -webkit-box;
+                  -webkit-box-orient: vertical;
+                  -webkit-line-clamp: 2;
+                  overflow: hidden;
+                  color: #002531;
+                }
+              }
             }
             .description_box {
-              p {
+              .d__us {
                 display: -webkit-box;
                 -webkit-box-orient: vertical;
                 -webkit-line-clamp: 2;
@@ -46,6 +64,20 @@
                   -webkit-line-clamp: 2;
                   overflow: hidden;
                   font-size: 16px;
+                }
+              }
+              .d__ja {
+                display: -webkit-box;
+                -webkit-box-orient: vertical;
+                -webkit-line-clamp: 2;
+                overflow: hidden;
+                font-size: 14px;
+                @media screen and (max-width: 600px) {
+                  display: -webkit-box;
+                  -webkit-box-orient: vertical;
+                  -webkit-line-clamp: 2;
+                  overflow: hidden;
+                  font-size: 13px;
                 }
               }
             }

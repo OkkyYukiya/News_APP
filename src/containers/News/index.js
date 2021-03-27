@@ -1,26 +1,28 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import styles from "./News.module.css";
 import ButtonTab from "../../components/News/ButtonTab";
 import NewsItemLayout from "../../components/News/NewsItemLayout";
 import { Box } from "@material-ui/core";
 import { getNewsData } from "../../apis/rapidApi";
 import PropagateLoader from "react-spinners/PropagateLoader";
+import { Store } from "../../Store/Store";
 
 const News = ({ category }) => {
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(false);
+  const { globalState } = useContext(Store);
 
   useEffect(() => {
     const getNews = async () => {
       setLoading(true);
-      const res = await getNewsData(category);
+      const res = await getNewsData(category, globalState.language);
       setArticles(res);
       setLoading(false);
     };
     getNews();
 
     // eslint-disable-next-line
-  }, [category]);
+  }, [category, globalState.language]);
 
   return (
     <React.Fragment>

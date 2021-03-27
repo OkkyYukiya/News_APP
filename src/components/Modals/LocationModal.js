@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useContext } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
@@ -10,6 +10,7 @@ import Input from "@material-ui/core/Input";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
+import { Store } from "../../Store/Store";
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -25,15 +26,25 @@ const useStyles = makeStyles((theme) => ({
     color: "#5a7881",
     backgroundColor: "white",
   },
+  currentSelected: {
+    fontSize: 15,
+  },
 }));
 
 const ModalSelector = () => {
+  const { globalState, setGlobalState } = useContext(Store);
   const classes = useStyles();
-  const [open, setOpen] = React.useState(false);
-  const [age, setAge] = React.useState("");
+  const [open, setOpen] = useState(false);
+  const [language, setLauguage] = useState("");
 
   const handleChange = (event) => {
-    setAge(Number(event.target.value) || "");
+    try {
+      setLauguage(event.target.value);
+      setGlobalState({
+        type: "SET_LANGUAGE",
+        payload: { language: event.target.value },
+      });
+    } catch {}
   };
 
   const handleClickOpen = () => {
@@ -59,7 +70,13 @@ const ModalSelector = () => {
         open={open}
         onClose={handleClose}
       >
-        <DialogTitle>Chose your location</DialogTitle>
+        <DialogTitle>
+          Chose your location
+          <br />
+          <span className={classes.currentSelected}>
+            Current selected: {globalState.language === "us" ? "USA" : "JAPAN"}
+          </span>
+        </DialogTitle>
         <DialogContent>
           <form className={classes.container}>
             <FormControl className={classes.formControl}>
@@ -67,13 +84,12 @@ const ModalSelector = () => {
               <Select
                 labelId="select-label"
                 id="select"
-                value={age}
+                value={language}
                 onChange={handleChange}
                 input={<Input />}
               >
-                <MenuItem value=""></MenuItem>
-                <MenuItem value={10}>Japan</MenuItem>
-                <MenuItem value={20}>USA</MenuItem>
+                <MenuItem value={"ja"}>Japan</MenuItem>
+                <MenuItem value={"us"}>USA</MenuItem>
               </Select>
             </FormControl>
           </form>

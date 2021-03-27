@@ -1,7 +1,8 @@
 import React from "react";
+import styles from "./HeaderMenu.module.css";
+import { makeStyles } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
 import clsx from "clsx";
-import { makeStyles } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
 import Button from "@material-ui/core/Button";
 import List from "@material-ui/core/List";
@@ -15,12 +16,11 @@ import SearchIcon from "@material-ui/icons/Search";
 import MenuIcon from "@material-ui/icons/Menu";
 import LocalHospitalOutlinedIcon from "@material-ui/icons/LocalHospitalOutlined";
 import AttachFileIcon from "@material-ui/icons/AttachFile";
-import styles from "./HeaderMenu.module.css";
-import { useAuth } from "../../Store/AuthProvider";
 import LockOpenIcon from "@material-ui/icons/LockOpen";
 import { Box } from "@material-ui/core";
-import AcitveAvatar from "../Atoms/ActiveAvatar";
+import AcitveAvatar from "../Versatility/ActiveAvatar";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
+import { useAuth } from "../../Store/AuthProvider";
 
 const useStyles = makeStyles({
   fullList: {
@@ -100,8 +100,8 @@ const DrawerMenu = () => {
         <Divider />
 
         {!currentUser && (
-          <Link to="/signup" className={classes.link}>
-            <MenuListItems symbol={<LockOpenIcon />} title="Sign Up" />
+          <Link to="/login" className={classes.link}>
+            <MenuListItems symbol={<LockOpenIcon />} title="Login" />
           </Link>
         )}
         {currentUser && (

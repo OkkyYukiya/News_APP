@@ -35,6 +35,12 @@ const App = () => {
             <Route path="/news-product">
               <NewsPage category="Products" />
             </Route>
+            <Route path="/news-sports">
+              <NewsPage category="Sports" />
+            </Route>
+            <Route path="/lifeStyle">
+              <NewsPage category="LifeStyle" />
+            </Route>
             <Route path="/watch" component={Watch} />
             <Route path="/stock" component={StockPage} />
             <Route path="/covid" component={CovidPage} />

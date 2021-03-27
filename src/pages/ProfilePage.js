@@ -1,4 +1,7 @@
 import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import { useAuth } from "../Store/AuthProvider";
+// import { storage } from "../firebase";
 import {
   Box,
   ButtonBase,
@@ -7,11 +10,9 @@ import {
   Typography,
   Avatar,
 } from "@material-ui/core";
-import { useAuth } from "../Store/AuthProvider";
-import AddAPhotoIcon from "@material-ui/icons/AddAPhoto";
-import { makeStyles } from "@material-ui/core/styles";
 import LocationModal from "../components/Modals/LocationModal";
 import { useHistory } from "react-router-dom";
+import AddAPhotoIcon from "@material-ui/icons/AddAPhoto";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 
 const useStyles = makeStyles((theme) => ({
@@ -54,7 +55,9 @@ const useStyles = makeStyles((theme) => ({
 const ProfilePage = () => {
   const classes = useStyles();
   const { currentUser, logout } = useAuth();
+  // const [avatarImage, setAvatarImage] = useState(null);
   const history = useHistory();
+
   const handleLogout = async () => {
     try {
       await logout();

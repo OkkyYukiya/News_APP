@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import Paper from "@material-ui/core/Paper";
 import styles from "./NewsItemLayout.module.scss";
 import { Box } from "@material-ui/core";
 import no_image from "../../assets/no-image.png";
 import { Link } from "react-router-dom";
 import { formatDate } from "../../apis/rapidApi";
+import { Store } from "../../Store/Store";
 
 const NewsItemLayout = ({
   url,
@@ -16,6 +17,8 @@ const NewsItemLayout = ({
   datePublished,
   category,
 }) => {
+  const { globalState } = useContext(Store);
+  console.log(globalState.language);
   return (
     <Box className={styles.root} mt={0.5} pr={0.5} pl={0.5}>
       <Link
@@ -41,10 +44,24 @@ const NewsItemLayout = ({
               {/* title & desc */}
               <Box className={styles.title_desc_area}>
                 <Box className={styles.title_name}>
-                  <h2>{name}</h2>
+                  <h2
+                    className={
+                      globalState.language === "us" ? styles.us : styles.ja
+                    }
+                  >
+                    {name}
+                  </h2>
                 </Box>
                 <Box mt={0.5} className={styles.description_box}>
-                  <p className={styles.description}>{description}</p>
+                  <p
+                    className={
+                      globalState.language === "us"
+                        ? styles.d__us
+                        : styles.d__ja
+                    }
+                  >
+                    {description}
+                  </p>
                 </Box>
               </Box>
               {/* title & desc */}

@@ -14,7 +14,7 @@ import { auth, provider } from "../../firebase";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import { useAuth } from "../../Store/AuthProvider";
-import LoadingCircle from "../../components/Atoms/CircularProgress";
+import LoadingCircle from "../../components/Versatility/CircularProgress";
 import ForgotPassword from "../../components/ForgotPassword";
 
 const Auth = () => {

@@ -6,7 +6,7 @@ import SearchIcon from "@material-ui/icons/Search";
 import { Link } from "react-router-dom";
 import styles from "./Header.module.scss";
 import { useAuth } from "../../Store/AuthProvider";
-import ActiveAvattar from "../Atoms/ActiveAvatar";
+import ActiveAvattar from "../Versatility/ActiveAvatar";
 
 const Header = () => {
   const { currentUser } = useAuth();
