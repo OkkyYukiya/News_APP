@@ -13,7 +13,7 @@ import Google_logo from "../../assets/google-logo.png";
 import { auth, provider } from "../../firebase";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
-import { useAuth } from "../../Store/AuthProvider";
+import { useAuth } from "../../context/AuthProvider";
 import LoadingCircle from "../../components/Versatility/CircularProgress";
 import ForgotPassword from "../../components/ForgotPassword";
 

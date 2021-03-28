@@ -19,8 +19,8 @@ import AttachFileIcon from "@material-ui/icons/AttachFile";
 import LockOpenIcon from "@material-ui/icons/LockOpen";
 import { Box } from "@material-ui/core";
 import AcitveAvatar from "../Versatility/ActiveAvatar";
-import AccountCircleIcon from "@material-ui/icons/AccountCircle";
-import { useAuth } from "../../Store/AuthProvider";
+import SettingsIcon from "@material-ui/icons/Settings";
+import { useAuth } from "../../context/AuthProvider";
 
 const useStyles = makeStyles({
   fullList: {
@@ -112,7 +112,7 @@ const DrawerMenu = () => {
         )}
         {currentUser && (
           <Link to="/profile" className={classes.link}>
-            <MenuListItems symbol={<AccountCircleIcon />} title="Profile" />
+            <MenuListItems symbol={<SettingsIcon />} title="Setting" />
           </Link>
         )}
 

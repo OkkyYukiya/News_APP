@@ -14,7 +14,6 @@ const headers = (language) => {
   };
 };
 
-//get news from categorys
 //language from globalState
 export const getNewsData = async (category, language) => {
   const response = await fetch(

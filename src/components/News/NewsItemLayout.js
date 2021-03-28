@@ -5,7 +5,7 @@ import { Box } from "@material-ui/core";
 import no_image from "../../assets/no-image.png";
 import { Link } from "react-router-dom";
 import { formatDate } from "../../apis/rapidApi";
-import { Store } from "../../Store/Store";
+import { Store } from "../../context/Store";
 
 const NewsItemLayout = ({
   url,
@@ -18,7 +18,7 @@ const NewsItemLayout = ({
   category,
 }) => {
   const { globalState } = useContext(Store);
-  console.log(globalState.language);
+
   return (
     <Box className={styles.root} mt={0.5} pr={0.5} pl={0.5}>
       <Link

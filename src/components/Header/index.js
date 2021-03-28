@@ -5,7 +5,7 @@ import logo from "../../assets/logo-news.png";
 import SearchIcon from "@material-ui/icons/Search";
 import { Link } from "react-router-dom";
 import styles from "./Header.module.scss";
-import { useAuth } from "../../Store/AuthProvider";
+import { useAuth } from "../../context/AuthProvider";
 import ActiveAvattar from "../Versatility/ActiveAvatar";
 
 const Header = () => {

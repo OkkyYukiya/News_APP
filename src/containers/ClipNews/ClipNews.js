@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Box, Typography } from "@material-ui/core";
 import { db } from "../../firebase";
-import { useAuth } from "../../Store/AuthProvider";
+import { useAuth } from "../../context/AuthProvider";
 import ClipNewsGrid from "../../components/ClipNewsGrid";
 import AttachFileIcon from "@material-ui/icons/AttachFile";
 

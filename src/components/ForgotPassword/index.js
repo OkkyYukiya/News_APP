@@ -7,7 +7,7 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import SendIcon from "@material-ui/icons/Send";
 import { Box, TextField, Typography } from "@material-ui/core";
-import { useAuth } from "../../Store/AuthProvider";
+import { useAuth } from "../../context/AuthProvider";
 
 const useStyles = makeStyles((theme) => ({
   container: {

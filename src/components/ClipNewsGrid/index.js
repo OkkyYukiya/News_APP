@@ -5,7 +5,7 @@ import { Box } from "@material-ui/core";
 import no_image from "../../assets/no-image.png";
 import { formatDate } from "../../apis/rapidApi";
 import DelteModal from "../Modals/DeleteModal";
-import { useAuth } from "../../Store/AuthProvider";
+import { useAuth } from "../../context/AuthProvider";
 
 const ClipNewsGrid = ({
   url,

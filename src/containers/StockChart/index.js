@@ -10,7 +10,7 @@ import {
 } from "../../apis/stockchart";
 import { Box, Paper, Typography } from "@material-ui/core";
 import styles from "./StockChart.module.scss";
-import { Store } from "../../Store/Store";
+import { Store } from "../../context/Store";
 
 const StockChart = () => {
   const [stockData, setStockData] = useState({});

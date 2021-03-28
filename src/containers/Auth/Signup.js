@@ -12,7 +12,7 @@ import LockOpenIcon from "@material-ui/icons/LockOpen";
 import Google_logo from "../../assets/google-logo.png";
 import { auth, provider } from "../../firebase";
 import { Link, useHistory } from "react-router-dom";
-import { useAuth } from "../../Store/AuthProvider";
+import { useAuth } from "../../context/AuthProvider";
 import LoadingCircle from "../../components/Versatility/CircularProgress";
 
 const Signup = () => {

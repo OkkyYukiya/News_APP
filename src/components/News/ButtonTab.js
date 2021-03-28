@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { ButtonGroup, Button, Box } from "@material-ui/core/";
 import { makeStyles } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
-import { Store } from "../../Store/Store";
+import { Store } from "../../context/Store";
 import styles from "./ButtonTab.module.scss";
 
 const useStyles = makeStyles((theme) => ({

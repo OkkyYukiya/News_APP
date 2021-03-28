@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import styles from "./StockGrid.module.scss";
 import { Box } from "@material-ui/core";
 import StockGridItem from "../../components/StockGridItem/StockGridItem";
-import { Store } from "../../Store/Store";
+import { Store } from "../../context/Store";
 import { fetchPrice, adjPrice } from "../../apis/marketStack";
 
 const StockGrid = () => {

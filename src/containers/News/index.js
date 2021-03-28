@@ -5,7 +5,7 @@ import NewsItemLayout from "../../components/News/NewsItemLayout";
 import { Box } from "@material-ui/core";
 import { getNewsData } from "../../apis/rapidApi";
 import PropagateLoader from "react-spinners/PropagateLoader";
-import { Store } from "../../Store/Store";
+import { Store } from "../../context/Store";
 
 const News = ({ category }) => {
   const [articles, setArticles] = useState([]);

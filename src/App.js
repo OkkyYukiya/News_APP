@@ -10,7 +10,7 @@ import CovidPage from "./pages/CovidPage";
 import ClipNewsPage from "./pages/ClipNewsPage";
 import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignUpPage";
-import PrivateRoute from "./components/PrivateRoute";
+import PrivateRoute from "./common/PrivateRoute";
 import ProfilePage from "./pages/ProfilePage";
 
 const App = () => {

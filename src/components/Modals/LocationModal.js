@@ -10,7 +10,8 @@ import Input from "@material-ui/core/Input";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
-import { Store } from "../../Store/Store";
+import { Store } from "../../context/Store";
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -36,6 +37,7 @@ const ModalSelector = () => {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
   const [language, setLauguage] = useState("");
+  const history = useHistory();
 
   const handleChange = (event) => {
     try {
@@ -53,6 +55,10 @@ const ModalSelector = () => {
 
   const handleClose = () => {
     setOpen(false);
+  };
+  const handleChangeLocation = () => {
+    setOpen(false);
+    history.push("/");
   };
 
   return (
@@ -98,7 +104,7 @@ const ModalSelector = () => {
           <Button onClick={handleClose} color="primary">
             Cancel
           </Button>
-          <Button onClick={handleClose} color="primary">
+          <Button onClick={handleChangeLocation} color="primary">
             Ok
           </Button>
         </DialogActions>

@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import styles from "./NewsDetail.module.scss";
-import { useAuth } from "../../Store/AuthProvider";
+import { useAuth } from "../../context/AuthProvider";
 import { useLocation, useHistory } from "react-router-dom";
-import firebase from "firebase/app";
 import { db } from "../../firebase";
 import { Card, Button, Box, Avatar, Typography } from "@material-ui/core";
 import { formatDate } from "../../apis/rapidApi";
 import { OandaAd } from "../../apis/Adsense/adsense";
+import firebase from "firebase/app";
 import BookmarkIcon from "@material-ui/icons/Bookmark";
 import sm_no_logo from "../../assets/smollno-image.png";
 

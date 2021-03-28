@@ -36,6 +36,13 @@ export const AuthProvider = ({ children }) => {
     return currentUser.updatePassword(password);
   };
 
+  const updateUsername = (username) => {
+    return currentUser.updateProfile({
+      displayName: username,
+      // photoURL: "https://example.com/jane-q-user/profile.jpg"
+    });
+  };
+
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       setCurrentUser(user);
@@ -52,6 +59,7 @@ export const AuthProvider = ({ children }) => {
     resetPassword,
     updateEmail,
     updatePassword,
+    updateUsername,
   };
   return (
     <AuthContext.Provider value={value}>
