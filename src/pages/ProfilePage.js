@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { useAuth } from "../context/AuthProvider";
 import { useHistory } from "react-router-dom";
+import { storage, db } from "../firebase";
 import {
   Box,
   ButtonBase,
@@ -11,21 +12,39 @@ import {
   Avatar,
   TextField,
   CircularProgress,
+  IconButton,
 } from "@material-ui/core";
 import LocationModal from "../components/Modals/LocationModal";
-import AddAPhotoIcon from "@material-ui/icons/AddAPhoto";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import MailIcon from "@material-ui/icons/Mail";
+import AddPhotoAlternateIcon from "@material-ui/icons/AddPhotoAlternate";
+import EditIcon from "@material-ui/icons/Edit";
+import Message from "../common/Message";
+import AttachFileIcon from "@material-ui/icons/AttachFile";
+
+const ProfileInfo = ({ info, icon, size }) => {
+  return (
+    <Box display="flex" alignItems="center" flexWrap="wrap">
+      {icon}
+      <Typography variant={size}>{info}</Typography>
+    </Box>
+  );
+};
 
 const ProfilePage = () => {
   const classes = useStyles();
-  const { currentUser, logout, updateUsername } = useAuth();
-  const [displayUsername, setDisplayUsername] = useState(false);
+  const history = useHistory();
+  const { currentUser, logout, updateUsername, updateAvatarImage } = useAuth();
   const [username, setUsername] = useState("");
+  const [displayUsername, setDisplayUsername] = useState(false);
+  const [avatarImage, setAvatarImage] = useState(null);
+  const [displayImage, setDisplayImage] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
   const [successMessage, setSuccessMessage] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [countClips, setCountClips] = useState(null);
 
+  //change username logic
   const handleUser = (e) => {
     setUsername(e.target.value);
   };
@@ -44,7 +63,34 @@ const ProfilePage = () => {
     }
   };
 
-  const history = useHistory();
+  //change avatar image logic
+  const onChangeImageHandler = (e) => {
+    if (e.target.files[0]) {
+      setAvatarImage(e.target.files[0]);
+      e.target.value = "";
+    }
+  };
+
+  const changeAvatarImage = async () => {
+    let url = "";
+    if (avatarImage) {
+      const S =
+        "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+      const N = 16;
+      const randomChar = Array.from(crypto.getRandomValues(new Uint32Array(N)))
+        .map((n) => S[n % S.length])
+        .join("");
+      const fileName = randomChar + "_" + avatarImage.name;
+
+      await storage.ref(`avatars/${fileName}`).put(avatarImage);
+      url = await storage.ref("avatars").child(fileName).getDownloadURL();
+    }
+
+    await updateAvatarImage(url);
+    window.location.reload();
+  };
+
+  //logout
   const handleLogout = async () => {
     try {
       await logout();
@@ -53,39 +99,63 @@ const ProfilePage = () => {
       console.log("logout error");
     }
   };
+
+  useEffect(() => {
+    const getClip = async () => {
+      const USER_ID = currentUser.uid;
+      const docRef = db.collection("users").doc(USER_ID).collection("clips");
+      const body = await docRef.get();
+      const size = body.size;
+      setCountClips(size);
+    };
+    getClip();
+    // eslint-disable-next-line
+  }, []);
   return (
     <Box className={classes.root}>
       <Paper elevation={2} className={classes.paper}>
         <Box p={1} display="flex" justifyContent="center">
-          <ButtonBase>
+          <ButtonBase onClick={() => setDisplayImage(!displayImage)}>
             {currentUser.photoURL ? (
-              <img
-                className={classes.image}
+              <Avatar
+                className={classes.avatarLarge}
                 src={currentUser.photoURL}
-                alt=""
               />
             ) : (
               <Avatar style={{ height: 90, width: 90 }} />
             )}
-            <AddAPhotoIcon className={classes.icon} fontSize="small" />
           </ButtonBase>
         </Box>
         <Box
           display="flex"
           flexDirection="column"
           justifyContent="space-around"
+          alignItems="flex-start"
           p={2}
         >
           {/* uesrname and email "start"*/}
-          <Box display="flex" flexWrap="wrap">
-            <AccountCircleIcon className={classes.accountIcon} />
-            <Typography variant="h6">{currentUser.displayName}</Typography>
-          </Box>
-
-          <Box display="flex" flexWrap="wrap">
-            <MailIcon fontSize="small" />
-            <Typography variant="body2">{currentUser.email}</Typography>
-          </Box>
+          <ProfileInfo
+            icon={<AccountCircleIcon fontSize="small" />}
+            info={currentUser.displayName}
+            size="h6"
+          />
+          <ProfileInfo
+            icon={<MailIcon fontSize="small" />}
+            info={currentUser.email}
+            size="body2"
+          />
+          <ProfileInfo
+            icon={<AttachFileIcon fontSize="small" />}
+            info={
+              <Button
+                onClick={() => history.push("/clip")}
+                style={{ padding: 0 }}
+              >
+                Clip News {countClips}
+              </Button>
+            }
+            size="body2"
+          />
           {/* uesrname and email "end"*/}
         </Box>
       </Paper>
@@ -104,33 +174,18 @@ const ProfilePage = () => {
             />
 
             {errorMessage && (
-              <Box
-                px={5}
-                py={1}
-                mt={1}
-                style={{
-                  backgroundColor: "rgb(255,0,0,0.4)",
-                  color: "darkred",
-                  borderRadius: 7,
-                }}
-              >
-                <Typography>{errorMessage}</Typography>
-              </Box>
+              <Message
+                backgroundColor="rgb(255,0,0,0.4)"
+                color="darkred"
+                message={errorMessage}
+              />
             )}
             {successMessage && (
-              <Box
-                textAlign="center"
-                px={5}
-                py={1}
-                mt={1}
-                style={{
-                  backgroundColor: "rgba(123, 239, 178, 0.5)",
-                  color: "green",
-                  borderRadius: 7,
-                }}
-              >
-                <Typography>{successMessage}</Typography>
-              </Box>
+              <Message
+                backgroundColor="rgba(123, 239, 178, 0.5)"
+                color="green"
+                message={successMessage}
+              />
             )}
             <Box my={1} />
             <Button
@@ -156,7 +211,63 @@ const ProfilePage = () => {
           fullWidth
           className={classes.editButton}
         >
-          {!displayUsername ? "Edit UserName" : "close"}
+          {!displayUsername ? (
+            <>
+              <EditIcon style={{ marginRight: 4 }} />
+              Edit displayName
+            </>
+          ) : (
+            "close"
+          )}
+        </Button>
+      </Box>
+      {displayImage && (
+        <Box
+          display="flex"
+          flexDirection="column"
+          alignItems="center"
+          mb={2}
+          textAlign="center"
+        >
+          <IconButton type="submit">
+            <label>
+              <Avatar className={classes.avatarMideum}>
+                <AddPhotoAlternateIcon
+                  className={avatarImage ? classes.addImage : ""}
+                  fontSize="large"
+                />
+                <input
+                  onChange={onChangeImageHandler}
+                  className={classes.inputImage}
+                  type="file"
+                />
+              </Avatar>
+            </label>
+          </IconButton>
+          {avatarImage && (
+            <Typography style={{ color: "green" }} variant="body2">
+              ✔︎Added your image
+            </Typography>
+          )}
+          <Button
+            style={{ marginTop: 8 }}
+            disabled={!avatarImage}
+            variant="outlined"
+            color="primary"
+            onClick={changeAvatarImage}
+          >
+            update
+          </Button>
+        </Box>
+      )}
+      <Box>
+        <Button
+          onClick={() => setDisplayImage(!displayImage)}
+          className={classes.editButton}
+          fullWidth
+        >
+          <AddPhotoAlternateIcon style={{ marginRight: 4 }} />
+          update avatar image
         </Button>
       </Box>
       <Box my={4}>
@@ -177,6 +288,7 @@ const ProfilePage = () => {
 
 export default ProfilePage;
 
+//styles
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 500,
@@ -187,11 +299,6 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     justifyContent: "space-around",
     width: 370,
-  },
-  image: {
-    borderRadius: "999px",
-    position: "relative",
-    height: 90,
   },
   icon: {
     position: "absolute",
@@ -208,10 +315,6 @@ const useStyles = makeStyles((theme) => ({
     color: "#5a7881",
     backgroundColor: "white",
   },
-  accountIcon: {
-    // fontSize: 26,
-    // marginRight: 4,
-  },
   InputUsername: {
     backgroundColor: "white",
   },
@@ -219,5 +322,20 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "white",
     fontSize: 14,
     fontWeight: 600,
+  },
+  inputImage: {
+    textAlign: "center",
+    display: "none",
+  },
+  addImage: {
+    color: "darkgreen",
+  },
+  avatarLarge: {
+    width: theme.spacing(13),
+    height: theme.spacing(13),
+  },
+  avatarMideum: {
+    width: theme.spacing(8),
+    height: theme.spacing(8),
   },
 }));

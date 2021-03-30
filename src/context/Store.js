@@ -3,8 +3,6 @@ import React, { createContext, useReducer } from "react";
 const initialState = {
   symbol: "DJI.INDX",
   user: {
-    displayName: "",
-    email: "",
     photoURL: "",
   },
   language: "us",

@@ -39,7 +39,12 @@ export const AuthProvider = ({ children }) => {
   const updateUsername = (username) => {
     return currentUser.updateProfile({
       displayName: username,
-      // photoURL: "https://example.com/jane-q-user/profile.jpg"
+    });
+  };
+
+  const updateAvatarImage = (url) => {
+    return currentUser.updateProfile({
+      photoURL: url,
     });
   };
 
@@ -60,6 +65,7 @@ export const AuthProvider = ({ children }) => {
     updateEmail,
     updatePassword,
     updateUsername,
+    updateAvatarImage,
   };
   return (
     <AuthContext.Provider value={value}>

@@ -7,6 +7,7 @@ import {
   Box,
   Typography,
   Button,
+  CircularProgress,
 } from "@material-ui/core";
 import LockOpenIcon from "@material-ui/icons/LockOpen";
 import Google_logo from "../../assets/google-logo.png";
@@ -14,6 +15,7 @@ import { auth, provider } from "../../firebase";
 import { Link, useHistory } from "react-router-dom";
 import { useAuth } from "../../context/AuthProvider";
 import LoadingCircle from "../../components/Versatility/CircularProgress";
+import Message from "../../common/Message";
 
 const Signup = () => {
   const [username, setUsername] = useState("");
@@ -22,16 +24,19 @@ const Signup = () => {
   const [passwordConf, setPasswordConf] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [googleLoading, setGoogleLoading] = useState(false);
   const { signup } = useAuth();
   const history = useHistory();
 
   const signInGoogle = async () => {
     try {
+      setGoogleLoading(true);
       await auth.signInWithPopup(provider);
+      history.push("/");
     } catch {
       setError("Failed to create an account");
     } finally {
-      setLoading(false);
+      setGoogleLoading(false);
     }
   };
 
@@ -68,18 +73,11 @@ const Signup = () => {
             </Box>
           </Typography>
           {error && (
-            <Box
-              px={5}
-              py={1}
-              mt={1}
-              style={{
-                backgroundColor: "rgb(255,0,0,0.4)",
-                color: "darkred",
-                borderRadius: 7,
-              }}
-            >
-              <Typography>{error}</Typography>
-            </Box>
+            <Message
+              backgroundColor="rgb(255,0,0,0.4)"
+              color="darkred"
+              message={error}
+            />
           )}
           <Box my={1} />
           <form onSubmit={handleSubmit}>
@@ -127,11 +125,29 @@ const Signup = () => {
               required
             />
             <Box my={2} />
+            {password !== passwordConf ? (
+              <Box mb={1} textAlign="center">
+                <Typography color="secondary" variant="body1">
+                  Passwords do not match
+                </Typography>
+              </Box>
+            ) : null}
             <Button
               type="submit"
               variant="contained"
               fullWidth
-              className={styles.button}
+              className={
+                username && email && password && passwordConf
+                  ? styles.button
+                  : null
+              }
+              disabled={
+                !username ||
+                !email ||
+                !password ||
+                !passwordConf ||
+                password !== passwordConf
+              }
             >
               {!loading && "Sing Up"}
               {loading && <LoadingCircle color="white" size={22} />}
@@ -144,8 +160,13 @@ const Signup = () => {
             className={styles.google_signIn_button}
             onClick={signInGoogle}
           >
-            <img src={Google_logo} alt="" />
-            SIGN IN WITH GOOGLE
+            {!googleLoading && (
+              <>
+                <img src={Google_logo} alt="" />
+                SIGN IN WITH GOOGLE
+              </>
+            )}
+            {googleLoading && <CircularProgress size={24} thickness={3} />}
           </Button>
           <Box className={styles.sub_menu} mt={5}>
             <span className={styles.create}>

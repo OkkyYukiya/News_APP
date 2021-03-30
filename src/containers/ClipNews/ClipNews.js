@@ -3,7 +3,6 @@ import { Box, Typography } from "@material-ui/core";
 import { db } from "../../firebase";
 import { useAuth } from "../../context/AuthProvider";
 import ClipNewsGrid from "../../components/ClipNewsGrid";
-import AttachFileIcon from "@material-ui/icons/AttachFile";
 
 const ClipNews = () => {
   const [clips, setClips] = useState([
@@ -58,11 +57,6 @@ const ClipNews = () => {
       justifyContent="center"
       flexDirection="column"
     >
-      <Box mt={0.4} display="flex" alignItems="flex-end">
-        <AttachFileIcon fontSize="large" />
-        <Typography variant="h5">Clip News</Typography>
-      </Box>
-
       <Box>
         {clips[0] ? (
           clips.map((clip, index) => {

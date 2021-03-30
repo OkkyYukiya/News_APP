@@ -12,6 +12,7 @@ import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import { Store } from "../../context/Store";
 import { useHistory } from "react-router-dom";
+import LocationOnIcon from "@material-ui/icons/LocationOn";
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -68,6 +69,7 @@ const ModalSelector = () => {
         fullWidth
         onClick={handleClickOpen}
       >
+        <LocationOnIcon />
         Chose your location
       </Button>
       <Dialog
@@ -80,7 +82,7 @@ const ModalSelector = () => {
           Chose your location
           <br />
           <span className={classes.currentSelected}>
-            Current selected: {globalState.language === "us" ? "USA" : "JAPAN"}
+            Your Location: {globalState.language === "us" ? "USA" : "JAPAN"}
           </span>
         </DialogTitle>
         <DialogContent>
