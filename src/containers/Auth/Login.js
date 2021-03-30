@@ -13,21 +13,23 @@ import Google_logo from "../../assets/google-logo.png";
 import { auth, provider } from "../../firebase";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
-import { useAuth } from "../../Store/AuthProvider";
-import LoadingCircle from "../../components/Atoms/CircularProgress";
+import { useAuth } from "../../context/AuthProvider";
+import LoadingCircle from "../../components/Versatility/CircularProgress";
 import ForgotPassword from "../../components/ForgotPassword";
+import Message from "../../common/Message";
 
 const Auth = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [googleLoading, setGoogleLoading] = useState(false);
   const { login } = useAuth();
   const history = useHistory();
 
   const signInGoogle = async () => {
     try {
-      setLoading(true);
+      setGoogleLoading(true);
       await auth.signInWithPopup(provider).catch((err) => alert(err.message));
 
       history.push("/");
@@ -41,10 +43,13 @@ const Auth = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      setLoading(true);
       await login(email, password);
-      history.push("/clip");
+      history.push("/");
     } catch {
       setError("Failed to Login.");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -61,18 +66,11 @@ const Auth = () => {
             </Box>
           </Typography>
           {error && (
-            <Box
-              px={5}
-              py={1}
-              mt={1}
-              style={{
-                backgroundColor: "rgb(255,0,0,0.4)",
-                color: "darkred",
-                borderRadius: 7,
-              }}
-            >
-              <Typography>{error}</Typography>
-            </Box>
+            <Message
+              backgroundColor="rgb(255,0,0,0.4)"
+              color="darkred"
+              message={error}
+            />
           )}
           <Box my={1} />
           <form onSubmit={handleSubmit}>
@@ -103,8 +101,9 @@ const Auth = () => {
             <Button
               variant="contained"
               fullWidth
-              className={styles.button}
+              className={email && password ? styles.button : null}
               type="submit"
+              disabled={!email || !password}
             >
               {loading && <LoadingCircle color={"white"} size={22} />}
               {!loading && "Login"}
@@ -117,8 +116,13 @@ const Auth = () => {
             className={styles.google_signIn_button}
             onClick={signInGoogle}
           >
-            <img src={Google_logo} alt="" />
-            SIGN IN WITH GOOGLE
+            {!googleLoading && (
+              <>
+                <img src={Google_logo} alt="" />
+                SIGN IN WITH GOOGLE
+              </>
+            )}
+            {googleLoading && <LoadingCircle size={22} />}
           </Button>
           <Box className={styles.sub_menu} mt={8}>
             <ForgotPassword />

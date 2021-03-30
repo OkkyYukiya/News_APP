@@ -5,8 +5,9 @@ import logo from "../../assets/logo-news.png";
 import SearchIcon from "@material-ui/icons/Search";
 import { Link } from "react-router-dom";
 import styles from "./Header.module.scss";
-import { useAuth } from "../../Store/AuthProvider";
-import ActiveAvattar from "../Atoms/ActiveAvatar";
+import { useAuth } from "../../context/AuthProvider";
+import ActiveAvattar from "../Versatility/ActiveAvatar";
+// import LocationOnOutlinedIcon from "@material-ui/icons/LocationOnOutlined";
 
 const Header = () => {
   const { currentUser } = useAuth();
@@ -19,6 +20,9 @@ const Header = () => {
               <img src={logo} alt="" />
             </Link>
           </Box>
+          {/* <Box display="flex" mr={0.4}>
+            <LocationOnOutlinedIcon style={{ marginTop: 2 }} fontSize="large" />
+          </Box> */}
           {currentUser ? (
             <Link to="/profile">
               <ActiveAvattar size={18} photoURL={currentUser.photoURL} />

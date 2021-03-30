@@ -2,32 +2,34 @@ import { RAPID_API_KEY } from "./apiKeys";
 
 const baseurl = "https://bing-news-search1.p.rapidapi.com/news";
 
-const headers = {
-  method: "GET",
-  headers: {
-    "accept-language": "us",
-    "x-rapidapi-host": "bing-news-search1.p.rapidapi.com",
-    "x-rapidapi-key": RAPID_API_KEY,
-    "x-bingapis-sdk": "true",
-  },
+const headers = (language) => {
+  return {
+    method: "GET",
+    headers: {
+      "accept-language": language,
+      "x-rapidapi-host": "bing-news-search1.p.rapidapi.com",
+      "x-rapidapi-key": RAPID_API_KEY,
+      "x-bingapis-sdk": "true",
+    },
+  };
 };
 
-//get news from categorys
-export const getNewsData = async (category) => {
+//language from globalState
+export const getNewsData = async (category, language) => {
   const response = await fetch(
-    `${baseurl}?cc=us&safeSearch=Off&category=${category}&textFormat=Raw`,
-    headers
+    `${baseurl}?cc=${language}&safeSearch=Off&category=${category}&textFormat=Raw`,
+    headers(language)
   );
   const body = await response.json();
   return body.value;
 };
 
 //get news from search free word
-export const getSearchNewsData = async (query) => {
+export const getSearchNewsData = async (query, language) => {
   query = encodeURIComponent(query);
   const response = await fetch(
     `${baseurl}/search?freshness=Day&textFormat=Raw&cc=us&count=20&safeSearch=Strict&q=${query}`,
-    headers
+    headers(language)
   );
   const body = await response.json();
   return body.value;
@@ -50,6 +52,5 @@ export const getTrendNews = async () => {
   return body.articles;
 };
 
-//date format
 export const formatDate = (s) =>
   new Date(s).toLocaleDateString(undefined, { dateStyle: "long" });

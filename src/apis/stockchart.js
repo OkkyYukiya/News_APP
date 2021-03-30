@@ -22,7 +22,7 @@ const year = date.getFullYear();
 const getDay = date.getDate().toString();
 const getMonth = date.getMonth() + 1;
 const toStringMonth = getMonth.toString();
-const getLastMonth = date.getMonth().toString();
+// const getLastMonth = date.getMonth() - 1;
 
 const adjustmentDate = (d) => {
   if (d.length === 1) {
@@ -36,9 +36,9 @@ const adjustmentDate = (d) => {
 const Month = `${year}-${adjustmentDate(toStringMonth)}-${adjustmentDate(
   getDay
 )}`;
-const lastMonth = `${year}-${adjustmentDate(getLastMonth)}-${adjustmentDate(
-  getDay
-)}`;
+// const lastMonth = `${year}-${adjustmentDate(getLastMonth)}-${adjustmentDate(
+//   lastManthDay
+// )}`;
 
 //addjustment price
 export const adjPrice = (price) => {
@@ -56,5 +56,5 @@ export const PRICE_URL = (symbol) => {
 
 //chart
 export const chartendpoint = (symbol) => {
-  return `${URL}?access_key=${MARKETSTACK_API_KEY}&symbols=${symbol}&date_from=${lastMonth}&date_to=${Month}&sort=ASC`;
+  return `${URL}?access_key=${MARKETSTACK_API_KEY}&symbols=${symbol}&date_from=2021-03-01&date_to=${Month}&sort=ASC`;
 };

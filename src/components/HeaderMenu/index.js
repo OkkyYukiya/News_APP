@@ -1,26 +1,28 @@
 import React from "react";
+import styles from "./HeaderMenu.module.css";
+import AcitveAvatar from "../Versatility/ActiveAvatar";
+import { useAuth } from "../../context/AuthProvider";
 import { Link } from "react-router-dom";
 import clsx from "clsx";
+import {
+  Box,
+  Button,
+  Drawer,
+  List,
+  ListItem,
+  Divider,
+  ListItemIcon,
+  ListItemText,
+} from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import Drawer from "@material-ui/core/Drawer";
-import Button from "@material-ui/core/Button";
-import List from "@material-ui/core/List";
-import Divider from "@material-ui/core/Divider";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import ListItemText from "@material-ui/core/ListItemText";
-import AssignmentIcon from "@material-ui/icons/Assignment";
-import ShowChartIcon from "@material-ui/icons/ShowChart";
+import LockOpenIcon from "@material-ui/icons/LockOpen";
+import AttachFileIcon from "@material-ui/icons/AttachFile";
 import SearchIcon from "@material-ui/icons/Search";
 import MenuIcon from "@material-ui/icons/Menu";
+import ShowChartIcon from "@material-ui/icons/ShowChart";
+import AssignmentIcon from "@material-ui/icons/Assignment";
+import SettingsIcon from "@material-ui/icons/Settings";
 import LocalHospitalOutlinedIcon from "@material-ui/icons/LocalHospitalOutlined";
-import AttachFileIcon from "@material-ui/icons/AttachFile";
-import styles from "./HeaderMenu.module.css";
-import { useAuth } from "../../Store/AuthProvider";
-import LockOpenIcon from "@material-ui/icons/LockOpen";
-import { Box } from "@material-ui/core";
-import AcitveAvatar from "../Atoms/ActiveAvatar";
-import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 
 const useStyles = makeStyles({
   fullList: {
@@ -44,7 +46,7 @@ const useStyles = makeStyles({
 const DrawerMenu = () => {
   const classes = useStyles();
   const [state, setState] = React.useState({
-    left: false,
+    right: false,
   });
 
   const toggleDrawer = (anchor, open) => (event) => {
@@ -62,7 +64,7 @@ const DrawerMenu = () => {
     return (
       <Box mt={0.5}>
         <List>
-          <ListItem button>
+          <ListItem>
             <ListItemIcon className={classes.ListItemIcon}>
               {symbol}
             </ListItemIcon>
@@ -100,8 +102,8 @@ const DrawerMenu = () => {
         <Divider />
 
         {!currentUser && (
-          <Link to="/signup" className={classes.link}>
-            <MenuListItems symbol={<LockOpenIcon />} title="Sign Up" />
+          <Link to="/login" className={classes.link}>
+            <MenuListItems symbol={<LockOpenIcon />} title="Login" />
           </Link>
         )}
         {currentUser && (
@@ -112,7 +114,7 @@ const DrawerMenu = () => {
         )}
         {currentUser && (
           <Link to="/profile" className={classes.link}>
-            <MenuListItems symbol={<AccountCircleIcon />} title="Profile" />
+            <MenuListItems symbol={<SettingsIcon />} title="Setting" />
           </Link>
         )}
 
@@ -126,16 +128,16 @@ const DrawerMenu = () => {
   return (
     <div>
       <React.Fragment>
-        <Button onClick={toggleDrawer("left", true)}>
+        <Button onClick={toggleDrawer("right", true)}>
           <MenuIcon color="inherit" fontSize="large" />
           <div />
         </Button>
         <Drawer
-          anchor={"left"}
-          open={state["left"]}
-          onClose={toggleDrawer("left", false)}
+          anchor={"right"}
+          open={state["right"]}
+          onClose={toggleDrawer("right", false)}
         >
-          <OpenListItem anchor={"left"} />
+          <OpenListItem anchor={"right"} />
         </Drawer>
       </React.Fragment>
     </div>

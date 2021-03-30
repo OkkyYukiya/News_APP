@@ -10,7 +10,7 @@ import CovidPage from "./pages/CovidPage";
 import ClipNewsPage from "./pages/ClipNewsPage";
 import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignUpPage";
-import PrivateRoute from "./components/PrivateRoute";
+import PrivateRoute from "./common/PrivateRoute";
 import ProfilePage from "./pages/ProfilePage";
 
 const App = () => {
@@ -34,6 +34,12 @@ const App = () => {
             </Route>
             <Route path="/news-product">
               <NewsPage category="Products" />
+            </Route>
+            <Route path="/news-sports">
+              <NewsPage category="Sports" />
+            </Route>
+            <Route path="/lifeStyle">
+              <NewsPage category="LifeStyle" />
             </Route>
             <Route path="/watch" component={Watch} />
             <Route path="/stock" component={StockPage} />

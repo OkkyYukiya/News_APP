@@ -3,10 +3,9 @@ import React, { createContext, useReducer } from "react";
 const initialState = {
   symbol: "DJI.INDX",
   user: {
-    displayName: "",
-    email: "",
     photoURL: "",
   },
+  language: "us",
 };
 
 const reducer = (state, action) => {
@@ -15,6 +14,8 @@ const reducer = (state, action) => {
       return { ...state, symbol: action.payload.symbol };
     case "SET_USER":
       return { ...state, user: action.payload.user };
+    case "SET_LANGUAGE":
+      return { ...state, language: action.payload.language };
     default:
       return state;
   }

@@ -3,8 +3,8 @@ import ReactDOM from "react-dom";
 import { BrowserRouter as Router } from "react-router-dom";
 import "./index.css";
 import App from "./App";
-import { StoreProvider } from "./Store/Store";
-import { AuthProvider } from "./Store/AuthProvider";
+import { StoreProvider } from "./context/Store";
+import { AuthProvider } from "./context/AuthProvider";
 
 ReactDOM.render(
   <Router>
