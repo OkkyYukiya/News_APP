@@ -11,7 +11,6 @@ const Feed = () => {
   console.log(location);
   return (
     <div className={styles.root}>
-      <h1>Feed is Coming Soon</h1>
       <h3>
         <Link to="/">Back to Home</Link>
       </h3>
