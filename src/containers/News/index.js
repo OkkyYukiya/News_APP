@@ -2,10 +2,10 @@ import React, { useState, useEffect, useContext } from "react";
 import styles from "./News.module.css";
 import ButtonTab from "../../components/News/ButtonTab";
 import NewsItemLayout from "../../components/News/NewsItemLayout";
-import { Box } from "@material-ui/core";
-import { getNewsData } from "../../apis/rapidApi";
-import PropagateLoader from "react-spinners/PropagateLoader";
 import { Store } from "../../context/Store";
+import { getNewsData } from "../../apis/rapidApi";
+import { Box } from "@material-ui/core";
+import PuffLoader from "react-spinners/PuffLoader";
 
 const News = ({ category }) => {
   const [articles, setArticles] = useState([]);
@@ -31,12 +31,7 @@ const News = ({ category }) => {
       </Box>
       {loading ? (
         <Box className={styles.loading}>
-          <PropagateLoader
-            className={styles.loading}
-            color={"#497C81"}
-            loading={loading}
-            size={20}
-          />
+          <PuffLoader color={"#497C81"} loading={loading} size={80} />
         </Box>
       ) : (
         <div className={styles.root}>

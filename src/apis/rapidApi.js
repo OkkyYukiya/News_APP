@@ -25,11 +25,11 @@ export const getNewsData = async (category, language) => {
 };
 
 //get news from search free word
-export const getSearchNewsData = async (query) => {
+export const getSearchNewsData = async (query, language) => {
   query = encodeURIComponent(query);
   const response = await fetch(
     `${baseurl}/search?freshness=Day&textFormat=Raw&cc=us&count=20&safeSearch=Strict&q=${query}`,
-    headers
+    headers(language)
   );
   const body = await response.json();
   return body.value;
@@ -52,6 +52,5 @@ export const getTrendNews = async () => {
   return body.articles;
 };
 
-//date format
 export const formatDate = (s) =>
   new Date(s).toLocaleDateString(undefined, { dateStyle: "long" });

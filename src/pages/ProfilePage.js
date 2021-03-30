@@ -21,6 +21,8 @@ import AddPhotoAlternateIcon from "@material-ui/icons/AddPhotoAlternate";
 import EditIcon from "@material-ui/icons/Edit";
 import Message from "../common/Message";
 import AttachFileIcon from "@material-ui/icons/AttachFile";
+import CloseIcon from "@material-ui/icons/Close";
+import { generateUrl } from "../utility/urlGenerater";
 
 const ProfileInfo = ({ info, icon, size }) => {
   return (
@@ -74,14 +76,7 @@ const ProfilePage = () => {
   const changeAvatarImage = async () => {
     let url = "";
     if (avatarImage) {
-      const S =
-        "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-      const N = 16;
-      const randomChar = Array.from(crypto.getRandomValues(new Uint32Array(N)))
-        .map((n) => S[n % S.length])
-        .join("");
-      const fileName = randomChar + "_" + avatarImage.name;
-
+      const fileName = generateUrl(avatarImage);
       await storage.ref(`avatars/${fileName}`).put(avatarImage);
       url = await storage.ref("avatars").child(fileName).getDownloadURL();
     }
@@ -217,7 +212,10 @@ const ProfilePage = () => {
               Edit displayName
             </>
           ) : (
-            "close"
+            <>
+              <CloseIcon />
+              close
+            </>
           )}
         </Button>
       </Box>
@@ -266,8 +264,12 @@ const ProfilePage = () => {
           className={classes.editButton}
           fullWidth
         >
-          <AddPhotoAlternateIcon style={{ marginRight: 4 }} />
-          update avatar image
+          {!displayImage ? (
+            <AddPhotoAlternateIcon style={{ marginRight: 4 }} />
+          ) : (
+            <CloseIcon />
+          )}
+          {!displayImage ? "update avatar image" : "close"}
         </Button>
       </Box>
       <Box my={4}>

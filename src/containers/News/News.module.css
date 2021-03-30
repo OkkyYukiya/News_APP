@@ -7,10 +7,11 @@
 
 .box {
   margin: 0 auto;
+  position: relative;
 }
 
 .loading {
-  display: flex;
-  justify-content: center;
-  margin-top: 160px;
+  position: absolute;
+  top: 30%;
+  right: 50%;
 }
