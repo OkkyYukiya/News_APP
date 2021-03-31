@@ -4,9 +4,14 @@
 
 ![Alt text](src/assets/logo-news.png)
 
-### アプリ名:News Quu
+## Application:News Quu
 
 [Go to News Quu App](https://news-app-8efb7.web.app/)
+
+- Login E-mail :testaccount.1@test.ttt.com
+- Password :testuser1214
+
+### Description
 
 ビジネス情報や株価等を閲覧することができるニュースサイトです。\
  カテゴリ別に記事表示を変更することや、調べたい word で記事を検索することが出来ます。
