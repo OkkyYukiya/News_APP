@@ -29,7 +29,6 @@ Used API
 - bing news search
 - FMP Cloud
 - Marketstack
-- Google News
 
 ## 【SetUp (開発方法)】
 
@@ -48,9 +47,9 @@ For production build:
 
 If you need API keys, get it from this link.
 
-- [News API](https://newsapi.org/)
 - [bing news search](https://api.rakuten.net/microsoft-azure-org-microsoft-cognitive-services/api/bing-news-search1/details)
-- [FMP Cloud](https://fmpcloud.io/)\
+- [FMP Cloud](https://fmpcloud.io/)
+- [MarketStack](https://marketstack.com/)\
   ※All can be registered for free.
 
 ## 【機能一覧】
@@ -63,6 +62,7 @@ If you need API keys, get it from this link.
 | 株価表示                       | 主要株の価格、前日終値に対しての現在価格の変動比(%)を表示  |
 | Chart 表示                     | 株価を月間ベースで chart 描画                              |
 | 記事検索                       | free word で探したいニュース記事を検索                     |
-| 新規登録(Auth)                 | User の新規登録                                            |
-| ログイン(Auth)                 | Email and Password, Google 認証を利用したログイン機能      |
+| ユーザー新規登録(Auth)         | User の新規登録                                            |
+| ユーザーログイン(Auth)         | Email and Password, Google 認証を利用したログイン機能      |
 | 記事 Clip/削除(CloudFireStore) | 気に入った記事の clip, 削除機能                            |
+| 言語/地域切替(uesContext)      | 言語/地域別に表示する記事を変更                            |
