@@ -12,7 +12,6 @@ import {
 
 const Chart = ({ endpoint }) => {
   const [historical, setHistorical] = useState([]);
-  const [loading, setLoading] = useState(false);
   const [symbol, setSymbol] = useState(null);
   const [currentPrice, setCurrentPrice] = useState(null);
   const [percent, setPercent] = useState(null);
@@ -24,7 +23,6 @@ const Chart = ({ endpoint }) => {
 
   useEffect(() => {
     const fetchStock = async () => {
-      setLoading(true);
       const response = await fetch(endpoint);
       const body = await response.json();
 
@@ -49,7 +47,6 @@ const Chart = ({ endpoint }) => {
       const reverseArray = adjClosePrice.reverse();
       setHistorical(reverseArray);
       setSymbol(body.symbol);
-      setLoading(false);
     };
     fetchStock();
     // eslint-disable-next-line
