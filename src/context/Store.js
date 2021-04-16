@@ -2,6 +2,7 @@ import React, { createContext, useReducer } from "react";
 
 const initialState = {
   symbol: "DJI.INDX",
+  category: "business",
   user: {
     photoURL: "",
   },
@@ -12,6 +13,8 @@ const reducer = (state, action) => {
   switch (action.type) {
     case "SET_SYMBOL":
       return { ...state, symbol: action.payload.symbol };
+    case "SET_CATEGORY":
+      return { ...state, category: action.payload.category };
     case "SET_USER":
       return { ...state, user: action.payload.user };
     case "SET_LANGUAGE":

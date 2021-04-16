@@ -5,6 +5,7 @@ import StockChart from "../containers/StockChart";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
 import Button from "@material-ui/core/Button";
 import StockList from "../containers/StockList";
+// import SearchStock from "../components/SearchStock/SearchStock";
 
 const styles = {
   buttonTabBox: {
@@ -20,35 +21,29 @@ const styles = {
 };
 
 const StockPage = () => {
-  const [toggle, setToggle] = useState(true);
+  const [value, setValue] = useState(1);
   return (
     <Box>
       <Box mt={1} style={styles.buttonTabBox}>
         <ButtonGroup disableElevation>
-          <Button
-            onClick={() => setToggle(true)}
-            style={styles.button}
-            fullWidth
-          >
+          <Button onClick={() => setValue(1)} style={styles.button} fullWidth>
             Chart
           </Button>
-          <Button
-            onClick={() => setToggle(false)}
-            style={styles.button}
-            fullWidth
-          >
+          <Button onClick={() => setValue(2)} style={styles.button} fullWidth>
             StockList
           </Button>
         </ButtonGroup>
       </Box>
 
-      {toggle && (
+      {value === 1 && (
         <>
           <StockGrid />
           <StockChart />
         </>
       )}
-      {!toggle && <StockList />}
+      {value === 2 && <StockList />}
+
+      {/* {value === 0 && <SearchStock />} */}
     </Box>
   );
 };
