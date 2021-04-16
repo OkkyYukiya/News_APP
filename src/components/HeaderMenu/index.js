@@ -41,6 +41,9 @@ const useStyles = makeStyles({
   icon: {
     color: "#144b5e",
   },
+  button: {
+    padding: 0,
+  },
 });
 
 const DrawerMenu = () => {
@@ -128,8 +131,11 @@ const DrawerMenu = () => {
   return (
     <div>
       <React.Fragment>
-        <Button onClick={toggleDrawer("right", true)}>
-          <MenuIcon color="inherit" fontSize="large" />
+        <Button
+          onClick={toggleDrawer("right", true)}
+          className={classes.button}
+        >
+          <MenuIcon style={{ color: "black" }} fontSize="large" />
           <div />
         </Button>
         <Drawer
