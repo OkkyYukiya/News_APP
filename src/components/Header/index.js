@@ -7,31 +7,35 @@ import { Link } from "react-router-dom";
 import styles from "./Header.module.scss";
 import { useAuth } from "../../context/AuthProvider";
 import ActiveAvattar from "../Versatility/ActiveAvatar";
-// import LocationOnOutlinedIcon from "@material-ui/icons/LocationOnOutlined";
+import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 
 const Header = () => {
   const { currentUser } = useAuth();
   return (
     <div className={styles.root}>
-      <AppBar color="inherit" position="static">
+      <AppBar color="inherit" position="sticky">
         <Toolbar className={styles.toolbar}>
           <Box pt={0.3} className={styles.title}>
             <Link to="/">
               <img src={logo} alt="" />
             </Link>
           </Box>
-          {/* <Box display="flex" mr={0.4}>
-            <LocationOnOutlinedIcon style={{ marginTop: 2 }} fontSize="large" />
-          </Box> */}
-          {currentUser ? (
+
+          {currentUser && (
             <Link to="/profile">
               <ActiveAvattar size={18} photoURL={currentUser.photoURL} />
             </Link>
-          ) : (
-            <></>
           )}
 
-          <Box className={styles.search}>
+          {!currentUser && (
+            <Box className={styles.icons} mr={1}>
+              <Link to="/login">
+                <AccountCircleIcon className={styles.icon} />
+              </Link>
+            </Box>
+          )}
+
+          <Box className={styles.icons} mr={-0.5}>
             <Link to="/search">
               <SearchIcon className={styles.icon} />
             </Link>
