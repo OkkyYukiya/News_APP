@@ -1,0 +1,10 @@
+.root {
+  @media screen and (max-width: 1050px) {
+    display: flex;
+    width: 95vw;
+    overflow-x: auto;
+    background-color: none;
+    background-color: white;
+    margin-top: 8px;
+  }
+}
