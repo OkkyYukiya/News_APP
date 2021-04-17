@@ -6,7 +6,7 @@ import SearchIcon from "@material-ui/icons/Search";
 import { Link } from "react-router-dom";
 import styles from "./Header.module.scss";
 import { useAuth } from "../../context/AuthProvider";
-import ActiveAvattar from "../Versatility/ActiveAvatar";
+import ActiveAvattar from "../ActiveAvatar";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 
 const Header = () => {

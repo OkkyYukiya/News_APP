@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Box, Typography } from "@material-ui/core";
 import { db } from "../../firebase";
 import { useAuth } from "../../context/AuthProvider";
-import ClipNewsGrid from "../../components/ClipNewsGrid";
+import ClipNewsGrid from "../../components/ClipNewsGridItem";
 
 const ClipNews = () => {
   const [clips, setClips] = useState([

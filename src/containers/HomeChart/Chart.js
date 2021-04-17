@@ -17,6 +17,8 @@ const Chart = ({ endpoint }) => {
   const [percent, setPercent] = useState(null);
   const [color, setColor] = useState("#82ca9d");
 
+  const checkPercent = percent > 0 ? "#82ca9d" : "#f52020";
+
   const adjPrice = (price) => {
     return Math.round(price * 100) / 100;
   };
@@ -95,7 +97,7 @@ const Chart = ({ endpoint }) => {
         <Area
           type="natural"
           dataKey="close"
-          stroke={color}
+          stroke={checkPercent}
           fillOpacity={1}
           fill="url(#colorPv)"
         />

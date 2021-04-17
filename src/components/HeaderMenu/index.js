@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./HeaderMenu.module.css";
-import AcitveAvatar from "../Versatility/ActiveAvatar";
+import AcitveAvatar from "../ActiveAvatar";
 import { useAuth } from "../../context/AuthProvider";
 import { Link } from "react-router-dom";
 import clsx from "clsx";
