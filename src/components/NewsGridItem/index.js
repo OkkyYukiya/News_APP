@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import Paper from "@material-ui/core/Paper";
-import styles from "./NewsItemLayout.module.scss";
+import styles from "./NewsGridItem.module.scss";
 import { Box } from "@material-ui/core";
 import no_image from "../../assets/no-image.png";
 import { Link } from "react-router-dom";

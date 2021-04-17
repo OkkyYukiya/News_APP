@@ -6,12 +6,6 @@
 }
 
 .box {
-  margin: 0 auto;
-  position: relative;
-}
-
-.loading {
-  position: absolute;
-  top: 30%;
-  right: 50%;
+  display: flex;
+  justify-content: center;
 }

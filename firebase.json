@@ -10,8 +10,13 @@
     ],
     "headers": [
       {
-        "key": "Cache-Control",
-        "value": "max-age=2592000"
+        "source": "**/*.@(js|css|jpg|jpeg|gif|png)",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "max-age=2592000"
+          }
+        ]
       }
     ]
   }

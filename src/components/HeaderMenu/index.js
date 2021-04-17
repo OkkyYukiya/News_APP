@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./HeaderMenu.module.css";
-import AcitveAvatar from "../Versatility/ActiveAvatar";
+import AcitveAvatar from "../ActiveAvatar";
 import { useAuth } from "../../context/AuthProvider";
 import { Link } from "react-router-dom";
 import clsx from "clsx";
@@ -40,6 +40,9 @@ const useStyles = makeStyles({
   },
   icon: {
     color: "#144b5e",
+  },
+  button: {
+    padding: 0,
   },
 });
 
@@ -128,8 +131,11 @@ const DrawerMenu = () => {
   return (
     <div>
       <React.Fragment>
-        <Button onClick={toggleDrawer("right", true)}>
-          <MenuIcon color="inherit" fontSize="large" />
+        <Button
+          onClick={toggleDrawer("right", true)}
+          className={classes.button}
+        >
+          <MenuIcon style={{ color: "black" }} fontSize="large" />
           <div />
         </Button>
         <Drawer

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import NewsItemLayout from "../../components/News/NewsItemLayout";
+import NewsGridItem from "../../components/NewsGridItem";
 import { Typography, Box } from "@material-ui/core";
 import { fetchCovid } from "../../apis/covid";
 import noimage from "../../assets/no-image.png";
@@ -36,7 +36,7 @@ const CovidNews = () => {
         ) : (
           articles.map((news) => {
             return (
-              <NewsItemLayout
+              <NewsGridItem
                 key={news.title}
                 description={news.excerpt}
                 name={news.title}

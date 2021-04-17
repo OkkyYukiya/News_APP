@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styles from "./SearchNews.module.scss";
-import NewsItemLayout from "../../components/News/NewsItemLayout";
+import NewsGridItem from "../../components/NewsGridItem";
 import { Box } from "@material-ui/core";
 import { getSearchNewsData } from "../../apis/rapidApi";
 
@@ -30,7 +30,7 @@ const SearchNews = () => {
           <h2 className={styles.no_result}>No results</h2>
         ) : (
           articles.map((news) => (
-            <NewsItemLayout
+            <NewsGridItem
               key={news.url}
               description={news.description}
               name={news.name}

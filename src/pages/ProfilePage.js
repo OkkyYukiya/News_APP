@@ -37,7 +37,7 @@ const ProfilePage = () => {
   const classes = useStyles();
   const history = useHistory();
   const { currentUser, logout, updateUsername, updateAvatarImage } = useAuth();
-  const [username, setUsername] = useState("");
+  const [username, setUsername] = useState(currentUser.displayName);
   const [displayUsername, setDisplayUsername] = useState(false);
   const [avatarImage, setAvatarImage] = useState(null);
   const [displayImage, setDisplayImage] = useState(false);
@@ -62,6 +62,10 @@ const ProfilePage = () => {
       setSuccessMessage("Successfully changed username");
       setUsername("");
       setLoading(false);
+      setTimeout(() => {
+        setDisplayUsername(false);
+        setSuccessMessage(null);
+      }, 5000);
     }
   };
 
@@ -295,7 +299,8 @@ const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 500,
     margin: "30px auto",
-    padding: "0 2px",
+    padding: "16px 4px",
+    backgroundColor: "white",
   },
   paper: {
     display: "flex",

@@ -3,7 +3,7 @@ import styles from "../../components/stock/StockListLayout.module.css";
 import StockListLayout from "../../components/stock/StockListLayout";
 import PropagateLoader from "react-spinners/PropagateLoader";
 import { Box } from "@material-ui/core";
-import { symbols } from "../../components/stock/symbolList";
+import { symbols } from "../../common/StockSymbolList";
 import { FMP_CLOUD_ENDPOINT } from "../../apis/fmpcloud";
 
 const StockLists = () => {

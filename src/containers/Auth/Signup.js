@@ -14,7 +14,7 @@ import Google_logo from "../../assets/google-logo.png";
 import { auth, provider } from "../../firebase";
 import { Link, useHistory } from "react-router-dom";
 import { useAuth } from "../../context/AuthProvider";
-import LoadingCircle from "../../components/Versatility/CircularProgress";
+import LoadingCircle from "../../components/CircularProgress";
 import Message from "../../common/Message";
 
 const Signup = () => {
