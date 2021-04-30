@@ -23,6 +23,7 @@ import ShowChartIcon from "@material-ui/icons/ShowChart";
 import AssignmentIcon from "@material-ui/icons/Assignment";
 import SettingsIcon from "@material-ui/icons/Settings";
 import LocalHospitalOutlinedIcon from "@material-ui/icons/LocalHospitalOutlined";
+import LocationCityIcon from "@material-ui/icons/LocationCity";
 
 const useStyles = makeStyles({
   fullList: {
@@ -92,6 +93,9 @@ const DrawerMenu = () => {
         <h3 className={classes.title}>MENU LIST</h3>
         <Link to="/" className={classes.link}>
           <MenuListItems symbol={<AssignmentIcon />} title="News Top" />
+        </Link>
+        <Link to="/stock-news" className={classes.link}>
+          <MenuListItems symbol={<LocationCityIcon />} title="Company News" />
         </Link>
         <Link to="/stock" className={classes.link}>
           <MenuListItems symbol={<ShowChartIcon />} title="Stocks" />

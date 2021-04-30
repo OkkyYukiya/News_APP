@@ -15,9 +15,6 @@ const Chart = ({ endpoint }) => {
   const [symbol, setSymbol] = useState(null);
   const [currentPrice, setCurrentPrice] = useState(null);
   const [percent, setPercent] = useState(null);
-  const [color, setColor] = useState("#82ca9d");
-
-  const checkPercent = percent > 0 ? "#82ca9d" : "#f52020";
 
   const adjPrice = (price) => {
     return Math.round(price * 100) / 100;
@@ -30,9 +27,6 @@ const Chart = ({ endpoint }) => {
 
       setCurrentPrice(body.historical[0].close);
       setPercent(adjPrice(body.historical[0].changePercent));
-      if (body.historical[0].change < 0) {
-        setColor("#f52020");
-      }
       const adjClosePrice = body.historical.map((p) => {
         const replaceStr = (s) => {
           const str = s;
@@ -85,8 +79,8 @@ const Chart = ({ endpoint }) => {
       >
         <defs>
           <linearGradient id="colorPv" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="5%" stopColor={color} stopOpacity={1} />
-            <stop offset="95%" stopColor={color} stopOpacity={0.1} />
+            <stop offset="5%" stopColor="#82ca9d" stopOpacity={1} />
+            <stop offset="95%" stopColor="#82ca9d" stopOpacity={0.1} />
           </linearGradient>
         </defs>
         <XAxis dataKey="date" />
@@ -97,7 +91,7 @@ const Chart = ({ endpoint }) => {
         <Area
           type="natural"
           dataKey="close"
-          stroke={checkPercent}
+          stroke="#82ca9d"
           fillOpacity={1}
           fill="url(#colorPv)"
         />

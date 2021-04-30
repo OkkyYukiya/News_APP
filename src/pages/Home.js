@@ -4,25 +4,29 @@ import News from "../containers/News";
 import { Box } from "@material-ui/core";
 import SlideNews from "../containers/SlideNews";
 import HomeChart from "../containers/HomeChart";
+import Forex from "../containers/Forex";
 
 const NewsPage = () => {
   return (
-    <Box
-      className={styles.root}
-      display="flex"
-      justifyContent="center"
-      flexWrap="wrap"
-    >
-      <HomeChart />
+    <React.Fragment>
+      <Forex />
       <Box
-        className={styles.right_content}
+        className={styles.root}
         display="flex"
-        flexDirection="column"
+        justifyContent="center"
+        flexWrap="wrap"
       >
-        <SlideNews />
-        <News />
+        <HomeChart />
+        <Box
+          className={styles.right_content}
+          display="flex"
+          flexDirection="column"
+        >
+          <SlideNews />
+          <News />
+        </Box>
       </Box>
-    </Box>
+    </React.Fragment>
   );
 };
 

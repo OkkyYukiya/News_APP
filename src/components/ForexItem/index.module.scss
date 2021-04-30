@@ -1,0 +1,36 @@
+.root {
+  margin-right: 8px;
+  @media screen and (max-width: 650px) {
+    margin-right: 4px;
+    font-size: 100%;
+  }
+
+  .symbol {
+    color: white;
+    margin-right: 8px;
+    @media screen and (max-width: 650px) {
+      margin-right: 4px;
+    }
+  }
+  .price {
+    color: white;
+    margin-right: 8px;
+    @media screen and (max-width: 800px) {
+      display: none;
+    }
+    @media screen and (max-width: 650px) {
+      margin-right: 4px;
+    }
+  }
+
+  .plus_percent {
+    color: rgb(0, 187, 0);
+    padding: 0 8px;
+    border-radius: 8px;
+  }
+  .minus_percent {
+    color: rgb(253, 7, 7);
+    padding: 0 8px;
+    border-radius: 8px;
+  }
+}

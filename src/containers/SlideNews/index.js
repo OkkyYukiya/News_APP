@@ -52,7 +52,7 @@ const SlideNews = () => {
           }}
         ></Box>
       ) : (
-        <Box style={{ maxWidth: 700, margin: "2px auto" }}>
+        <Box style={{ maxWidth: 700, margin: "0 auto" }}>
           <Slider {...settings}>
             {articles.map((article) => (
               <SlideNewsItem
