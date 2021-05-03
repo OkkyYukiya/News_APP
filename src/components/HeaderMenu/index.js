@@ -19,7 +19,7 @@ import LockOpenIcon from "@material-ui/icons/LockOpen";
 import AttachFileIcon from "@material-ui/icons/AttachFile";
 import SearchIcon from "@material-ui/icons/Search";
 import MenuIcon from "@material-ui/icons/Menu";
-import ShowChartIcon from "@material-ui/icons/ShowChart";
+// import ShowChartIcon from "@material-ui/icons/ShowChart";
 import AssignmentIcon from "@material-ui/icons/Assignment";
 import SettingsIcon from "@material-ui/icons/Settings";
 import LocalHospitalOutlinedIcon from "@material-ui/icons/LocalHospitalOutlined";
@@ -97,9 +97,9 @@ const DrawerMenu = () => {
         <Link to="/stock-news" className={classes.link}>
           <MenuListItems symbol={<LocationCityIcon />} title="Company News" />
         </Link>
-        <Link to="/stock" className={classes.link}>
+        {/* <Link to="/stock" className={classes.link}>
           <MenuListItems symbol={<ShowChartIcon />} title="Stocks" />
-        </Link>
+        </Link> */}
         <Link to="/search" className={classes.link}>
           <MenuListItems symbol={<SearchIcon />} title="Search" />
         </Link>
