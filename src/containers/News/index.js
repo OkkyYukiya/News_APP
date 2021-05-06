@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import styles from "./News.module.css";
 import ButtonTab from "../../components/ButtonTab";
-import NewsItemLayout from "../../components/NewsGridItem";
+import NewsGridItem from "../../components/NewsGridItem";
 import { getNewsData } from "../../apis/rapidApi";
 import { Box } from "@material-ui/core";
 import { Store } from "../../context/Store";
@@ -36,7 +36,7 @@ const News = () => {
       ) : (
         <div className={styles.root}>
           {articles.map((news) => (
-            <NewsItemLayout
+            <NewsGridItem
               key={news.url}
               description={news.description}
               name={news.name}

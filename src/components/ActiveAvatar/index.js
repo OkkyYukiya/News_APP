@@ -4,6 +4,7 @@ import Avatar from "@material-ui/core/Avatar";
 import { makeStyles, withStyles } from "@material-ui/core/styles";
 
 const StyledBadge = withStyles((theme) => ({
+  //activeavatar
   badge: {
     backgroundColor: "#44b700",
     color: "#44b700",

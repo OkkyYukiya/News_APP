@@ -29,6 +29,7 @@ const App = () => {
             <Route path="/stock" component={StockPage} />
             <Route path="/covid" component={CovidPage} />
             <Route path="/search" component={SearchNewsPage} />
+            <Route path="/stock-news" component={StockNewsPage} />
             <PrivateRoute path="/clip" component={ClipNewsPage} />
             <PrivateRoute path="/profile" component={ProfilePage} />
             <Route path="/login" component={LoginPage} />
