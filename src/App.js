@@ -12,7 +12,7 @@ import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignUpPage";
 import PrivateRoute from "./common/PrivateRoute";
 import ProfilePage from "./pages/ProfilePage";
-import Test from "./containers/HomeChart";
+import StockNewsPage from "./pages/StockNewsPage";
 
 const App = () => {
   return (
@@ -25,7 +25,6 @@ const App = () => {
               <Home />
             </Route>
             <Route path="/watch" component={Watch} />
-            <Route path="/test" component={Test} />
             <Route path="/stock" component={StockPage} />
             <Route path="/covid" component={CovidPage} />
             <Route path="/search" component={SearchNewsPage} />

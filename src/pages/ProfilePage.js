@@ -22,7 +22,7 @@ import EditIcon from "@material-ui/icons/Edit";
 import Message from "../common/Message";
 import AttachFileIcon from "@material-ui/icons/AttachFile";
 import CloseIcon from "@material-ui/icons/Close";
-import { generateUrl } from "../utility/urlGenerater";
+import { generateUrl } from "../utils/urlGenerater";
 
 const ProfileInfo = ({ info, icon, size }) => {
   return (

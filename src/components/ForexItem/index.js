@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./index.module.scss";
 import { Box, Typography } from "@material-ui/core";
-import { adjPrice, changeSymbol } from "../../utility/adjPrice";
+import { adjPrice, changeSymbol } from "../../utils/adjPrice";
 
 const ForexItem = ({ price, symbol, percent }) => {
   return (
