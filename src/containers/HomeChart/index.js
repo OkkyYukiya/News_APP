@@ -1,25 +1,51 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./index.module.scss";
 import Chart from "./Chart";
-import { FMP_CLOUD_API_KEY } from "../../apis/apiKeys";
 import { Box } from "@material-ui/core";
+import { arrayReverse } from "../../utils/arrayReverse";
+import { HomeChartURL } from "../../apis/fmpcloud";
+import SideAd from "../../apis/Adsense/SideAd";
+import SideTopAd from "../../apis/Adsense/SideTopAd";
 
 const HomeChart = () => {
-  const symbols = ["AAPL", "MSFT", "AMZN", "GOOG", "NFLX", "SBUX"];
-  const date = new Date();
-  const getDate = date.toLocaleDateString();
-  const toArrayDate = getDate.split("/");
-  const endpoint = (symbol) => {
-    return `https://fmpcloud.io/api/v3/historical-price-full/${symbol}?from=2021-03-20&to=${
-      toArrayDate[2]
-    }-${toArrayDate[0]}-${toArrayDate[1] - 1}&apikey=${FMP_CLOUD_API_KEY}`;
-  };
+  const [histrical, setHistorical] = useState([]);
+  const dummyData = [100, 110, 120, 200, 300];
+  useEffect(() => {
+    const fetchData = async () => {
+      const url = HomeChartURL();
+      const response = await fetch(url);
+      const body = await response.json();
+
+      setHistorical(body.historicalStockList);
+    };
+
+    fetchData();
+    // eslint-disable-next-line
+  }, []);
+
   return (
-    <Box my={1} textAlign="center" px={2} className={styles.root}>
-      {symbols.map((symbol) => (
-        <Chart key={symbol} endpoint={endpoint(symbol)} />
-      ))}
-    </Box>
+    <React.Fragment>
+      <Box my={0.3} textAlign="center" px={2} className={styles.root}>
+        <SideTopAd />
+        {histrical
+          ? histrical.map((d) => {
+              const arrays = arrayReverse(d.historical);
+              const num = d.historical.length;
+
+              return (
+                <Chart
+                  symbol={d.symbol}
+                  key={d.symbol}
+                  historical={arrays}
+                  currentPrice={d.historical[num - 1].close}
+                  percent={d.historical[num - 1].changePercent}
+                />
+              );
+            })
+          : dummyData.map((d, i) => <Chart key={i.toString()} percent={d} />)}
+        {histrical && <SideAd />}
+      </Box>
+    </React.Fragment>
   );
 };
 

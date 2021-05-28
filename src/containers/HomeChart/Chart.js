@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import styles from "./Chart.module.scss";
 import { Box, Typography } from "@material-ui/core";
 import {
@@ -10,49 +10,9 @@ import {
   Tooltip,
 } from "recharts";
 
-const Chart = ({ endpoint }) => {
-  const [historical, setHistorical] = useState([]);
-  const [symbol, setSymbol] = useState(null);
-  const [currentPrice, setCurrentPrice] = useState(null);
-  const [percent, setPercent] = useState(null);
-  const [color, setColor] = useState("#82ca9d");
+import { adjPrice } from "../../utils/adjPrice";
 
-  const checkPercent = percent > 0 ? "#82ca9d" : "#f52020";
-
-  const adjPrice = (price) => {
-    return Math.round(price * 100) / 100;
-  };
-
-  useEffect(() => {
-    const fetchStock = async () => {
-      const response = await fetch(endpoint);
-      const body = await response.json();
-
-      setCurrentPrice(body.historical[0].close);
-      setPercent(adjPrice(body.historical[0].changePercent));
-      if (body.historical[0].change < 0) {
-        setColor("#f52020");
-      }
-      const adjClosePrice = body.historical.map((p) => {
-        const replaceStr = (s) => {
-          const str = s;
-          const adjStr = str.replace("2021-", "");
-          return adjStr;
-        };
-        return {
-          date: replaceStr(p.date),
-          close: adjPrice(p.close),
-          changePercent: adjPrice(p.changePercent),
-        };
-      });
-
-      const reverseArray = adjClosePrice.reverse();
-      setHistorical(reverseArray);
-      setSymbol(body.symbol);
-    };
-    fetchStock();
-    // eslint-disable-next-line
-  }, []);
+const Chart = ({ currentPrice, historical, symbol, percent }) => {
   return (
     <Box className={styles.root}>
       <Box
@@ -72,35 +32,35 @@ const Chart = ({ endpoint }) => {
             className={percent > 0 ? styles.plus_percent : styles.minus_percent}
             variant="h6"
           >
-            {percent}%
+            {adjPrice(percent)}%
           </Typography>
         </Box>
       </Box>
 
       <AreaChart
-        width={300}
+        width={280}
         height={150}
         data={historical}
         margin={{ top: 10, right: 30, left: -16, bottom: 0 }}
       >
+        <Area
+          type="natural"
+          dataKey="close"
+          // stroke={percent > 0 ? "rgb(0, 187, 0)" : "rgb(253, 7, 7)"}
+          stroke=""
+          fillOpacity={1}
+          fill="url(#colorPv)"
+        />
         <defs>
           <linearGradient id="colorPv" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="5%" stopColor={color} stopOpacity={1} />
-            <stop offset="95%" stopColor={color} stopOpacity={0.1} />
+            <stop offset="5%" stopColor="#5ec4c1" stopOpacity={1} />
+            <stop offset="95%" stopColor="#5ec4c1" stopOpacity={0.1} />
           </linearGradient>
         </defs>
         <XAxis dataKey="date" />
         <YAxis />
         <CartesianGrid strokeDasharray="3 3" />
         <Tooltip />
-
-        <Area
-          type="natural"
-          dataKey="close"
-          stroke={checkPercent}
-          fillOpacity={1}
-          fill="url(#colorPv)"
-        />
       </AreaChart>
     </Box>
   );

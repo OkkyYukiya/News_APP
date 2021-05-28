@@ -7,6 +7,9 @@ const initialState = {
     photoURL: "",
   },
   language: "us",
+  slideNews: [],
+  homeChartData: [],
+  newsdata: [],
 };
 
 const reducer = (state, action) => {
@@ -19,6 +22,12 @@ const reducer = (state, action) => {
       return { ...state, user: action.payload.user };
     case "SET_LANGUAGE":
       return { ...state, language: action.payload.language };
+    case "SET_SLIDENEWS":
+      return { ...state, slideNews: action.payload.slideNews };
+    case "SET_HOMECHARTDATA":
+      return { ...state, homeChartData: action.payload.homeChartData };
+    case "SET_NEWSDATA":
+      return { ...state, newsdata: action.payload.newsdata };
     default:
       return state;
   }

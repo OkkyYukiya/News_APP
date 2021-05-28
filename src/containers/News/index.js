@@ -8,17 +8,22 @@ import { Store } from "../../context/Store";
 import PuffLoader from "react-spinners/PuffLoader";
 
 const News = () => {
-  const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(false);
-  const { globalState } = useContext(Store);
+  const { globalState, setGlobalState } = useContext(Store);
 
   useEffect(() => {
     const getNews = async () => {
       setLoading(true);
       const res = await getNewsData(globalState.category, globalState.language);
-      setArticles(res);
+      setGlobalState({
+        type: "SET_NEWSDATA",
+        payload: { newsdata: res },
+      });
       setLoading(false);
     };
+    const category = globalState.category;
+    console.log(category);
+
     getNews();
 
     // eslint-disable-next-line
@@ -35,7 +40,7 @@ const News = () => {
         </Box>
       ) : (
         <div className={styles.root}>
-          {articles.map((news) => (
+          {globalState.newsdata.map((news) => (
             <NewsGridItem
               key={news.url}
               description={news.description}

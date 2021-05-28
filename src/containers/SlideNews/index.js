@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { NYT_API_KEY } from "../../apis/apiKeys";
+import React, { useContext, useEffect, useState } from "react";
+import { SlideNewsUrl } from "../../apis/nyt";
 import { Box } from "@material-ui/core";
+import { Store } from "../../context/Store";
 import SlideNewsItem from "../../components/SlideNewsItem";
 import NextArrow from "../../common/SlickSettings/NextArrow";
 import PrevArrow from "../../common/SlickSettings/PrevArrow";
@@ -14,7 +15,7 @@ const settings = {
   dots: false,
   infinite: true,
   speed: 500,
-  autoPlaySpeed: 6000,
+  autoPlaySpeed: 8000,
   slidesToShow: 1,
   slidesToScroll: 1,
   autoplay: true,
@@ -23,20 +24,24 @@ const settings = {
 };
 
 const SlideNews = () => {
-  const [articles, setArticles] = useState([]);
+  const { globalState, setGlobalState } = useContext(Store);
   const [loading, setLoading] = useState(false);
   useEffect(() => {
     const fetchNews = async () => {
       setLoading(true);
-      const response = await fetch(
-        `https://api.nytimes.com/svc/news/v3/content/nyt/business.json?api-key=${NYT_API_KEY}`
-      );
+      const response = await fetch(SlideNewsUrl);
       const body = await response.json();
-      setArticles(body.results);
+      setGlobalState({
+        type: "SET_SLIDENEWS",
+        payload: { slideNews: body.results },
+      });
       setLoading(false);
     };
-    fetchNews();
-  }, []);
+    if (globalState.slideNews.length === 0) {
+      fetchNews();
+    }
+    // eslint-disable-next-line
+  }, [globalState.slideNews]);
 
   return (
     <React.Fragment>
@@ -54,7 +59,7 @@ const SlideNews = () => {
       ) : (
         <Box style={{ maxWidth: 700, margin: "2px auto" }}>
           <Slider {...settings}>
-            {articles.map((article) => (
+            {globalState.slideNews.map((article) => (
               <SlideNewsItem
                 key={article.url}
                 title={article.title}

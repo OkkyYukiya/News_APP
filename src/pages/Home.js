@@ -1,10 +1,10 @@
 import React from "react";
 import styles from "./Home.module.scss";
 import News from "../containers/News";
-import { Box } from "@material-ui/core";
 import SlideNews from "../containers/SlideNews";
 import HomeChart from "../containers/HomeChart";
 import Forex from "../containers/Forex";
+import { Box } from "@material-ui/core";
 
 const NewsPage = () => {
   return (
