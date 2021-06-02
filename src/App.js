@@ -14,6 +14,8 @@ import PrivateRoute from "./common/PrivateRoute";
 import ProfilePage from "./pages/ProfilePage";
 import StockNewsPage from "./pages/StockNewsPage";
 
+//branch is develop_react-query
+
 const App = () => {
   return (
     <React.Fragment>
