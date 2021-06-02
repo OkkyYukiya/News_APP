@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import styles from "./News.module.css";
-import ButtonTab from "../../components/ButtonTab";
+import ButtonTab from "../ButtonTab";
 import NewsGridItem from "../../components/NewsGridItem";
 import { getNewsData } from "../../apis/rapidApi";
 import { Box } from "@material-ui/core";
@@ -9,8 +9,26 @@ import PuffLoader from "react-spinners/PuffLoader";
 
 const News = () => {
   const [loading, setLoading] = useState(false);
+  const [err, setErr] = useState(null);
   const { globalState, setGlobalState } = useContext(Store);
-
+  const changeCategory = async (categoryName) => {
+    try {
+      setLoading(true);
+      await setGlobalState({
+        type: "SET_CATEGORY",
+        payload: { category: categoryName },
+      });
+      const res = await getNewsData(globalState.category, globalState.language);
+      setGlobalState({
+        type: "SET_NEWSDATA",
+        payload: { newsdata: res },
+      });
+    } catch {
+      setErr("Failed to Loading. Please Try Again");
+    } finally {
+      setLoading(false);
+    }
+  };
   useEffect(() => {
     const getNews = async () => {
       setLoading(true);
@@ -21,18 +39,24 @@ const News = () => {
       });
       setLoading(false);
     };
-    const category = globalState.category;
-    console.log(category);
-
-    getNews();
+    if (!globalState.newsdata.length) {
+      getNews();
+    }
 
     // eslint-disable-next-line
-  }, [globalState.category, globalState.language]);
+  }, []);
 
   return (
     <React.Fragment>
       <Box className={styles.box}>
-        <ButtonTab />
+        <ButtonTab
+          biz={() => changeCategory("business")}
+          tech={() => changeCategory("technology")}
+          polit={() => changeCategory("politics")}
+          world={() => changeCategory("world")}
+          prod={() => changeCategory("product")}
+          sports={() => changeCategory("sports")}
+        />
       </Box>
       {loading ? (
         <Box display="flex" justifyContent="center" my={7}>
@@ -40,19 +64,21 @@ const News = () => {
         </Box>
       ) : (
         <div className={styles.root}>
-          {globalState.newsdata.map((news) => (
-            <NewsGridItem
-              key={news.url}
-              description={news.description}
-              name={news.name}
-              url={news.url}
-              image={news.image?.thumbnail?.contentUrl}
-              providerImage={news.provider[0].image?.thumbnail?.contentUrl}
-              providerName={news.provider[0].name}
-              datePublished={news.datePublished}
-              category={globalState.category}
-            />
-          ))}
+          {globalState.newsdata &&
+            globalState.newsdata.map((news) => (
+              <NewsGridItem
+                key={news.url}
+                description={news.description}
+                name={news.name}
+                url={news.url}
+                image={news.image?.thumbnail?.contentUrl}
+                providerImage={news.provider[0].image?.thumbnail?.contentUrl}
+                providerName={news.provider[0].name}
+                datePublished={news.datePublished}
+                category={globalState.category}
+              />
+            ))}
+          {err && <h2>{err}</h2>}
         </div>
       )}
     </React.Fragment>

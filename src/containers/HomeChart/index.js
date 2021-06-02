@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import styles from "./index.module.scss";
 import Chart from "./Chart";
+import SideAd from "../../apis/Adsense/SideAd";
+import SideTopAd from "../../apis/Adsense/SideTopAd";
 import { Box } from "@material-ui/core";
 import { arrayReverse } from "../../utils/arrayReverse";
 import { HomeChartURL } from "../../apis/fmpcloud";
-import SideAd from "../../apis/Adsense/SideAd";
-import SideTopAd from "../../apis/Adsense/SideTopAd";
 
 const HomeChart = () => {
   const [histrical, setHistorical] = useState([]);
@@ -31,6 +31,7 @@ const HomeChart = () => {
           ? histrical.map((d) => {
               const arrays = arrayReverse(d.historical);
               const num = d.historical.length;
+              const data = d.historical[num - 1].changePercent;
 
               return (
                 <Chart
@@ -39,6 +40,7 @@ const HomeChart = () => {
                   historical={arrays}
                   currentPrice={d.historical[num - 1].close}
                   percent={d.historical[num - 1].changePercent}
+                  data={data > 0 ? "green" : "red"}
                 />
               );
             })

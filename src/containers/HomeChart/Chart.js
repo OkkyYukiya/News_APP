@@ -12,7 +12,7 @@ import {
 
 import { adjPrice } from "../../utils/adjPrice";
 
-const Chart = ({ currentPrice, historical, symbol, percent }) => {
+const Chart = ({ currentPrice, historical, symbol, percent, data }) => {
   return (
     <Box className={styles.root}>
       <Box

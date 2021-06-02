@@ -3,13 +3,13 @@ import React, { createContext, useReducer } from "react";
 const initialState = {
   symbol: "DJI.INDX",
   category: "business",
-  user: {
-    photoURL: "",
-  },
   language: "us",
   slideNews: [],
   homeChartData: [],
   newsdata: [],
+  user: {
+    photoURL: "",
+  },
 };
 
 const reducer = (state, action) => {
@@ -18,8 +18,6 @@ const reducer = (state, action) => {
       return { ...state, symbol: action.payload.symbol };
     case "SET_CATEGORY":
       return { ...state, category: action.payload.category };
-    case "SET_USER":
-      return { ...state, user: action.payload.user };
     case "SET_LANGUAGE":
       return { ...state, language: action.payload.language };
     case "SET_SLIDENEWS":
@@ -28,6 +26,8 @@ const reducer = (state, action) => {
       return { ...state, homeChartData: action.payload.homeChartData };
     case "SET_NEWSDATA":
       return { ...state, newsdata: action.payload.newsdata };
+    case "SET_USER":
+      return { ...state, user: action.payload.user };
     default:
       return state;
   }
