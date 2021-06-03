@@ -1,81 +1,140 @@
-import React, { useState, useEffect, useContext } from "react";
-import axios from "axios";
-import { Line } from "react-chartjs-2";
+import React, { useEffect, useState } from 'react'
+import styles from './StockChart.module.scss'
+import SearchIcon from '@material-ui/icons/Search'
+import StockTable from './StockTable'
+import { Box, Button, TextField, ButtonGroup } from '@material-ui/core'
 import {
-  chartendpoint,
-  options,
-  adjPrice,
-  PRICE_URL,
-  NAME_URL,
-} from "../../apis/stockchart";
-import { Box, Paper, Typography } from "@material-ui/core";
-import styles from "./StockChart.module.scss";
-import { Store } from "../../context/Store";
+  AreaChart,
+  Area,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  ResponsiveContainer,
+} from 'recharts'
+import { StockNews } from './StockNews'
+import { adjNumbur } from '../../utils/adjPrice'
+import { CHARTURL } from '../../apis/fmpcloud'
 
 const StockChart = () => {
-  const [stockData, setStockData] = useState({});
-  const [stockName, setStockName] = useState({});
-  const [stockPrice, setStockPrice] = useState({});
-  const { globalState } = useContext(Store);
+  const [isData, setData] = useState([])
+  const [isSymbol, setSymbol] = useState('AAPL')
+  const [onChangeSymbol, setChangeSymbol] = useState('')
+  const [isInfo, setInfo] = useState({
+    changePercent: null,
+    close: null,
+    vol: null,
+  })
+
+  const url = CHARTURL(isSymbol)
+  const handleSymbol = (e) => {
+    e.preventDefault()
+    try {
+      setSymbol(onChangeSymbol)
+    } catch {
+      alert('Try Again')
+    }
+  }
 
   useEffect(() => {
-    const getStockPriceAndName = async (symbol) => {
-      const response = await Promise.all([
-        fetch(NAME_URL(symbol)),
-        fetch(PRICE_URL(symbol)),
-      ]);
-      const bodies = await Promise.all(response.map((res) => res.json()));
-
-      if (bodies[0] && bodies[1]) {
-        setStockName(bodies[0]);
-        setStockPrice(bodies[1]);
-      }
-    };
-
-    const getStockData = async (symbol) => {
-      let data = [];
-      let labels = [];
-      await axios.get(chartendpoint(symbol)).then((response) => {
-        for (let stock of response.data.data) {
-          data.push(stock.close);
-          labels.push(stock.date);
-        }
-      });
-      setStockData({
-        labels: labels,
-        datasets: [
-          {
-            borderColor: "rgba(35,200,153,1)",
-            data: data,
-            lineTension: 0,
-            backgroundColor: "rgba(35,200,153,0.3)",
-          },
-        ],
-      });
-    };
-
-    getStockData(globalState.symbol);
-    getStockPriceAndName(globalState.symbol);
-
+    const fetchData = async () => {
+      const res = await fetch(url)
+      const body = await res.json()
+      const reda = body.historical.reverse()
+      const isStockInfo = reda[reda.length - 1]
+      setData(reda)
+      setInfo({
+        changePercent: isStockInfo.changePercent,
+        close: isStockInfo.close,
+        vol: isStockInfo.volume,
+      })
+    }
+    fetchData()
     // eslint-disable-next-line
-  }, [globalState.symbol]);
+  }, [isSymbol])
   return (
-    <Box mt={1} className={styles.root}>
-      <Paper elevation={3} className={styles.wrapper}>
-        <Box mb={2} className={styles.text_header}>
-          <Box pl={1} display="flex" alignItems="flex-end">
-            <Typography variant="h6">{adjPrice(stockPrice.close)}$</Typography>
-            <Box ml={2} display="flex" alignItems="flex-end">
-              <Typography variant="h6">{stockName.symbol}/ </Typography>
-              <p className={styles.name}>{stockName.name}</p>
-            </Box>
-          </Box>
-          <Box pl={1} display="flex" alignItems="flex-end"></Box>
-        </Box>
-        <Line data={stockData} options={options} className={styles.chart} />
-      </Paper>
-    </Box>
-  );
-};
+    <Box
+      className={styles.root}
+      display="flex"
+      flexDirection="column"
+      alignItems="center"
+      mt={4}
+    >
+      <Box my={2} display="flex" flexWrap="wrap">
+        <ButtonGroup className={styles.bg} variant="contained">
+          <Button className={styles.btn} onClick={() => setSymbol('AAPL')}>
+            AAPL
+          </Button>
+          <Button className={styles.btn} onClick={() => setSymbol('MSFT')}>
+            MSFT
+          </Button>
+          <Button className={styles.btn} onClick={() => setSymbol('AMZN')}>
+            AMZN
+          </Button>
+          <Button className={styles.btn} onClick={() => setSymbol('FB')}>
+            FB
+          </Button>
+          <Button className={styles.btn} onClick={() => setSymbol('GOOGL')}>
+            GOOGL
+          </Button>
+        </ButtonGroup>
+        <form onSubmit={handleSymbol} noValidate autoComplete="off">
+          <TextField
+            variant="outlined"
+            id="standard-basic"
+            label="input symbol"
+            value={onChangeSymbol}
+            onChange={(e) => setChangeSymbol(e.target.value)}
+          />
+          <Button type="onSubmit" className={styles.button}>
+            <SearchIcon fontSize="large" />
+          </Button>
+        </form>
+      </Box>
+      <StockTable
+        symbol={isSymbol}
+        price={isInfo.close}
+        percent={isInfo.changePercent}
+        volume={adjNumbur(isInfo.vol)}
+      />
 
-export default StockChart;
+      <ResponsiveContainer width="100%" height={250}>
+        <AreaChart
+          className={styles.chart}
+          width="100%"
+          height={250}
+          data={isData}
+          margin={{ top: 10, right: 30, left: 0, bottom: 0 }}
+        >
+          <defs>
+            <linearGradient id="colorPv" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="5%" stopColor="#82ca9d" stopOpacity={0.8} />
+              <stop offset="95%" stopColor="#82ca9d" stopOpacity={0} />
+            </linearGradient>
+          </defs>
+          <XAxis dataKey="label" />
+          <YAxis />
+          <CartesianGrid strokeDasharray="3 3" />
+          <Tooltip />
+          <Area
+            type="monotone"
+            dataKey="low"
+            stroke="#8884d8"
+            fillOpacity={1}
+            fill="url(#colorUv)"
+          />
+          <Area
+            type="monotone"
+            dataKey="close"
+            stroke="#82ca9d"
+            fillOpacity={1}
+            fill="url(#colorPv)"
+          />
+        </AreaChart>
+      </ResponsiveContainer>
+      <StockNews symbol={isSymbol} />
+    </Box>
+  )
+}
+
+export default StockChart

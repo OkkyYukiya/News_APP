@@ -1,9 +1,9 @@
-import React from "react";
-import styles from "./HeaderMenu.module.css";
-import AcitveAvatar from "../ActiveAvatar";
-import { useAuth } from "../../context/AuthProvider";
-import { Link } from "react-router-dom";
-import clsx from "clsx";
+import React from 'react'
+import styles from './HeaderMenu.module.css'
+import AcitveAvatar from '../ActiveAvatar'
+import { useAuth } from '../../context/AuthProvider'
+import { Link } from 'react-router-dom'
+import clsx from 'clsx'
 import {
   Box,
   Button,
@@ -13,56 +13,56 @@ import {
   Divider,
   ListItemIcon,
   ListItemText,
-} from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
-import LockOpenIcon from "@material-ui/icons/LockOpen";
-import AttachFileIcon from "@material-ui/icons/AttachFile";
-import SearchIcon from "@material-ui/icons/Search";
-import MenuIcon from "@material-ui/icons/Menu";
-// import ShowChartIcon from "@material-ui/icons/ShowChart";
-import AssignmentIcon from "@material-ui/icons/Assignment";
-import SettingsIcon from "@material-ui/icons/Settings";
-import LocalHospitalOutlinedIcon from "@material-ui/icons/LocalHospitalOutlined";
-import LocationCityIcon from "@material-ui/icons/LocationCity";
+} from '@material-ui/core'
+import { makeStyles } from '@material-ui/core/styles'
+import LockOpenIcon from '@material-ui/icons/LockOpen'
+import AttachFileIcon from '@material-ui/icons/AttachFile'
+import SearchIcon from '@material-ui/icons/Search'
+import MenuIcon from '@material-ui/icons/Menu'
+import ShowChartIcon from '@material-ui/icons/ShowChart'
+import AssignmentIcon from '@material-ui/icons/Assignment'
+import SettingsIcon from '@material-ui/icons/Settings'
+import LocalHospitalOutlinedIcon from '@material-ui/icons/LocalHospitalOutlined'
+import LocationCityIcon from '@material-ui/icons/LocationCity'
 
 const useStyles = makeStyles({
   fullList: {
-    width: "auto",
+    width: 'auto',
   },
   title: {
-    color: "#7c7c7c",
-    borderBottom: "2px solid #7c7c7c",
+    color: '#7c7c7c',
+    borderBottom: '2px solid #7c7c7c',
     width: 110,
-    margin: "17px auto",
+    margin: '17px auto',
   },
   link: {
-    textDecoration: "none",
-    color: "black",
+    textDecoration: 'none',
+    color: 'black',
   },
   icon: {
-    color: "#144b5e",
+    color: '#144b5e',
   },
   button: {
     padding: 0,
   },
-});
+})
 
 const DrawerMenu = () => {
-  const classes = useStyles();
+  const classes = useStyles()
   const [state, setState] = React.useState({
     right: false,
-  });
+  })
 
   const toggleDrawer = (anchor, open) => (event) => {
     if (
-      event.type === "keydown" &&
-      (event.key === "Tab" || event.key === "Shift")
+      event.type === 'keydown' &&
+      (event.key === 'Tab' || event.key === 'Shift')
     ) {
-      return;
+      return
     }
 
-    setState({ ...state, [anchor]: open });
-  };
+    setState({ ...state, [anchor]: open })
+  }
 
   const MenuListItems = ({ symbol, title, subtitle }) => {
     return (
@@ -76,15 +76,15 @@ const DrawerMenu = () => {
           </ListItem>
         </List>
       </Box>
-    );
-  };
+    )
+  }
 
   const OpenListItem = ({ anchor }) => {
-    const { currentUser } = useAuth();
+    const { currentUser } = useAuth()
     return (
       <div
         className={clsx(styles.list, {
-          [classes.fullList]: anchor === "top" || anchor === "bottom",
+          [classes.fullList]: anchor === 'top' || anchor === 'bottom',
         })}
         role="presentation"
         onClick={toggleDrawer(anchor, false)}
@@ -97,9 +97,9 @@ const DrawerMenu = () => {
         <Link to="/stock-news" className={classes.link}>
           <MenuListItems symbol={<LocationCityIcon />} title="Company News" />
         </Link>
-        {/* <Link to="/stock" className={classes.link}>
+        <Link to="/stock" className={classes.link}>
           <MenuListItems symbol={<ShowChartIcon />} title="Stocks" />
-        </Link> */}
+        </Link>
         <Link to="/search" className={classes.link}>
           <MenuListItems symbol={<SearchIcon />} title="Search" />
         </Link>
@@ -129,29 +129,29 @@ const DrawerMenu = () => {
           <MenuListItems symbol={<AttachFileIcon />} title="Clip News" />
         </Link>
       </div>
-    );
-  };
+    )
+  }
 
   return (
     <div>
       <React.Fragment>
         <Button
-          onClick={toggleDrawer("right", true)}
+          onClick={toggleDrawer('right', true)}
           className={classes.button}
         >
-          <MenuIcon style={{ color: "black" }} fontSize="large" />
+          <MenuIcon style={{ color: 'black' }} fontSize="large" />
           <div />
         </Button>
         <Drawer
-          anchor={"right"}
-          open={state["right"]}
-          onClose={toggleDrawer("right", false)}
+          anchor={'right'}
+          open={state['right']}
+          onClose={toggleDrawer('right', false)}
         >
-          <OpenListItem anchor={"right"} />
+          <OpenListItem anchor={'right'} />
         </Drawer>
       </React.Fragment>
     </div>
-  );
-};
+  )
+}
 
-export default DrawerMenu;
+export default DrawerMenu

@@ -44,7 +44,7 @@ const News = () => {
     }
 
     // eslint-disable-next-line
-  }, []);
+  }, [globalState.category, globalState.language]);
 
   return (
     <React.Fragment>
