@@ -1,18 +1,11 @@
-import React from "react";
-import styles from "./Chart.module.scss";
-import { Box, Typography } from "@material-ui/core";
-import {
-  AreaChart,
-  Area,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-} from "recharts";
+import React from 'react'
+import styles from './Chart.module.scss'
+import { Box, Typography } from '@material-ui/core'
+import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts'
 
-import { adjPrice } from "../../utils/adjPrice";
+import { adjPrice } from '../../utils/adjPrice'
 
-const Chart = ({ currentPrice, historical, symbol, percent, data }) => {
+const Chart = ({ currentPrice, historical, symbol, percent, color }) => {
   return (
     <Box className={styles.root}>
       <Box
@@ -30,8 +23,9 @@ const Chart = ({ currentPrice, historical, symbol, percent, data }) => {
           </Typography>
           <Typography
             className={percent > 0 ? styles.plus_percent : styles.minus_percent}
-            variant="h6"
+            variant="body1"
           >
+            {percent > 0 ? '▲' : '▼'}
             {adjPrice(percent)}%
           </Typography>
         </Box>
@@ -46,24 +40,23 @@ const Chart = ({ currentPrice, historical, symbol, percent, data }) => {
         <Area
           type="natural"
           dataKey="close"
-          // stroke={percent > 0 ? "rgb(0, 187, 0)" : "rgb(253, 7, 7)"}
-          stroke=""
+          stroke="rgb(0, 187, 0)"
           fillOpacity={1}
           fill="url(#colorPv)"
         />
         <defs>
           <linearGradient id="colorPv" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="5%" stopColor="#5ec4c1" stopOpacity={1} />
-            <stop offset="95%" stopColor="#5ec4c1" stopOpacity={0.1} />
+            <stop offset="5%" stopColor="#82ca9d" stopOpacity={1} />
+            <stop offset="95%" stopColor="#82ca9d" stopOpacity={0.1} />
           </linearGradient>
         </defs>
-        <XAxis dataKey="date" />
+        <XAxis dataKey="label" />
         <YAxis />
         <CartesianGrid strokeDasharray="3 3" />
         <Tooltip />
       </AreaChart>
     </Box>
-  );
-};
+  )
+}
 
-export default Chart;
+export default Chart

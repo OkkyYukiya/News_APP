@@ -1,18 +1,19 @@
 .root {
-  width: 100%;
-  .wrapper {
-    max-width: 700px;
-    margin: 0 auto;
-    padding: 1rem;
-    .text_header {
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      border-bottom: 2px solid rgb(66, 66, 66);
-      .name {
-        font-size: 15px;
-        margin-bottom: 4px;
-      }
+  background-color: white;
+
+  .bg {
+    .btn {
+      background-color: rgb(18, 116, 111);
+      color: white;
+      width: 80px;
+    }
+  }
+  form {
+    display: flex;
+    justify-content: center;
+    margin-left: 6px;
+    .button {
+      width: 30px;
     }
   }
 }

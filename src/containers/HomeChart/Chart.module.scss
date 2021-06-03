@@ -3,19 +3,21 @@
     width: 240px;
 
     .stock_info_right {
+      display: flex;
+      align-items: flex-end;
       .current_price {
         color: rgb(88, 88, 88);
       }
       .plus_percent {
-        background-color: rgb(0, 187, 0);
-        color: rgb(228, 228, 228);
+        // background-color: rgb(0, 187, 0);
+        color: rgb(0, 151, 0);
         width: 72px;
         border-radius: 4px;
         margin-left: 8px;
       }
       .minus_percent {
-        background-color: rgb(253, 7, 7);
-        color: rgb(228, 228, 228);
+        // background-color: rgb(253, 7, 7);
+        color: rgb(253, 7, 7);
         width: 72px;
         border-radius: 4px;
         margin-left: 8px;

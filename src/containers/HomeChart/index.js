@@ -1,54 +1,52 @@
-import React, { useState, useEffect } from "react";
-import styles from "./index.module.scss";
-import Chart from "./Chart";
-import SideAd from "../../apis/Adsense/SideAd";
-import SideTopAd from "../../apis/Adsense/SideTopAd";
-import { Box } from "@material-ui/core";
-import { arrayReverse } from "../../utils/arrayReverse";
-import { HomeChartURL } from "../../apis/fmpcloud";
+import React, { useState, useEffect } from 'react'
+import styles from './index.module.scss'
+import Chart from './Chart'
+import SideAd from '../../apis/Adsense/SideAd'
+import SideTopAd from '../../apis/Adsense/SideTopAd'
+import { Box } from '@material-ui/core'
+import { HomeChartURL } from '../../apis/fmpcloud'
 
 const HomeChart = () => {
-  const [histrical, setHistorical] = useState([]);
-  const dummyData = [100, 110, 120, 200, 300];
+  const [histrical, setHistorical] = useState([])
+
   useEffect(() => {
     const fetchData = async () => {
-      const url = HomeChartURL();
-      const response = await fetch(url);
-      const body = await response.json();
+      const url = HomeChartURL()
+      const response = await fetch(url)
+      const body = await response.json()
+      const reversed = await body.historicalStockList.map((d) => {
+        const arrays = d.historical
+        const reversedArr = arrays.reverse()
+        console.log('arr', reversedArr)
+        return { symbol: d.symbol, his: reversedArr }
+      })
+      console.log('reversed', reversed)
+      setHistorical(reversed)
+    }
 
-      setHistorical(body.historicalStockList);
-    };
-
-    fetchData();
+    fetchData()
     // eslint-disable-next-line
-  }, []);
+  }, [])
 
   return (
     <React.Fragment>
       <Box my={0.3} textAlign="center" px={2} className={styles.root}>
         <SideTopAd />
-        {histrical
-          ? histrical.map((d) => {
-              const arrays = arrayReverse(d.historical);
-              const num = d.historical.length;
-              const data = d.historical[num - 1].changePercent;
-
-              return (
-                <Chart
-                  symbol={d.symbol}
-                  key={d.symbol}
-                  historical={arrays}
-                  currentPrice={d.historical[num - 1].close}
-                  percent={d.historical[num - 1].changePercent}
-                  data={data > 0 ? "green" : "red"}
-                />
-              );
-            })
-          : dummyData.map((d, i) => <Chart key={i.toString()} percent={d} />)}
+        {histrical?.map((data) => {
+          return (
+            <Chart
+              key={data.symbol}
+              percent={data.his[0]?.changePercent}
+              currentPrice={data.his[0]?.close}
+              symbol={data.symbol}
+              historical={data.his}
+            />
+          )
+        })}
         {histrical && <SideAd />}
       </Box>
     </React.Fragment>
-  );
-};
+  )
+}
 
-export default HomeChart;
+export default HomeChart
